@@ -8,4 +8,9 @@ class Friend extends Model
 {
     //
     protected $table = "friends";
+
+    public function users()
+    {
+        $this->belongsToMany('App\User');
+    }
 }

@@ -17,8 +17,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        Photo::truncate();
-        Post::truncate();
         User::truncate();
 
         $user1 = App\User::create([

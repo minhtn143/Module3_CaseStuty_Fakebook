@@ -23,3 +23,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/timeline', 'TimelineController@index')->name('timeline.index');
+
+Route::get('redirect/{driver}', 'SocialController@redirect')
+    ->name('login.provider')
+    ->where('driver', implode('|', config('auth.socialite.drivers')));
+Route::get('/callback/{provider}', 'SocialController@callback');

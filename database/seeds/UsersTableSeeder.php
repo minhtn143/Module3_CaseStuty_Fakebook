@@ -17,13 +17,26 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
 
         $user1 = App\User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(5),
             'email' => 'minh@gmail.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('12345678')
+        ]);
+
+        $user2 = App\User::create([
+            'first_name' => Str::random(10),
+            'last_name' => Str::random(5),
+            'email' => 'hieu@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+
+        $user3 = App\User::create([
+            'first_name' => Str::random(10),
+            'last_name' => Str::random(5),
+            'email' => 'tung@gmail.com',
+            'password' => Hash::make('12345678')
         ]);
     }
 }

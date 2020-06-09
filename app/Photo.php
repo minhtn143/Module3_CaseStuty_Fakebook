@@ -8,4 +8,9 @@ class Photo extends Model
 {
     //
     protected $table = "photos";
+
+    public function users()
+    {
+        $this->hasMany('App\User');
+    }
 }

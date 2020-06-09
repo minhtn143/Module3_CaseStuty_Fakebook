@@ -13,4 +13,9 @@ class Photo extends Model
     {
         $this->hasMany('App\User');
     }
+
+    public function posts()
+    {
+        $this->belongsToMany('App\Post');
+    }
 }

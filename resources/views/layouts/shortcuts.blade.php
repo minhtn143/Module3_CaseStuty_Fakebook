@@ -12,7 +12,7 @@
             </li>
             <li>
                 <i class="ti-files"></i>
-                <a href="fav-page.html" title="">My pages</a>
+                <a href="{{ route('timeline.index') }}" title="">Timeline</a>
             </li>
             <li>
                 <i class="ti-user"></i>

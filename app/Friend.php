@@ -11,6 +11,6 @@ class Friend extends Model
 
     public function users()
     {
-        $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
 }

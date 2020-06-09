@@ -40,21 +40,21 @@ class User extends Authenticatable
 
     public function friends()
     {
-        $this->belongsToMany("App\Friend");
+        return $this->belongsToMany("App\Friend")->withTimestamps();
     }
 
     public function likes()
     {
-        $this->hasMany('App\Like');
+        return $this->hasMany('App\Like');
     }
 
     public function posts()
     {
-        $this->hasMany('App\Post');
+        return $this->hasMany('App\Post');
     }
 
     public function photos()
     {
-        $this->hasMany('App\Photo');
+        return $this->hasMany('App\Photo');
     }
 }

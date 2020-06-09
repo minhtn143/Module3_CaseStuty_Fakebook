@@ -11,11 +11,11 @@ class Post extends Model
 
     public function user()
     {
-        $this->belongsTo("App\User");
+        return $this->belongsTo("App\User");
     }
 
     public function photos()
     {
-        $this->belongsToMany("App\Photo");
+        return $this->belongsToMany("App\Photo")->withTimestamps();
     }
 }

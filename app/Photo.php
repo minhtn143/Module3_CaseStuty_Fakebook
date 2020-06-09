@@ -11,11 +11,11 @@ class Photo extends Model
 
     public function users()
     {
-        $this->hasMany('App\User');
+        return $this->hasMany('App\User');
     }
 
     public function posts()
     {
-        $this->belongsToMany('App\Post');
+        return $this->belongsToMany('App\Post')->withTimestamps();
     }
 }

@@ -27,8 +27,8 @@ class SocialController extends Controller
                 $user = new User;
                 $user->provider_name = $provider;
                 $user->provider_id = $providerUser->id;
-                $user->firstname = $providerUser->user['given_name'];
-                $user->lastname = $providerUser->user['family_name'];
+                $user->first_name = $providerUser->user['given_name'];
+                $user->last_name = $providerUser->user['family_name'];
                 $user->email = $providerUser->email;
                 $user->email_verified_at = now();
                 // dd($providerUser);

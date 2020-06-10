@@ -3,8 +3,8 @@
 <div class="central-meta">
     <div class="new-postbox">
         <figure>
-            <a href="">
-                <img src="images/resources/admin2.jpg" alt="">
+            <a href="{{ route('timeline.index') }}">
+                <img src="{{ Auth::user()->avatar }}" style="width: 60px" alt="">
             </a>
         </figure>
         <div class="newpst-input">
@@ -50,11 +50,12 @@
 
 <div class="loadMore">
     @foreach ($posts as $post)
+    @if ($post->parent_id == null)
     <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
-                    <img src="images/resources/friend-avatar10.jpg" alt="">
+                    <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
                 </figure>
                 <div class="friend-name">
                     <ins><a href="{{ route('timeline.index',$post->user_id) }}"
@@ -134,9 +135,79 @@
             </div>
             <div class="coment-area">
                 <ul class="we-comet">
+                    @foreach ($post->comments as $comment)
                     <li>
                         <div class="comet-avatar">
-                            <img src="images/resources/comet-1.jpg" alt="">
+                            <img src="{{ $post->user->avatar }}" style="width: 45px" alt="">
+                        </div>
+                        <div class="we-comment">
+                            <div class="coment-head">
+                                <h5><a
+                                        href="{{ route('timeline.index') }}">{{ $comment->user->last_name . " " . $comment->user->last_name }}</a>
+                                </h5>
+                                <span>{{ $comment->created_at }}</span>
+                                <a role="button" class="we-reply reply-comment" data-id="{{ $comment->id }}"
+                                    title="Reply"><i class="fa fa-reply"></i></a>
+                                <div>
+                                    <p>{{ $comment->content }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            @foreach ($comment->comments as $comment_2nd)
+                            <li>
+                                <div class="comet-avatar">
+                                    <img src="{{ $comment_2nd->user->avatar }}" style="width: 45px" alt="">
+                                </div>
+                                <div class="we-comment">
+                                    <div class="coment-head">
+                                        <h5><a
+                                                href="{{ route('timeline.index') }}">{{ $comment_2nd->user->last_name . " " . $comment_2nd->user->last_name }}</a>
+                                        </h5>
+                                        <span>{{ $comment_2nd->created_at }}</span>
+                                        <div>
+                                            <p>{{ $comment_2nd->content }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                            <li class="post-comment" id="reply-form-{{ $comment->id }}" style="display: none">
+                                <div class="comet-avatar">
+                                    <img src="{{ Auth::user()->avatar }}" alt="">
+                                </div>
+                                <div class="post-comt-box">
+                                    <form method="post" action="{{ route('post.comment',['postId' => $comment->id]) }}">
+                                        @csrf
+                                        <textarea name="comment-{{ $comment->id }}"
+                                            placeholder="Post your comment"></textarea>
+                                        <div class="add-smiles">
+                                            <span class="em em-expressionless" title="add icon"></span>
+                                        </div>
+                                        <div class="smiles-bunch">
+                                            <i class="em em---1"></i>
+                                            <i class="em em-smiley"></i>
+                                            <i class="em em-anguished"></i>
+                                            <i class="em em-laughing"></i>
+                                            <i class="em em-angry"></i>
+                                            <i class="em em-astonished"></i>
+                                            <i class="em em-blush"></i>
+                                            <i class="em em-disappointed"></i>
+                                            <i class="em em-worried"></i>
+                                            <i class="em em-kissing_heart"></i>
+                                            <i class="em em-rage"></i>
+                                            <i class="em em-stuck_out_tongue"></i>
+                                        </div>
+                                        <button type="submit"></button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @endforeach
+                    {{-- <li>
+                        <div class="comet-avatar">
                         </div>
                         <div class="we-comment">
                             <div class="coment-head">
@@ -202,15 +273,15 @@
                     </li>
                     <li>
                         <a href="#" title="" class="showmore underline">more comments</a>
-                    </li>
+                    </li> --}}
                     <li class="post-comment">
                         <div class="comet-avatar">
-                            <img src="images/resources/comet-1.jpg" alt="">
+                            <img src="{{ Auth::user()->avatar }}" alt="">
                         </div>
                         <div class="post-comt-box">
-                            <form method="post">
+                            <form method="post" action="{{ route('post.comment',['postId' => $post->id]) }}">
                                 @csrf
-                                <textarea name="comment" placeholder="Post your comment"></textarea>
+                                <textarea name="comment-{{ $post->id }}" placeholder="Post your comment"></textarea>
                                 <div class="add-smiles">
                                     <span class="em em-expressionless" title="add icon"></span>
                                 </div>
@@ -236,6 +307,7 @@
             </div>
         </div>
     </div>
+    @endif
     @endforeach
 </div><!-- centerl meta -->
 @endsection

@@ -33,18 +33,19 @@ class PostController extends Controller
 
     public function comment(Request $request, $postId)
     {
-        $post = Post::notReply()->findOrFail($postId);
+        $post = Post::find($postId);
 
         if (!$post) {
             return redirect()->route('home');
         }
 
-        $comment = Post::created([
+        // dd($request->input("comment-{$postId}"));
+        $comment = Post::create([
             'content' => $request->input("comment-{$postId}"),
             'user_id' => Auth::user()->id
         ]);
 
-        $post->comments()->save($post);
+        $post->comments()->save($comment);
 
         return redirect()->back();
     }

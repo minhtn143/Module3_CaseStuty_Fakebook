@@ -8,7 +8,8 @@
             </figure>
             <div class="newpst-input">
                 <form method="post">
-                    <textarea rows="2" placeholder="write something"></textarea>
+                    @csrf
+                    <textarea rows="2" name="content" placeholder="write something"></textarea>
                     <div class="attachments">
                         <ul>
                             <li>

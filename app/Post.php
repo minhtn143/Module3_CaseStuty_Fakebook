@@ -23,6 +23,7 @@ class Post extends Model
     {
         return $this->belongsToMany("App\Photo")->withTimestamps();
     }
+
     public function scopeNotReply($query)
     {
         return $query->whereNull('parent_id');
@@ -30,11 +31,18 @@ class Post extends Model
 
     public function replies()
     {
-        return $this->hasMany('App\Models\Post', 'parent_id');
+        return $this->hasMany('App\Post', 'parent_id');
     }
 
     public function likes()
     {
-        return $this->morphMany('App\Models\Like', 'likeable');
+        return $this->morphMany('App\Like', 'likeable');
+    }
+
+
+    public function comments()
+    {
+        return $this->hasMany('App\Post', 'parent_id');
     }
 }
+

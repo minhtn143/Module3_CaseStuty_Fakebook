@@ -80,3 +80,8 @@ Route::post('/profile/password', [
     'as' => 'profile.passwordChange',
     'middleware' => ['auth'],
 ]);
+
+Route::group(['prefix' => 'home'], function () {
+    Route::post('/post', 'PostController@store')->name('post.store');
+});
+

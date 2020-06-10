@@ -20,16 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="041af57d-56f5-46ae-9678-5cbb53289bec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Repositories/PostRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Services/PostService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_06_10_052946_change_cols_photo_id_parent_id_content_to_nullable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/newsfeed/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/newsfeed/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FriendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FriendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/timeline/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timeline/master.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +193,7 @@
       <workItem from="1591694070881" duration="345000" />
       <workItem from="1591694439959" duration="482000" />
       <workItem from="1591752312890" duration="6765000" />
-      <workItem from="1591765697283" duration="6284000" />
+      <workItem from="1591765697283" duration="8290000" />
     </task>
     <servers />
   </component>
@@ -261,6 +256,10 @@
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
     <state x="735" y="452" width="440" height="172" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1027@0.27.1920.1027" timestamp="1591752430900" />
+    <state x="559" y="325" width="791" height="427" key="git4idea.merge.GitPullDialog" timestamp="1591775308970">
+      <screen x="0" y="27" width="1920" height="1027" />
+    </state>
+    <state x="559" y="325" width="791" height="427" key="git4idea.merge.GitPullDialog/0.27.1920.1027@0.27.1920.1027" timestamp="1591775308970" />
     <state x="205" y="453" width="540" height="174" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1591763318740">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>

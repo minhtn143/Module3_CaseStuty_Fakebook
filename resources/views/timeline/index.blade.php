@@ -76,6 +76,7 @@
                             eiusmod tempor incididunt ut labore et dolore magna aliqua... </p>
                         <a href="#" title="">www.sample.com</a>
                     </div>
+
                     <div class="we-video-info">
                         <ul>
 

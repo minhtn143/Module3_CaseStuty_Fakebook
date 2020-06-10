@@ -60,7 +60,7 @@ class User extends Authenticatable
 
     public function getNameOrUsername()
     {
-        return $this->getName() ?: $this->username;
+        return $this->getName() ?: $this->email;
     }
 
 

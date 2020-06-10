@@ -7,7 +7,9 @@
             <figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
             <div class="add-btn">
                 <span>1205 followers</span>
-                <a href="{{route('friends.add', ['username' => $user->username])}}" class="btn btn-outline-primary my-2 my-sm-0">Add as friend</a>
+
+                <a href="{{route('friends.add',['username' => Auth::user()->id])}}" class="btn btn-outline-primary my-2 my-sm-0">Add as friend</a>
+                <a href="{{route('friends.index')}}" class="btn btn-outline-secondary my-2 my-sm-0">Your friendlist</a>
             </div>
             <form class="edit-phto">
                 <i class="fa fa-camera-retro"></i>

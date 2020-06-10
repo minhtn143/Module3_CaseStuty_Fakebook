@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use SplStack;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $datas = Post::all();
+        $posts = new SplStack();
+        foreach ($datas as $value) {
+            $posts->push($value);
+        }
 
         return view('newsfeed.home', compact('posts'));
     }

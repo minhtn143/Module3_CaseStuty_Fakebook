@@ -22,7 +22,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/timeline', 'TimelineController@index')->name('timeline.index');
+Route::group(['prefix' => 'timeline'], function () {
+    Route::get('/', 'TimelineController@index')->name('timeline.index');
+
+});
 
 Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')

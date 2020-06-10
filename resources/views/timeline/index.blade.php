@@ -244,6 +244,9 @@
                     <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
                     <span>published: june,2 2018 19:PM</span>
                 </div>
+                <div>
+
+                </div>
                 <div class="description">
 
                     <p>
@@ -262,6 +265,7 @@
                             eiusmod tempor incididunt ut labore et dolore magna aliqua... </p>
                         <a href="#" title="">www.sample.com</a>
                     </div>
+
                     <div class="we-video-info">
                         <ul>
 

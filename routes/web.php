@@ -32,3 +32,28 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 Route::group(['prefix' => 'home'], function () {
     Route::post('/post', 'PostController@store')->name('post.store');
 });
+
+
+
+/*Friends*/
+Route::get('/friends', [
+    'uses' => 'FriendController@getIndex',
+    'as' => 'friends.index',
+    'middleware' => ['auth'],
+]);
+Route::get('/friends/add/{id}', [
+    'uses' => 'FriendController@getAdd',
+    'as' => 'friends.add',
+    'middleware' => ['auth'],
+]);
+Route::get('/friends/accept/{id}', [
+    'uses' => 'FriendController@getAccept',
+    'as' => 'friends.accept',
+    'middleware' => ['auth'],
+]);
+
+Route::delete('/friends/delete/{id}', [
+    'uses' => 'FriendController@postDelete',
+    'as' => 'friends.delete',
+    'middleware' => ['auth'],
+]);

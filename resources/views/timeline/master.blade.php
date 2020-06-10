@@ -7,7 +7,8 @@
             <figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
             <div class="add-btn">
                 <span>1205 followers</span>
-                <a href="#" title="" data-ripple="">Add Friend</a>
+                <a href="{{route('friends.add',['id'=>Auth::user()->id])}}" title="" data-ripple="">Add Friend</a>
+                <a href="{{route('friends.index')}}" title="" data-ripple="">Your Friendlist</a>
             </div>
             <form class="edit-phto">
                 <i class="fa fa-camera-retro"></i>

@@ -145,11 +145,65 @@
                                         href="{{ route('timeline.index') }}">{{ $comment->user->last_name . " " . $comment->user->last_name }}</a>
                                 </h5>
                                 <span>{{ $comment->created_at }}</span>
-                                <a href="#" role="button" class="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
-                                <p>{{ $comment->content }}</p>
+                                <a role="button" class="we-reply reply-comment" data-id="{{ $comment->id }}"
+                                    title="Reply"><i class="fa fa-reply"></i></a>
+                                <div>
+                                    <p>{{ $comment->content }}</p>
+                                </div>
                             </div>
                         </div>
+                        <ul>
+                            @foreach ($comment->comments as $comment_2nd)
+                            <li>
+                                <div class="comet-avatar">
+                                    <img src="images/resources/comet-1.jpg" alt="">
+                                </div>
+                                <div class="we-comment">
+                                    <div class="coment-head">
+                                        <h5><a
+                                                href="{{ route('timeline.index') }}">{{ $comment_2nd->user->last_name . " " . $comment_2nd->user->last_name }}</a>
+                                        </h5>
+                                        <span>{{ $comment_2nd->created_at }}</span>
+                                        <div>
+                                            <p>{{ $comment_2nd->content }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                            <li class="post-comment" id="reply-form-{{ $comment->id }}" style="display: none">
+                                <div class="comet-avatar">
+                                    <img src="images/resources/comet-1.jpg" alt="">
+                                </div>
+                                <div class="post-comt-box">
+                                    <form method="post" action="{{ route('post.comment',['postId' => $comment->id]) }}">
+                                        @csrf
+                                        <textarea name="comment-{{ $comment->id }}"
+                                            placeholder="Post your comment"></textarea>
+                                        <div class="add-smiles">
+                                            <span class="em em-expressionless" title="add icon"></span>
+                                        </div>
+                                        <div class="smiles-bunch">
+                                            <i class="em em---1"></i>
+                                            <i class="em em-smiley"></i>
+                                            <i class="em em-anguished"></i>
+                                            <i class="em em-laughing"></i>
+                                            <i class="em em-angry"></i>
+                                            <i class="em em-astonished"></i>
+                                            <i class="em em-blush"></i>
+                                            <i class="em em-disappointed"></i>
+                                            <i class="em em-worried"></i>
+                                            <i class="em em-kissing_heart"></i>
+                                            <i class="em em-rage"></i>
+                                            <i class="em em-stuck_out_tongue"></i>
+                                        </div>
+                                        <button type="submit"></button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
+
                     @endforeach
                     {{-- <li>
                         <div class="comet-avatar">

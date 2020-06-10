@@ -19,7 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="041af57d-56f5-46ae-9678-5cbb53289bec" name="Default Changelist" comment="" />
+    <list default="true" id="041af57d-56f5-46ae-9678-5cbb53289bec" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FriendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FriendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/timeline/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timeline/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/partials/userblock.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/partials/userblock.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,18 +161,18 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/friends" />
       <recent name="$PROJECT_DIR$/app/Models" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
@@ -186,6 +194,7 @@
       <workItem from="1591694070881" duration="345000" />
       <workItem from="1591694439959" duration="482000" />
       <workItem from="1591752312890" duration="6765000" />
+      <workItem from="1591765697283" duration="5461000" />
     </task>
     <servers />
   </component>
@@ -212,30 +221,30 @@
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
     <state x="737" y="430" width="436" height="216" key="#Composer/0.27.1920.1027@0.27.1920.1027" timestamp="1591694075607" />
-    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591756903814">
+    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591770725865">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
-    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1027@0.27.1920.1027" timestamp="1591756903814" />
+    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1027@0.27.1920.1027" timestamp="1591770725865" />
     <state x="743" y="296" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591765693742">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
     <state x="743" y="296" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1027@0.27.1920.1027" timestamp="1591765693742" />
-    <state width="1874" height="270" key="GridCell.Tab.0.bottom" timestamp="1591694920212">
+    <state width="1874" height="270" key="GridCell.Tab.0.bottom" timestamp="1591765742120">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
-    <state width="1874" height="270" key="GridCell.Tab.0.bottom/0.27.1920.1027@0.27.1920.1027" timestamp="1591694920212" />
-    <state width="1874" height="270" key="GridCell.Tab.0.center" timestamp="1591694920212">
+    <state width="1874" height="270" key="GridCell.Tab.0.bottom/0.27.1920.1027@0.27.1920.1027" timestamp="1591765742120" />
+    <state width="1874" height="270" key="GridCell.Tab.0.center" timestamp="1591765742119">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
-    <state width="1874" height="270" key="GridCell.Tab.0.center/0.27.1920.1027@0.27.1920.1027" timestamp="1591694920212" />
-    <state width="1874" height="270" key="GridCell.Tab.0.left" timestamp="1591694920212">
+    <state width="1874" height="270" key="GridCell.Tab.0.center/0.27.1920.1027@0.27.1920.1027" timestamp="1591765742119" />
+    <state width="1874" height="270" key="GridCell.Tab.0.left" timestamp="1591765742119">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
-    <state width="1874" height="270" key="GridCell.Tab.0.left/0.27.1920.1027@0.27.1920.1027" timestamp="1591694920212" />
-    <state width="1874" height="270" key="GridCell.Tab.0.right" timestamp="1591694920212">
+    <state width="1874" height="270" key="GridCell.Tab.0.left/0.27.1920.1027@0.27.1920.1027" timestamp="1591765742119" />
+    <state width="1874" height="270" key="GridCell.Tab.0.right" timestamp="1591765742119">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
-    <state width="1874" height="270" key="GridCell.Tab.0.right/0.27.1920.1027@0.27.1920.1027" timestamp="1591694920212" />
+    <state width="1874" height="270" key="GridCell.Tab.0.right/0.27.1920.1027@0.27.1920.1027" timestamp="1591765742119" />
     <state x="655" y="254" width="599" height="568" key="NewPhpClassDialog" timestamp="1591763698353">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>

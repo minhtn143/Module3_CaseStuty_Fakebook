@@ -52,3 +52,31 @@ Route::delete('/friends/delete/{username}', [
     'as' => 'friends.delete',
     'middleware' => ['auth'],
 ]);
+
+
+/*User Profile*/
+Route::get('/user/{username}', [
+    'uses' => 'ProfileController@getProfile',
+    'as' => 'profile.index',
+]);
+Route::get('/profile/edit', [
+    'uses' => 'ProfileController@getEdit',
+    'as' => 'profile.edit',
+    'middleware' => ['auth'],
+]);
+Route::post('/profile/edit', [
+    'uses' => 'ProfileController@postEdit',
+    'middleware' => ['auth'],
+]);
+
+Route::get('/profile/password', [
+    'uses' => 'ProfileController@getUpdatePassword',
+    'as' => 'profile.password',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/profile/password', [
+    'uses' => 'ProfileController@postUpdatePassword',
+    'as' => 'profile.passwordChange',
+    'middleware' => ['auth'],
+]);

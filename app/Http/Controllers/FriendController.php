@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Auth;
 
+
 class FriendController extends Controller
 {
     public function getIndex()

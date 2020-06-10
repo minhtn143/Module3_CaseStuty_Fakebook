@@ -1,6 +1,5 @@
 @extends('master')
 @section('content')
-<<<<<<< HEAD
     <div class="theme-layout">
         @include('layouts.menu_top')
         <section>
@@ -91,12 +90,11 @@
                                     <label class="fileContainer">
                                         Edit Display Photo
                                         <input type="file" />
->>>>>>> 207c7b14430f2990abea942a310fe48e675a611c
+
                                     </label>
                                 </figure>
                             </div>
                         </div>
-<<<<<<< HEAD
                         <!-- upload -->
                         <div class="col-lg-10 col-sm-9">
                             <div class="timeline-info">
@@ -116,8 +114,7 @@
                                     </li>
                                 </ul>
                             </div>
-=======
-                    </div>
+      </div>
                     <div class="col-lg-10 col-sm-9">
                         <div class="timeline-info">
                             <ul>
@@ -135,7 +132,7 @@
                                     <a class="" href="#" title="" data-ripple="">more</a>
                                 </li>
                             </ul>
->>>>>>> 207c7b14430f2990abea942a310fe48e675a611c
+
                         </div>
                     </div>
                 </div>

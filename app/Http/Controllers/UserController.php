@@ -15,6 +15,7 @@ class UserController extends Controller
     {
         if ($request->hasFile('file')){
             $avatar=$request->file('avatar');
+            dd($avatar);
             $fileName=time().'.'.$avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(250,250)->save(public_path('/uploads/avatars/'));
             $user=Auth::user();

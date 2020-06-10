@@ -29,8 +29,6 @@ Route::group(['prefix' => 'timeline'], function () {
     Route::get('/{id}', "PostController@getAllPostsByUserId")->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
 });
-
-
 Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')
     ->where('driver', implode('|', config('auth.socialite.drivers')));

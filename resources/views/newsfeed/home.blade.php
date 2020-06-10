@@ -3,7 +3,7 @@
 <div class="central-meta">
     <div class="new-postbox">
         <figure>
-            <a href="{{ route('timeline.index') }}">
+            <a href="{{ route('timeline.index',['id' => Auth::user()->id]) }}">
                 <img src="{{ Auth::user()->avatar }}" style="width: 60px" alt="">
             </a>
         </figure>
@@ -138,15 +138,18 @@
                     @foreach ($post->comments as $comment)
                     <li>
                         <div class="comet-avatar">
-                            <img src="{{ $comment->user->avatar }}" style="width: 45px" alt="">
+                            <a class="comet-avatar" href="{{ route('timeline.index',$comment->user->id) }}">
+                                <img src="{{ $comment->user->avatar }}" style="width: 45px" alt="">
+                            </a>
+
                         </div>
                         <div class="we-comment">
                             <div class="coment-head">
-                                <h5><a
-                                        href="{{ route('timeline.index') }}">{{ $comment->user->last_name . " " . $comment->user->first_name }}</a>
+                                <h5>
+                                    <a href="{{ route('timeline.index',$comment->user->id) }}">{{ $comment->user->last_name . " " . $comment->user->first_name }}</a>
                                 </h5>
                                 <span>{{ $comment->created_at }}</span>
-                                <a role="button" class="we-reply text-primary reply-comment" data-id="{{ $comment->id }}"
+                                <a class="we-reply text-primary reply-comment" data-id="{{ $comment->id }}"
                                     data-value="{{ '@'.$comment->user->last_name . " " . $comment->user->first_name. ' ' }}"
                                     title="Reply"><i class="fa fa-reply"></i>
                                 </a>
@@ -159,15 +162,18 @@
                             @foreach ($comment->comments as $comment_reply)
                             <li>
                                 <div class="comet-avatar">
-                                    <img src="{{ $comment_reply->user->avatar }}" style="width: 45px" alt="">
+                                    <a class="comet-avatar" href="{{ route('timeline.index',$comment_reply->user->id) }}">
+                                        <img src="{{ $comment_reply->user->avatar }}" style="width: 45px" alt="">
+                                    </a>
                                 </div>
                                 <div class="we-comment">
                                     <div class="coment-head">
-                                        <h5><a
-                                                href="{{ route('timeline.index') }}">{{ $comment_reply->user->last_name . " " . $comment_reply->user->first_name }}</a>
+                                        <h5>
+                                            <a href="{{ route('timeline.index',['id' => $comment_reply->user->id]) }}">
+                                                {{ $comment_reply->user->last_name . " " . $comment_reply->user->first_name }}</a>
                                         </h5>
                                         <span>{{ $comment_reply->created_at }}</span>
-                                        <a role="button" class="we-reply text-primary stretched-link reply-comment"
+                                        <a role="button" class="we-reply text-primary reply-comment"
                                             data-id="{{ $comment_reply->parent_id }}"
                                             data-value="{{ '@'.$comment_reply->user->last_name . " " . $comment_reply->user->first_name. ' ' }}"
                                             title="Reply"><i class="fa fa-reply"></i>

@@ -4,7 +4,7 @@
     @include('layouts.menu_top')
     <section>
         <div class="feature-photo">
-            <figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
+            <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
             <div class="add-btn">
                 <span>1205 followers</span>
                 <a href="#" title="" data-ripple="">Add Friend</a>
@@ -21,7 +21,7 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
                             <figure>
-                                <img src="images/resources/user-avatar.jpg" alt="">
+                                <img src="{{ $user->avatar }}" alt="">
                                 <form class="edit-phto">
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">

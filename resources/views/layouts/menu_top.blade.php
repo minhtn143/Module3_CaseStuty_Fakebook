@@ -188,7 +188,7 @@
 
 <div class="topbar stick">
     <div class="logo">
-        <a title="" href="{{ route('home') }}"><img src="images/logo.png" alt=""></a>
+        <a title="" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt=""></a>
     </div>
 
     <div class="top-area">

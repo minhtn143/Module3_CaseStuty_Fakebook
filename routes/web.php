@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/timeline', 'TimelineController@index')->name('timeline.index');
+Route::get('/timeline/upload/avatar/{id}/{avatar}','UserController@uploadAvatar')->name('user.update.avatar');
 
 Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')

@@ -11,8 +11,5 @@ class UserService
     {
         $this->userRepo=$userRepo;
     }
-    public function index(){
-        return $this->userRepo->index();
-    }
 
 }

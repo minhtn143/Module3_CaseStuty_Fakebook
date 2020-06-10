@@ -12,8 +12,5 @@ class UserRepository
     {
         $this->user=$user;
     }
-    public function index(){
-        return Auth::user();
-    }
 
 }

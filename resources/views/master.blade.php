@@ -43,6 +43,13 @@
             $('.updateAvatar').on('change',function () {
                 var id=$(this).attr('data-id');
                 var avatar=$(this).val();
+                $.ajax({
+                    url:'http://localhost:8000/timeline/upload/avatar/'+id+"/"+avatar,
+                    dataType:'json',
+                    success:function (result) {
+                        console.log(result);
+                    }
+                })
             });
         });
     </script>

@@ -4,7 +4,6 @@
     @include('layouts.menu_top')
     <section>
 
-
         <div class="feature-photo">
             <figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
             <div class="add-btn">
@@ -23,12 +22,15 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
                             <figure>
+                                <form action="" enctype="multipart/form-data" method ="post" id="upload">
+                                    @csrf
                                 <img src="" alt="">
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">
                                         Edit Display Photo
-                                        <input type="file" class="updateAvatar" data-id="{{$user->id}}">
+                                        <input name="files" id="avatar" type="file" class="updateAvatar" data-id="{{$user->id}}">
                                     </label>
+                                </form>
                             </figure>
                         </div>
                     </div>

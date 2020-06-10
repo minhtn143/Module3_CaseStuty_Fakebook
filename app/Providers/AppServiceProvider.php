@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('timeline.master',function ($view){
             $user=Auth::user();
             $view->with(['user'=>$user]);
-
         });
     }
 }

@@ -36,11 +36,11 @@
                         <div class="timeline-info">
                             <ul>
                                 <li class="admin-name">
-                                    <h5>Janice Griffith</h5>
+                                    <h5>{{ $user->last_name. " " .$user->first_name }}</h5>
                                     <span>Group Admin</span>
                                 </li>
                                 <li>
-                                    <a class="active" href="time-line.html" title="" data-ripple="">time line</a>
+                                    <a class="active" href="{{ route("timeline.index",$user->id) }}" title="" data-ripple="">time line</a>
                                     <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
                                     <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
                                     <a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>

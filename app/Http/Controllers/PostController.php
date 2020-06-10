@@ -28,7 +28,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function comment(Request $request, $postId)
@@ -102,7 +102,7 @@ class PostController extends Controller
     public function getAllPostsByUserId($id)
     {
         $user = User::find($id);
-        $posts = $this->postService->getAllPostsByUserId($id);
+        $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
         return view('timeline.index',compact("posts","user"));
     }
 }

@@ -25,11 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $datas = Post::all();
-        $posts = new SplStack();
-        foreach ($datas as $value) {
-            $posts->push($value);
-        }
+        // $datas = Post::all();
+        // $posts = new SplStack();
+        // foreach ($datas as $value) {
+        //     $posts->push($value);
+        // }
+
+        $posts = Post::orderBy('created_at','desc')->get();
 
         return view('newsfeed.home', compact('posts'));
     }

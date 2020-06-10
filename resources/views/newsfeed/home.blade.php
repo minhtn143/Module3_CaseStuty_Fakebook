@@ -45,7 +45,8 @@
             </form>
         </div>
     </div>
-</div><!-- add post new box -->
+</div>
+<!-- add post new box -->
 
 <div class="loadMore">
     @foreach ($posts as $post)
@@ -56,7 +57,7 @@
                     <img src="images/resources/friend-avatar10.jpg" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html"
+                    <ins><a href="{{ route('timeline.GoFriendIndex',$post->user_id) }}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
                     <span>{{ date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>

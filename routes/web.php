@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
     Route::get('/', 'TimelineController@index')->name('timeline.index');
+    Route::get('?{id}', "TimelineController@goFriendIndex")->name('timeline.GoFriendIndex');
     Route::post('/', 'PostController@store')->name('timeline.post');
 });
 

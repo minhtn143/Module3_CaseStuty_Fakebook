@@ -54,7 +54,7 @@
                     <img src="images/resources/friend-avatar10.jpg" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html"
+                    <ins><a href="{{ route('timeline.index',$post->user->id) }}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
                     <span>{{date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>

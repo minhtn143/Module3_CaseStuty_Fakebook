@@ -207,9 +207,9 @@
                             <img src="images/resources/comet-1.jpg" alt="">
                         </div>
                         <div class="post-comt-box">
-                            <form method="post">
+                            <form method="post" >
                                 @csrf
-                                <textarea name="comment" placeholder="Post your comment"></textarea>
+                                <textarea name="comment-{{ $post->id }}" placeholder="Post your comment"></textarea>
                                 <div class="add-smiles">
                                     <span class="em em-expressionless" title="add icon"></span>
                                 </div>

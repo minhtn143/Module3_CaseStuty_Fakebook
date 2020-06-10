@@ -43,11 +43,8 @@
             $('.updateAvatar').on('change',function () {
                 var id=$(this).attr('data-id');
                 var avatar=$(this).val();
-                console.log(id);
-                console.log(avatar);
             });
         });
     </script>
 </body>
-
 </html>

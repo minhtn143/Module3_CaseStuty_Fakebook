@@ -32,6 +32,6 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 Route::group(['prefix' => 'home'], function () {
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');
+        Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
     });
-    Route::post('/reply', 'PostController@store');
 });

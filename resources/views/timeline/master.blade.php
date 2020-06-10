@@ -1,5 +1,6 @@
 @extends('master')
 @section('content')
+<<<<<<< HEAD
     <div class="theme-layout">
         @include('layouts.menu_top')
         <section>
@@ -62,10 +63,40 @@
 
                                         <a style="margin-bottom: 8px" class="btn" href="#open-modal"><i
                                                 class="fa fa-camera-retro"></i>Edit Display Photo</a>
+=======
+<div class="theme-layout">
+    @include('layouts.menu_top')
+    <section>
+        <div class="feature-photo">
+            <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="#" title="" data-ripple="">Add Friend</a>
+            </div>
+            <form class="edit-phto">
+                <i class="fa fa-camera-retro"></i>
+                <label class="fileContainer">
+                    Edit Cover Photo
+                    <input type="file" />
+                </label>
+            </form>
+            <div class="container-fluid">
+                <div class="row merged">
+                    <div class="col-lg-2 col-sm-3">
+                        <div class="user-avatar">
+                            <figure>
+                                <img src="{{ $user->avatar }}" alt="">
+                                <form class="edit-phto">
+                                    <i class="fa fa-camera-retro"></i>
+                                    <label class="fileContainer">
+                                        Edit Display Photo
+                                        <input type="file" />
+>>>>>>> 207c7b14430f2990abea942a310fe48e675a611c
                                     </label>
                                 </figure>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <!-- upload -->
                         <div class="col-lg-10 col-sm-9">
                             <div class="timeline-info">
@@ -85,6 +116,26 @@
                                     </li>
                                 </ul>
                             </div>
+=======
+                    </div>
+                    <div class="col-lg-10 col-sm-9">
+                        <div class="timeline-info">
+                            <ul>
+                                <li class="admin-name">
+                                    <h5>{{ $user->last_name. " " .$user->first_name }}</h5>
+                                    <span>Group Admin</span>
+                                </li>
+                                <li>
+                                    <a class="active" href="{{ route("timeline.index",$user->id) }}" title="" data-ripple="">time line</a>
+                                    <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
+                                    <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
+                                    <a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
+                                    <a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
+                                    <a class="" href="about.html" title="" data-ripple="">about</a>
+                                    <a class="" href="#" title="" data-ripple="">more</a>
+                                </li>
+                            </ul>
+>>>>>>> 207c7b14430f2990abea942a310fe48e675a611c
                         </div>
                     </div>
                 </div>

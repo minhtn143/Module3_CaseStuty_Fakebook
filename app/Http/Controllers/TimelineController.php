@@ -11,11 +11,14 @@ class TimelineController extends Controller
 
     public function index()
     {
-        $datas = Post::all();
-        $posts = new SplStack();
-        foreach ($datas as $value) {
-            $posts->push($value);
-        }
+        $posts =  Post::orderBy('created_at', 'desc')->get();
+
+        return view('timeline.index', compact('posts'));
+    }
+
+    public function goFriendIndex(Request $id)
+    {
+        $posts =  Post::where('user_id',$id)->orderBy('created_at', 'desc')->get();
 
         return view('timeline.index', compact('posts'));
     }

@@ -4,8 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
+=======
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+>>>>>>> 207c7b14430f2990abea942a310fe48e675a611c
     <title>Winku Social Network Toolkit</title>
     <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">

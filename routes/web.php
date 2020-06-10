@@ -21,8 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/timeline', 'TimelineController@index')->name('timeline.index');
-Route::get('/timeline/upload/avatar/{id}/{avatar}','UserController@uploadAvatar')->name('user.update.avatar');
+Route::get('/timeline','TimelineController@index')->name('timeline.index');
+Route::post('/upload','UserController@uploadAvatar')->name('user.update.avatar');
 
 Route::group(['prefix' => 'timeline'], function () {
     Route::get('/', 'TimelineController@index')->name('timeline.index');
@@ -34,3 +34,9 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')
     ->where('driver', implode('|', config('auth.socialite.drivers')));
 Route::get('/callback/{provider}', 'SocialController@callback');
+Route::group(['prefix' => 'home'], function () {
+    Route::group(['prefix' => 'post'], function () {
+        Route::post('/', 'PostController@store')->name('post.store');
+        Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
+    });
+});

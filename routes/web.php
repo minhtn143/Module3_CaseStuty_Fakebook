@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
     Route::get('/', 'TimelineController@index')->name('timeline.index');
-
+    Route::post('/', 'PostController@store')->name('timeline.post');
 });
 
 Route::get('redirect/{driver}', 'SocialController@redirect')

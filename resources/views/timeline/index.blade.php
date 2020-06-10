@@ -7,7 +7,7 @@
                 <img src="images/resources/admin2.jpg" alt="">
             </figure>
             <div class="newpst-input">
-                <form method="post">
+                <form method="post" action="{{ route("timeline.post") }}">
                     @csrf
                     <textarea rows="2" name="content" placeholder="write something"></textarea>
                     <div class="attachments">
@@ -37,7 +37,7 @@
                                 </label>
                             </li>
                             <li>
-                                <button type="submit">Publish</button>
+                                <button type="submit">Post</button>
                             </li>
                         </ul>
                     </div>

@@ -8,6 +8,19 @@
         Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join
             now</a>
     </p>
+    <div class="text-center social-btn">
+        <a href="{{ route('login.provider', 'facebook') }}" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Login with <b>Facebook</b></a>
+        {{-- <a href="{{ route('login.provider', 'facebook') }}" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Login with <b>Twitter</b></a>
+        <a href="{{ route('login.provider', 'facebook') }}" class="btn btn-dark btn-block"><i class="fa fa-github"></i> Login with <b>Github</b></a> --}}
+        <a href="{{ route('login.provider', 'google') }}" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Login with <b>Google</b></a>
+    </div>
+    <div style=" margin: 20px 0 10px;
+    text-align: center;
+    border-top: 1px solid #ccc;"><i style="padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;">or</i></div>
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="form-group">

@@ -21,8 +21,15 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+<<<<<<< HEAD
 Route::get('/timeline', 'TimelineController@index')->name('timeline.index');
 Route::get('/timeline/upload/avatar/{id}/{avatar}','UserController@uploadAvatar')->name('user.update.avatar');
+=======
+Route::group(['prefix' => 'timeline'], function () {
+    Route::get('/', 'TimelineController@index')->name('timeline.index');
+    Route::post('/', 'PostController@store')->name('timeline.post');
+});
+>>>>>>> 8c018eed0ccb81cccaf6f5b8d3411df09399547b
 
 Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')

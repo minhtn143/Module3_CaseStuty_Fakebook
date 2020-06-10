@@ -11,6 +11,6 @@ class UserController extends Controller
 
     public function uploadAvatar($id, $avatar)
     {
-        
+
     }
 }

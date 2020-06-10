@@ -49,6 +49,7 @@
 
 <div class="loadMore">
     @foreach ($posts as $post)
+    @if ($post->parent_id == null)
     <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
@@ -58,7 +59,7 @@
                 <div class="friend-name">
                     <ins><a href="time-line.html"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
-                    <span>{{ $post->_at }}</span>
+                    <span>{{ $post->created_at }}</span>
                 </div>
                 <div class="description">
                     <p>{{ $post->content }}</p>
@@ -133,9 +134,25 @@
             </div>
             <div class="coment-area">
                 <ul class="we-comet">
+                    @foreach ($post->comments as $comment)
                     <li>
                         <div class="comet-avatar">
                             <img src="images/resources/comet-1.jpg" alt="">
+                        </div>
+                        <div class="we-comment">
+                            <div class="coment-head">
+                                <h5><a
+                                        href="{{ route('timeline.index') }}">{{ $comment->user->last_name . " " . $comment->user->last_name }}</a>
+                                </h5>
+                                <span>{{ $comment->created_at }}</span>
+                                <a href="#" role="button" class="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
+                                <p>{{ $comment->content }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    @endforeach
+                    {{-- <li>
+                        <div class="comet-avatar">
                         </div>
                         <div class="we-comment">
                             <div class="coment-head">
@@ -201,15 +218,15 @@
                     </li>
                     <li>
                         <a href="#" title="" class="showmore underline">more comments</a>
-                    </li>
+                    </li> --}}
                     <li class="post-comment">
                         <div class="comet-avatar">
                             <img src="images/resources/comet-1.jpg" alt="">
                         </div>
                         <div class="post-comt-box">
-                            <form method="post">
+                            <form method="post" action="{{ route('post.comment',['postId' => $post->id]) }}">
                                 @csrf
-                                <textarea name="comment" placeholder="Post your comment"></textarea>
+                                <textarea name="comment-{{ $post->id }}" placeholder="Post your comment"></textarea>
                                 <div class="add-smiles">
                                     <span class="em em-expressionless" title="add icon"></span>
                                 </div>
@@ -235,6 +252,7 @@
             </div>
         </div>
     </div>
+    @endif
     @endforeach
 </div><!-- centerl meta -->
 @endsection

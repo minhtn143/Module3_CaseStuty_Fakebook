@@ -399,7 +399,9 @@ jQuery(".post-comt-box textarea").on("keydown", function(event) {
 
     $('.reply-comment').click(function(){
         let cmt_id = $(this).attr('data-id');
+        let tag_name = $(this).attr('data-value');
         $('#reply-form-' + cmt_id).css('display','block');
+        $('#comment-' + cmt_id).val(tag_name);
     });
 
 

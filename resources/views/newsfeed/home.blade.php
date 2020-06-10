@@ -137,35 +137,42 @@
                     @foreach ($post->comments as $comment)
                     <li>
                         <div class="comet-avatar">
-                            <img src="{{ $post->user->avatar }}" style="width: 45px" alt="">
+                            <img src="{{ $comment->user->avatar }}" style="width: 45px" alt="">
                         </div>
                         <div class="we-comment">
                             <div class="coment-head">
                                 <h5><a
-                                        href="{{ route('timeline.index') }}">{{ $comment->user->last_name . " " . $comment->user->last_name }}</a>
+                                        href="{{ route('timeline.index') }}">{{ $comment->user->last_name . " " . $comment->user->first_name }}</a>
                                 </h5>
                                 <span>{{ $comment->created_at }}</span>
-                                <a role="button" class="we-reply reply-comment" data-id="{{ $comment->id }}"
-                                    title="Reply"><i class="fa fa-reply"></i></a>
+                                <a role="button" class="we-reply text-primary reply-comment" data-id="{{ $comment->id }}"
+                                    data-value="{{ '@'.$comment->user->last_name . " " . $comment->user->first_name. ' ' }}"
+                                    title="Reply"><i class="fa fa-reply"></i>
+                                </a>
                                 <div>
                                     <p>{{ $comment->content }}</p>
                                 </div>
                             </div>
                         </div>
                         <ul>
-                            @foreach ($comment->comments as $comment_2nd)
+                            @foreach ($comment->comments as $comment_reply)
                             <li>
                                 <div class="comet-avatar">
-                                    <img src="{{ $comment_2nd->user->avatar }}" style="width: 45px" alt="">
+                                    <img src="{{ $comment_reply->user->avatar }}" style="width: 45px" alt="">
                                 </div>
                                 <div class="we-comment">
                                     <div class="coment-head">
                                         <h5><a
-                                                href="{{ route('timeline.index') }}">{{ $comment_2nd->user->last_name . " " . $comment_2nd->user->last_name }}</a>
+                                                href="{{ route('timeline.index') }}">{{ $comment_reply->user->last_name . " " . $comment_reply->user->first_name }}</a>
                                         </h5>
-                                        <span>{{ $comment_2nd->created_at }}</span>
+                                        <span>{{ $comment_reply->created_at }}</span>
+                                        <a role="button" class="we-reply text-primary stretched-link reply-comment"
+                                            data-id="{{ $comment_reply->parent_id }}"
+                                            data-value="{{ '@'.$comment_reply->user->last_name . " " . $comment_reply->user->first_name. ' ' }}"
+                                            title="Reply"><i class="fa fa-reply"></i>
+                                        </a>
                                         <div>
-                                            <p>{{ $comment_2nd->content }}</p>
+                                            <p>{{ $comment_reply->content }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +185,7 @@
                                 <div class="post-comt-box">
                                     <form method="post" action="{{ route('post.comment',['postId' => $comment->id]) }}">
                                         @csrf
-                                        <textarea name="comment-{{ $comment->id }}"
+                                        <textarea id="comment-{{ $comment->id }}" name="comment-{{ $comment->id }}"
                                             placeholder="Post your comment"></textarea>
                                         <div class="add-smiles">
                                             <span class="em em-expressionless" title="add icon"></span>
@@ -203,76 +210,10 @@
                             </li>
                         </ul>
                     </li>
-
                     @endforeach
-                    {{-- <li>
-                        <div class="comet-avatar">
-                        </div>
-                        <div class="we-comment">
-                            <div class="coment-head">
-                                <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                <span>1 year ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                            </div>
-                            <p>we are working for the dance and sing songs. this car is very
-                                awesome for the youngster. please vote this car and like our
-                                post</p>
-                        </div>
-                        <ul>
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="images/resources/comet-2.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">alexendra
-                                                dadrio</a></h5>
-                                        <span>1 month ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>yes, really very awesome car i see the features of this
-                                        car in the official website of <a href="#" title="">#Mercedes-Benz</a> and
-                                        really impressed :-)
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="images/resources/comet-3.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">Olivia</a></h5>
-                                        <span>16 days ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>i like lexus cars, lexus cars are most beautiful with the
-                                        awesome features, but this car is really outstanding
-                                        than lexus</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="comet-avatar">
-                            <img src="images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <div class="coment-head">
-                                <h5><a href="time-line.html" title="">Donald Trump</a></h5>
-                                <span>1 week ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                            </div>
-                            <p>we are working for the dance and sing songs. this video is very
-                                awesome for the youngster. please vote this video and like our
-                                channel
-                                <i class="em em-smiley"></i>
-                            </p>
-                        </div>
-                    </li>
                     <li>
                         <a href="#" title="" class="showmore underline">more comments</a>
-                    </li> --}}
+                    </li>
                     <li class="post-comment">
                         <div class="comet-avatar">
                             <img src="{{ Auth::user()->avatar }}" alt="">

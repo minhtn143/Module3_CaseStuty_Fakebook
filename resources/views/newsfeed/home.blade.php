@@ -58,7 +58,7 @@
                 <div class="friend-name">
                     <ins><a href="time-line.html"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
-                    <span>{{ $post->_at }}</span>
+                    <span>{{ date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>
                 <div class="description">
                     <p>{{ $post->content }}</p>

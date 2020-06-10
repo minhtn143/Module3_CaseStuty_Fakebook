@@ -28,3 +28,7 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')
     ->where('driver', implode('|', config('auth.socialite.drivers')));
 Route::get('/callback/{provider}', 'SocialController@callback');
+
+Route::group(['prefix' => 'home'], function () {
+    Route::post('/post', 'PostController@store')->name('post.store');
+});

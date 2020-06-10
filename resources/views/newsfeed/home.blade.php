@@ -3,7 +3,7 @@
 <div class="central-meta">
     <div class="new-postbox">
         <figure>
-            <a href="{{ route('timeline.index') }}">
+            <a href="">
                 <img src="images/resources/admin2.jpg" alt="">
             </a>
         </figure>
@@ -57,7 +57,7 @@
                     <img src="images/resources/friend-avatar10.jpg" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="{{ route('timeline.GoFriendIndex',$post->user_id) }}"
+                    <ins><a href="{{ route('timeline.index',$post->user_id) }}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
                     <span>{{ date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>

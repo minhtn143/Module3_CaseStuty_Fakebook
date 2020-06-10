@@ -2,14 +2,24 @@
 
 namespace App\Http\Repositories;
 
-use App\User;
+use App\Post;
 
 class PostRepository
 {
-    protected $user;
+    protected $post;
 
-    public function __construct(User $user)
+    public function __construct(Post $post)
     {
-        $this->user = $user;
+        $this->post = $post;
+    }
+
+    public function getAll()
+    {
+        return $this->post->all();
+    }
+
+    public function getAllPostsByUserId($id)
+    {
+        return $this->post->where("user_id",$id)->get();
     }
 }

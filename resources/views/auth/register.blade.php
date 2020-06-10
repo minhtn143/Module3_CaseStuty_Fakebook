@@ -11,22 +11,22 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="form-group">
-            <input type="text" required="required" id="firstname" type="text"
-                class="@error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}"
-                autocomplete="firstname" autofocus />
+            <input type="text" required="required" id="first_name" type="text"
+                class="@error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}"
+                autocomplete="first_name" autofocus />
             <label class="control-label" for="input">First Name</label><i class="mtrl-select"></i>
-            @error('firstname')
+            @error('first_name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
         </div>
         <div class="form-group">
-            <input type="text" required="required" id="lastname" type="text"
-                class="@error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}"
-                autocomplete="lastname" autofocus />
+            <input type="text" required="required" id="last_name" type="text"
+                class="@error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}"
+                autocomplete="last_name" autofocus />
             <label class="control-label" for="input">Last Name</label><i class="mtrl-select"></i>
-            @error('lastname')
+            @error('last_name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

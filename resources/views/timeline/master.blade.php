@@ -28,7 +28,7 @@
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">
                                         Edit Display Photo
-                                        <input name="files" id="avatar" type="file" class="updateAvatar" data-id="{{$user->id}}">
+                                        <a href=""></a>
                                     </label>
                                 </form>
                             </figure>
@@ -78,5 +78,24 @@
         </div>
     </section>
     @include('layouts.footer')
+</div>
+<div id="add_data_Modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="insert_form">
+                    <label>Enter Employee Name</label>
+                    <input type="text" name="name" id="name" class="form-control" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

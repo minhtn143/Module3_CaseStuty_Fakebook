@@ -55,7 +55,9 @@
         <div class="user-post">
             <div class="friend-info">
                 <figure>
-                    <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
+                    <a href="{{ route('timeline.index',['id' => $post->user->id]) }}">
+                        <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
+                    </a>
                 </figure>
                 <div class="friend-name">
                     <ins><a href="{{ route('timeline.index',$post->user_id) }}"

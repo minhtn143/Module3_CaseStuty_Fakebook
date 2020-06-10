@@ -28,3 +28,27 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')
     ->where('driver', implode('|', config('auth.socialite.drivers')));
 Route::get('/callback/{provider}', 'SocialController@callback');
+
+
+/*Friends*/
+Route::get('/friends', [
+    'uses' => 'FriendController@getIndex',
+    'as' => 'friends.index',
+    'middleware' => ['auth'],
+]);
+Route::get('/friends/add/{username}', [
+    'uses' => 'FriendController@getAdd',
+    'as' => 'friends.add',
+    'middleware' => ['auth'],
+]);
+Route::get('/friends/accept/{username}', [
+    'uses' => 'FriendController@getAccept',
+    'as' => 'friends.accept',
+    'middleware' => ['auth'],
+]);
+
+Route::delete('/friends/delete/{username}', [
+    'uses' => 'FriendController@postDelete',
+    'as' => 'friends.delete',
+    'middleware' => ['auth'],
+]);

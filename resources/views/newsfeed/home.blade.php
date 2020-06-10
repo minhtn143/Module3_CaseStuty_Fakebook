@@ -3,7 +3,7 @@
 <div class="central-meta">
     <div class="new-postbox">
         <figure>
-            <a href="{{ route('timeline.index') }}">
+            <a href="{{ route('timeline.index',Auth::user()->id) }}">
                 <img src="{{ Auth::user()->avatar }}" style="width: 60px" alt="">
             </a>
         </figure>
@@ -143,7 +143,7 @@
                         <div class="we-comment">
                             <div class="coment-head">
                                 <h5><a
-                                        href="{{ route('timeline.index') }}">{{ $comment->user->last_name . " " . $comment->user->last_name }}</a>
+                                        href="{{ route('timeline.index',$post->user->id) }}">{{ $comment->user->last_name . " " . $comment->user->last_name }}</a>
                                 </h5>
                                 <span>{{ $comment->created_at }}</span>
                                 <a role="button" class="we-reply reply-comment" data-id="{{ $comment->id }}"

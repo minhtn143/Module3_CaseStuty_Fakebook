@@ -54,7 +54,7 @@
                     <img src="images/resources/friend-avatar10.jpg" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="{{ route('timeline.index',$post->user->id) }}"
+                    <ins><a href="{{ route('timeline.index',Auth::user()->id) }}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
                     <span>{{date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>
@@ -129,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            <div class="coment-area">
+            {{-- <div class="coment-area">
                 <ul class="we-comet">
                     <li>
                         <div class="comet-avatar">
@@ -230,11 +230,11 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
     @endforeach
-    <div class="central-meta item">
+    {{-- <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -336,8 +336,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="central-meta item">
+    </div> --}}
+    {{-- <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -533,8 +533,8 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="central-meta item">
+    </div> --}}
+    {{-- <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -698,6 +698,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div><!-- centerl meta -->
 @endsection

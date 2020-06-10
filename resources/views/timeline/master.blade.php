@@ -3,6 +3,8 @@
 <div class="theme-layout">
     @include('layouts.menu_top')
     <section>
+
+
         <div class="feature-photo">
             <figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
             <div class="add-btn">
@@ -21,14 +23,12 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
                             <figure>
-                                <img src="images/resources/user-avatar.jpg" alt="">
-                                <form class="edit-phto">
+                                <img src="" alt="">
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">
                                         Edit Display Photo
-                                        <input type="file" />
+                                        <input type="file" class="updateAvatar" data-id="{{$user->id}}">
                                     </label>
-                                </form>
                             </figure>
                         </div>
                     </div>
@@ -36,8 +36,7 @@
                         <div class="timeline-info">
                             <ul>
                                 <li class="admin-name">
-                                    <h5>Janice Griffith</h5>
-                                    <span>Group Admin</span>
+                                    <h5>{{$user->first_name}} {{$user->last_name}}</h5>
                                 </li>
                                 <li>
                                     <a class="active" href="time-line.html" title="" data-ripple="">time line</a>

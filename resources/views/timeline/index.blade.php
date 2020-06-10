@@ -1,4 +1,4 @@
-@extends('timeline.master')
+ @extends('timeline.master')
 @section('timeline_content')
 <div class="loadMore">
     <div class="central-meta item">

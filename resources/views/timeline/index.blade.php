@@ -54,7 +54,7 @@
                     <img src="images/resources/friend-avatar10.jpg" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="{{ route('timeline.index',Auth::user()->id) }}"
+                    <ins><a href="{{ route('timeline.index',Auth::user()->id)}}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
                     <span>{{date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>
@@ -78,10 +78,33 @@
                                 </span>
                             </li>
                             <li>
-                                <span class="like" data-toggle="tooltip" title="like">
-                                    <a href="{{ route('post.like', ['postId'=>$post->id]) }}" title="Like Post">
+                                <span class="like" data-id="{{ $post->id }}" data-toggle="tooltip" title="like">
+                                    <i class="ti-heart"></i>
                                     <ins>2.2k</ins>
+                                    <form id="like-form-{{ $post->id }}"
+                                        action="{{ route('post.like', ['postId'=>$post->id]) }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
                                 </span>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('.like').onclick(function () {
+                                        let postId = $(this).attr('data-id');
+                                        console(postId);
+                                        $('like-form-' + postId).submit(function (e) {
+                                            e.preventDefault();
+                                            data.append('postId',postId);
+                                            $.ajax({
+                                            url:'post/'. postId .'/like',
+                                            type:'POST',
+                                            data:data,
+                                            contentType:"multipart/form-data",
+                                            processData:false,
+                                            success:function(data){alert('Section created :)')},
+                                        })
+                                    });
+                                </script>
                             </li>
                             <li class="social-media">
                                 <div class="menu">

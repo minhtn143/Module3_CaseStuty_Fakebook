@@ -26,7 +26,7 @@ Route::group(['prefix' => 'timeline'], function () {
     // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
     Route::get('/{id}', "PostController@getAllPostsByUserId")->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
-    Route::get('/post/{postId}/like', 'PostController@getLike')->name('post.like');
+    Route::post('/post/{postId}/like', 'PostController@getLike')->name('post.like');
 });
 
 Route::get('redirect/{driver}', 'SocialController@redirect')

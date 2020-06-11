@@ -15,7 +15,6 @@ class TimelineController extends Controller
 
         return view('timeline.index', compact('posts'));
     }
-
     public function goFriendIndex(Request $id)
     {
         $posts =  Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();

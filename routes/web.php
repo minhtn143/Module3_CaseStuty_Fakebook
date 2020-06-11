@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/timeline','TimelineController@index')->name('timeline.index');
+Route::get('/timeline','TimelineController@index')->name('timeline');
 Route::post('/upload','UserController@uploadAvatar')->name('user.update.avatar');
 
 Route::group(['prefix' => 'timeline'], function () {

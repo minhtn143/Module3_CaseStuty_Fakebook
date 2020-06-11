@@ -13,15 +13,18 @@ class UserController extends Controller
 
     public function uploadAvatar(Request $request)
     {
-        if ($request->hasFile('file')){
-            $avatar=$request->file('avatar');
-            dd($avatar);
-            $fileName=time().'.'.$avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(250,250)->save(public_path('/uploads/avatars/'));
-            $user=Auth::user();
-            $user->avatar=$fileName;
+        $user=Auth::user();
+        if (!$request->hasFile('file')){
+            $user->avatar=$request->file;
+        }else{
+            $file=$request->file('file');
+            $fileExtension = $file->getClientOriginalExtension();
+            $fileName = $request->file;
+            $newFileName = "$fileName.$fileExtension";
+            $request->file('file')->storeAs('public/images', $newFileName);
+            $user->avatar=$newFileName;
             $user->save();
         }
-        return view('timeline.master',array('user'=>Auth::user()));
+        return redirect()->back();
     }
 }

@@ -28,4 +28,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Post', 'parent_id');
     }
+
+    public function likes()
+    {
+        return $this->morphMany("App\Like", "likeable");
+    }
 }

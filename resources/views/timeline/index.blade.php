@@ -79,7 +79,7 @@
                             </li>
                             <li>
                                 <span class="like" data-toggle="tooltip" title="like">
-                                    <i class="ti-heart"></i>
+                                    <a href="{{ route('post.like', ['postId'=>$post->id]) }}" title="Like Post">
                                     <ins>2.2k</ins>
                                 </span>
                             </li>

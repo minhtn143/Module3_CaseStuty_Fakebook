@@ -106,4 +106,16 @@ class PostController extends Controller
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
         return view('timeline.index',compact("posts","user"));
     }
+
+    public function getLike($postId)
+    {
+        $posts = Post::find($postId);
+        
+        $posts->likes()->create([
+            'user_id' => Auth::user()->id,
+            'post_id' => $postId
+            ]);
+
+        return redirect()->back();
+    }
 }

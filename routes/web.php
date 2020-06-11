@@ -37,5 +37,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');
         Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
+        Route::get('/{postId}/delete', 'PostController@destroy')->name('post.delete');
     });
 });

@@ -55,7 +55,9 @@
         <div class="user-post">
             <div class="friend-info">
                 <figure>
-                    <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
+                    <a href="{{ route('timeline.index',['id' => $post->user->id]) }}">
+                        <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
+                    </a>
                 </figure>
                 <div class="friend-name">
                     <ins><a href="{{ route('timeline.index',$post->user_id) }}"
@@ -192,7 +194,7 @@
                                 <div class="post-comt-box">
                                     <form method="post" action="{{ route('post.comment',['postId' => $comment->id]) }}">
                                         @csrf
-                                        <textarea id="comment-{{ $comment->id }}" name="comment-{{ $comment->id }}"
+                                        <textarea id="comment-{{ $comment->id }}" data-id="{{ $comment->id }}" name="comment-{{ $comment->id }}"
                                             placeholder="Post your comment"></textarea>
                                         <div class="add-smiles">
                                             <span class="em em-expressionless" title="add icon"></span>
@@ -228,7 +230,7 @@
                         <div class="post-comt-box">
                             <form method="post" action="{{ route('post.comment',['postId' => $post->id]) }}">
                                 @csrf
-                                <textarea name="comment-{{ $post->id }}" placeholder="Post your comment"></textarea>
+                                <textarea name="comment-{{ $post->id }}" data-id="{{ $post->id }}" placeholder="Post your comment"></textarea>
                                 <div class="add-smiles">
                                     <span class="em em-expressionless" title="add icon"></span>
                                 </div>

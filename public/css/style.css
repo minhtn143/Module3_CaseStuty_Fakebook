@@ -4731,6 +4731,7 @@ canvas {
 }
 
 .chat-box.show {
+    /* position: absolute; */
     transform: translate(0) scale(1);
     opacity: 1;
     visibility: visible;

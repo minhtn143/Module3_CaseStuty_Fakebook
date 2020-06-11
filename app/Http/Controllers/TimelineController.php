@@ -24,6 +24,15 @@ class TimelineController extends Controller
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
         $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->first();
         $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
-        return view('timeline.index', compact('posts', 'friend', 'user', 'friendRequests'));
+
+        $friendList = Friend::where(function ($query) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->get();
+
+        return view('timeline.index', compact('posts', 'friend', 'user', 'friendRequests', 'friendList'));
     }
 }

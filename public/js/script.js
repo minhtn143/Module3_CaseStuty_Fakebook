@@ -26,8 +26,10 @@ jQuery(document).ready(function($) {
     });
 
     //--- side message box
-    $(".friendz-list > li, .chat-users > li").on("click", function() {
-        $(".chat-box").addClass("show");
+    $(".list_friend").on("click", function() {
+        let friendId = $(this).attr('data-id');
+        console.log($(friendId));
+        $(".box-chat-"+friendId).addClass("show");
         return false;
     });
     $(".close-mesage").on("click", function() {

@@ -2026,7 +2026,7 @@ span.status.f-off {
 }
 
 .friendz-meta {
-    display: inline-block;
+    display: inline;
     line-height: 17px;
     padding-left: 10px;
     vertical-align: middle;
@@ -2035,13 +2035,13 @@ span.status.f-off {
 
 .friendz-meta > i {
     color: #999;
-    display: inline-block;
+    display: inline;
     font-size: 13px;
     width: 100%;
 }
 
 .friendz-meta > a {
-    display: inline-block;
+    display: inline;
     font-size: 14px;
     text-transform: capitalize;
     width: 100%;
@@ -4717,7 +4717,7 @@ canvas {
 .chat-box {
     background: #fbfbfb none repeat scroll 0 0;
     border-radius: 3px;
-    bottom: -355px;
+    bottom: -100%;
     position: relative;
     right: 85%;
     width: 300px;

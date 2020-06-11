@@ -6,23 +6,25 @@
             @foreach ($friendList as $friend)
             <li>
                 <figure>
-                    <img src="{{ App\User::find($friend->friend_id)->avatar }}" alt="">
+                    <img class="list_friend" data-id="{{ $friend->friend_id }}" src="{{ App\User::find($friend->friend_id)->avatar }}" alt="">
                     <span class="status f-online"></span>
                 </figure>
                 <div class="friendz-meta">
-                    <a
-                        href="time-line.html">{{ App\User::find($friend->friend_id)->last_name . " " . App\User::find($friend->friend_id)->first_name }}</a>
-                    <i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__"
-                            data-cfemail="a0d7c9ced4c5d2d3cfccc4c5d2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i>
+                    <a href="{{ route('timeline.index',['id' => $friend->friend_id]) }}">{{ App\User::find($friend->friend_id)->last_name . " " . App\User::find($friend->friend_id)->first_name }}</a>
+                    {{-- <i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__"
+                            data-cfemail="a0d7c9ced4c5d2d3cfccc4c5d2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i> --}}
                 </div>
             </li>
             @endforeach
         </ul>
         {{-- chat box --}}
-        <div class="chat-box">
+        @foreach ($friendList as $friend)
+        <div class="chat-box box-chat-{{ $friend->friend_id }}">
             <div class="chat-head">
                 <span class="status f-online"></span>
-                <h6>Bucky Barnes</h6>
+                <h6>
+                    {{ App\User::find($friend->friend_id)->last_name . " " . App\User::find($friend->friend_id)->first_name }}
+                </h6>
                 <div class="more">
                     <span><i class="ti-more-alt"></i></span>
                     <span class="close-mesage"><i class="ti-close"></i></span>
@@ -87,6 +89,7 @@
                 </form>
             </div>
         </div>
+        @endforeach
         {{-- end chat box --}}
     </div><!-- friends list sidebar -->
 </aside>

@@ -79,6 +79,7 @@
                             </li>
                             <li>
                                 <span class="like" data-id="{{ $post->id }}" data-toggle="tooltip" title="like">
+                                    <a href="{{ route('post.like', ['postId'=>$post->id]) }}">
                                     <i class="ti-heart"></i>
                                     <ins>2.2k</ins>
                                     <form id="like-form-{{ $post->id }}"

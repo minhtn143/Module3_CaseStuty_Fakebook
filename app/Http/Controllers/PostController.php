@@ -94,19 +94,19 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        dd($post->comments->count());
-        // if ($post->comments->count() > 0) {
-        //     if ($post->comments->each->comments->count() > 0) {
-        //         $post->comments->each->comments->each->delete();
-        //         $post->comments->each->delete();
-        //         $post->delete();
-        //     } else {
-        //         $post->comments->each->delete();
-        //         $post->delete();
-        //     }
-        // } else {
-        //     $post->delete();
-        // }
+        // dd($post->comments->each->comments->count());
+        if ($post->comments->count() > 0) {
+            if ($post->comments->each->comments->count() > 0) {
+                $post->comments->each->comments->each->delete();
+                $post->comments->each->delete();
+                $post->delete();
+            } else {
+                $post->comments->each->delete();
+                $post->delete();
+            }
+        } else {
+            $post->delete();
+        }
 
         return redirect()->back();
     }

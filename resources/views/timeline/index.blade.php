@@ -241,10 +241,10 @@
                         </div>
                     </li>
                 </ul>
-            </div> --}}
+            </div> 
         </div>
     </div>
-    @endforeach
+    @endforeach--}}
     
     <div class="central-meta item">
         <div class="user-post">
@@ -277,9 +277,19 @@
                                 </span>
                             </li>
                             <li>
-                                <span class="like" data-toggle="tooltip" title="like">
-                                    <i class="ti-heart"></i>
-                                    <ins>2.2k</ins>
+                                <span class="like" data-id="{{ $post->id }}" data-toggle="tooltip" title="like">
+                                    <a href="{{ route('post.like', ['postId'=>$post->id]) }}">
+                                        
+                                            <i class="fa fa-heart"></i>
+                                        
+                                            <i class="ti-heart"></i>
+                                      
+                                        <ins>2.2k</ins>
+                                        <form id="like-form-{{ $post->id }}"
+                                            action="{{ route('post.like', ['postId'=>$post->id]) }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
                                 </span>
                             </li>
                             <li class="social-media">

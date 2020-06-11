@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
@@ -24,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
     // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
-    Route::get('/{id}', "PostController@getAllPostsByUserId")->name('timeline.index');
+    Route::get('/{id}/user', 'TimelineController@goFriendIndex')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
 });
 
@@ -39,4 +37,9 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
         Route::get('/{postId}/delete', 'PostController@destroy')->name('post.delete');
     });
+});
+
+Route::group(['prefix' => 'friend'], function () {
+    Route::get('/{friendId}/add', 'FriendController@store')->name('friend.add');
+    Route::get('/{id}/delete', 'FriendController@destroy')->name('friend.delete');
 });

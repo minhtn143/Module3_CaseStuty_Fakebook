@@ -5,10 +5,37 @@
     <section>
         <div class="feature-photo">
             <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
+            @if (Auth::user()->id == $user->id)
             <div class="add-btn">
                 <span>1205 followers</span>
-                <a href="#" title="" data-ripple="">Add Friend</a>
+                <a href="#" title="" data-ripple="">Update Info</a>
             </div>
+            @elseif (isset($friend))
+            @switch($friend->approval_status)
+            @case('0')
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="#" title="" data-ripple="">Sent Request</a>
+            </div>
+            @break
+            @case('1')
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="#" title="" data-ripple=""><i class="fa fa-check"></i> Friend</a>
+            </div>
+            @break
+            @default
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="{{ route('friend.add',['friendId' => $user->id]) }}" title="" data-ripple="">Add Friend</a>
+            </div>
+            @endswitch
+            @else
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="{{ route('friend.add',['friendId' => $user->id]) }}" title="" data-ripple="">Add Friend</a>
+            </div>
+            @endif
             <form class="edit-phto">
                 <i class="fa fa-camera-retro"></i>
                 <label class="fileContainer">
@@ -40,7 +67,8 @@
                                     <span>Group Admin</span>
                                 </li>
                                 <li>
-                                    <a class="active" href="{{ route("timeline.index",$user->id) }}" title="" data-ripple="">time line</a>
+                                    <a class="active" href="{{ route("timeline.index",$user->id) }}" title=""
+                                        data-ripple="">time line</a>
                                     <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
                                     <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
                                     <a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>

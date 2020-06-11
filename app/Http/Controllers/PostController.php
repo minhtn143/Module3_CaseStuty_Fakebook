@@ -94,7 +94,6 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        // dd($post->comments->each->comments->count());
         if ($post->comments->count() > 0) {
             if ($post->comments->each->comments->count() > 0) {
                 $post->comments->each->comments->each->delete();

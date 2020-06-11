@@ -110,11 +110,15 @@ class PostController extends Controller
     public function getLike($postId)
     {
         $posts = Post::find($postId);
-        
-        $posts->likes()->create([
-            'user_id' => Auth::user()->id,
-            'post_id' => $postId
-            ]);
+        $user = User::find(Auth::user()->id);
+        if($user->hasLikedPosts($posts)){
+           $posts->likes()->delete(); 
+        }else{
+            $posts->likes()->create([
+                'user_id' => Auth::user()->id,
+                'post_id' => $postId
+                ]);
+        }
 
         return redirect()->back();
     }

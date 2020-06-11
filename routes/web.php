@@ -42,4 +42,5 @@ Route::group(['prefix' => 'home'], function () {
 Route::group(['prefix' => 'friend'], function () {
     Route::get('/{friendId}/add', 'FriendController@store')->name('friend.add');
     Route::get('/{id}/delete', 'FriendController@destroy')->name('friend.delete');
+    Route::get('/{id}/accept', 'FriendController@accept')->name('friend.accept');
 });

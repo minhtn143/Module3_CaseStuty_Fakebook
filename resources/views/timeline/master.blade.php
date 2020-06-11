@@ -15,13 +15,15 @@
             @case('0')
             <div class="add-btn">
                 <span>1205 followers</span>
-                <a href="#" title="" data-ripple="">Sent Request</a>
+                <a href="{{ route('friend.delete',['id' => $friend->id]) }}" title=""
+                    onclick="return confirm('Cancel request?')" data-ripple="">Sent Request</a>
             </div>
             @break
             @case('1')
             <div class="add-btn">
                 <span>1205 followers</span>
-                <a href="#" title="" data-ripple=""><i class="fa fa-check"></i> Friend</a>
+                <a href="{{ route('friend.delete',['id' => $friend->id]) }}" title=""
+                    onclick="return confirm('Unfriend?')" data-ripple=""><i class="fa fa-check"></i> Friend</a>
             </div>
             @break
             @default

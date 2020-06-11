@@ -4,7 +4,7 @@
             <a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
         </span>
         <span class="mh-text">
-            <a href="newsfeed.html" title=""><img src="images/logo2.png" alt=""></a>
+            <a href="newsfeed.html" title=""><img src="{{ asset('images/logo2.png') }}" alt=""></a>
         </span>
         <span class="mh-btns-right">
             <a class="fa fa-sliders" href="#shoppingbag"></a>
@@ -188,7 +188,7 @@
 
 <div class="topbar stick">
     <div class="logo">
-        <a title="" href="{{ route('home') }}"><img src="images/logo.png" alt=""></a>
+        <a title="" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt=""></a>
     </div>
 
     <div class="top-area">
@@ -199,7 +199,7 @@
             </form>
         </div>
         <ul class="setting-area">
-            <li><a href="{{ route('home') }}" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+            <li><a href="{{ route('home') }}" title="Home"><i class="ti-home"></i></a></li>
             <li>
                 <a href="#" title="Notification" data-ripple="">
                     <i class="ti-bell"></i><span>20</span>

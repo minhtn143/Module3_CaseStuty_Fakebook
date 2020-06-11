@@ -33,6 +33,7 @@ class PostController extends Controller
 
     public function comment(Request $request, $postId)
     {
+        //return response()->json(['data' => $request->all()]);
         $post = Post::find($postId);
 
         if (!$post) {
@@ -40,13 +41,13 @@ class PostController extends Controller
         }
 
         $comment = Post::create([
-            'content' => $request->input("comment-{$postId}"),
+            'content' => $request->content,
             'user_id' => Auth::user()->id
         ]);
 
         $post->comments()->save($comment);
 
-        return redirect()->back();
+        return response()->json(['data' => $comment]);
     }
 
     /**
@@ -93,12 +94,19 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        if ($post->comments->count() > 0) {
-            $post->comments->each->delete();
-            $post->delete();
-        } else {
-            $post->delete();
-        }
+        dd($post->comments->count());
+        // if ($post->comments->count() > 0) {
+        //     if ($post->comments->each->comments->count() > 0) {
+        //         $post->comments->each->comments->each->delete();
+        //         $post->comments->each->delete();
+        //         $post->delete();
+        //     } else {
+        //         $post->comments->each->delete();
+        //         $post->delete();
+        //     }
+        // } else {
+        //     $post->delete();
+        // }
 
         return redirect()->back();
     }

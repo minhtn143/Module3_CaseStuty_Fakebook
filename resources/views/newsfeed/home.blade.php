@@ -184,6 +184,32 @@
                                     data-value="{{ '@'.$comment->user->last_name . " " . $comment->user->first_name. ' ' }}"
                                     title="Reply"><i class="fa fa-reply"></i>
                                 </a>
+                                @if (Auth::user()->id == $comment->user->id)
+                                <span class="social-media" title="Edit or Delete this" style="position: absolute;">
+                                    <div class="menu">
+                                        <div class="btn trigger" style="background-color: #ccc"><i
+                                                class="fa fa-ellipsis-h"></i>
+                                        </div>
+                                        <div class="rotater"></div>
+                                        <div class="rotater"></div>
+                                        <div class="rotater">
+                                            <div class="btn btn-icon bg-secondary">
+                                                <a href="{{ route('post.delete',['postId' => $comment->id]) }}"
+                                                    onclick="return confirm('Are you sure want to delete?')"
+                                                    title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="rotater">
+                                            <div class="btn btn-icon bg-secondary">
+                                                <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                @endif
+                                {{-- delete and edit --}}
                                 <div>
                                     <p>{{ $comment->content }}</p>
                                 </div>
@@ -210,6 +236,33 @@
                                             data-value="{{ '@'.$comment_reply->user->last_name . " " . $comment_reply->user->first_name. ' ' }}"
                                             title="Reply"><i class="fa fa-reply"></i>
                                         </a>
+                                        @if (Auth::user()->id == $comment_reply->user->id)
+                                        <span class="social-media" title="Edit or Delete this"
+                                            style="position: absolute;">
+                                            <div class="menu">
+                                                <div class="btn trigger" style="background-color: #ccc"><i
+                                                        class="fa fa-ellipsis-h"></i>
+                                                </div>
+                                                <div class="rotater"></div>
+                                                <div class="rotater"></div>
+                                                <div class="rotater">
+                                                    <div class="btn btn-icon bg-secondary">
+                                                        <a href="{{ route('post.delete',['postId' => $comment_reply->id]) }}"
+                                                            onclick="return confirm('Are you sure want to delete?')"
+                                                            title="Delete">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="rotater">
+                                                    <div class="btn btn-icon bg-secondary">
+                                                        <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                        @endif
+                                        {{-- delete and edit --}}
                                         <div>
                                             <p>{{ $comment_reply->content }}</p>
                                         </div>

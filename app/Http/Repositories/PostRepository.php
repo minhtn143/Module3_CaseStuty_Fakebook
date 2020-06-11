@@ -22,4 +22,10 @@ class PostRepository
     {
         return $this->post->where("user_id",$id)->get();
     }
+
+    public function delete($postId)
+    {
+        return $this->post->where("post_id",$postId)->delete();
+    }
+    
 }

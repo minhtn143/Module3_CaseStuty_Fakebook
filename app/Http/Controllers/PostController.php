@@ -97,27 +97,28 @@ class PostController extends Controller
 
     public function getAllPosts()
     {
-        return back()->with("posts",$this->postService->getAllPosts());
+        return back()->with("posts", $this->postService->getAllPosts());
     }
 
     public function getAllPostsByUserId($id)
     {
         $user = User::find($id);
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
-        return view('timeline.index',compact("posts","user"));
+        return view('timeline.index', compact("posts", "user"));
     }
 
     public function getLike($postId)
     {
         $posts = Post::find($postId);
+
         $user = User::find(Auth::user()->id);
-        if($user->hasLikedPosts($posts)){
-           $posts->likes()->delete(); 
-        }else{
+        if ($user->hasLikedPosts($posts, $user->id)) {
+            $posts->likes()->delete();
+        } else {
             $posts->likes()->create([
                 'user_id' => Auth::user()->id,
                 'post_id' => $postId
-                ]);
+            ]);
         }
 
         return redirect()->back();

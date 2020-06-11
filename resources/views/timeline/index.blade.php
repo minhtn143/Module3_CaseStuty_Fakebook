@@ -80,32 +80,18 @@
                             <li>
                                 <span class="like" data-id="{{ $post->id }}" data-toggle="tooltip" title="like">
                                     <a href="{{ route('post.like', ['postId'=>$post->id]) }}">
-                                    <i class="ti-heart"></i>
-                                    <ins>2.2k</ins>
-                                    <form id="like-form-{{ $post->id }}"
-                                        action="{{ route('post.like', ['postId'=>$post->id]) }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
+                                        
+                                            <i class="fa fa-heart"></i>
+                                        
+                                            <i class="ti-heart"></i>
+                                      
+                                        <ins>2.2k</ins>
+                                        <form id="like-form-{{ $post->id }}"
+                                            action="{{ route('post.like', ['postId'=>$post->id]) }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
                                 </span>
-                                <script>
-                                    $(document).ready(function () {
-                                        $('.like').onclick(function () {
-                                        let postId = $(this).attr('data-id');
-                                        console(postId);
-                                        $('like-form-' + postId).submit(function (e) {
-                                            e.preventDefault();
-                                            data.append('postId',postId);
-                                            $.ajax({
-                                            url:'post/'. postId .'/like',
-                                            type:'POST',
-                                            data:data,
-                                            contentType:"multipart/form-data",
-                                            processData:false,
-                                            success:function(data){alert('Section created :)')},
-                                        })
-                                    });
-                                </script>
                             </li>
                             <li class="social-media">
                                 <div class="menu">

@@ -33,4 +33,9 @@ class Post extends Model
     {
         return $this->morphMany("App\Like", "likeable");
     }
+
+    public function rep_cmts()
+    {
+        return $this->belongsTo('App\Post');
+    }
 }

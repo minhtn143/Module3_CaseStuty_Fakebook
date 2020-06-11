@@ -39,7 +39,6 @@ class PostController extends Controller
             return redirect()->route('home');
         }
 
-        // dd($request->input("comment-{$postId}"));
         $comment = Post::create([
             'content' => $request->input("comment-{$postId}"),
             'user_id' => Auth::user()->id
@@ -92,19 +91,28 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        if ($post->comments->count() > 0) {
+            $post->comments->each->delete();
+            $post->delete();
+        } else {
+            $post->delete();
+        }
+
+        return redirect()->back();
     }
 
     public function getAllPosts()
     {
-        return back()->with("posts",$this->postService->getAllPosts());
+        return back()->with("posts", $this->postService->getAllPosts());
     }
 
     public function getAllPostsByUserId($id)
     {
         $user = User::find($id);
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
-        return view('timeline.index',compact("posts","user"));
+        return view('timeline.index', compact("posts", "user"));
     }
 
     public function getLike($postId)

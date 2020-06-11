@@ -59,6 +59,7 @@
                         <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
                     </a>
                 </figure>
+                <span class="mr-0">&#8226;	&#8226;	&#8226;	</span>
                 <div class="friend-name">
                     <ins><a href="{{ route('timeline.index',$post->user_id) }}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>

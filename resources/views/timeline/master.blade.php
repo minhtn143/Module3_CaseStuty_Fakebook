@@ -21,10 +21,10 @@
                         <div class="col-lg-2 col-sm-3">
                             <div class="user-avatar">
                                 <figure>
-                                    <img src="{{ asset('images/resources/friend-avatar2.jpg') }}" alt="">
-                                    <i class="fa fa-camera-retro"></i>
-                                    <label class="fileContainer" style="color: black">
-                                        <a style="margin-bottom: 8px" class="btn" href="#open-modal">Edit Display Photo</a>
+                                    <img src="{{ asset('storage/images/' . $user->avatar) }}" style="width: 300px;height: 170px" alt="">
+                                    <i class="fa fa-camera-retro" style="margin-left: 5px"></i>
+                                    <label class="fileContainer" style="color: black;">
+                                        <a style="margin-bottom: 3px;" class="btn" href="#open-modal">Edit Display Photo</a>
                                     </label>
                                 </figure>
                             </div>

@@ -20,28 +20,20 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:tung" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:dev" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="041af57d-56f5-46ae-9678-5cbb53289bec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/FriendController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/friends/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/profile/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/profile/password.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/default.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/partials/alerts.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/partials/deletemodal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/partials/editmodal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/partials/footer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/partials/navigation.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/partials/timeline.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user/partials/userblock.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/timeline/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timeline/master.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Repositories/PostRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Services/PostService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_06_10_052946_change_cols_photo_id_parent_id_content_to_nullable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/newsfeed/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/newsfeed/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,20 +46,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
-  </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="hiddenUrls">
-      <set>
-        <option value="https://github.com/minhtn143/Module3_CaseStuty_Fakebook.git" />
-      </set>
-    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -196,13 +175,13 @@
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/friends" />
       <recent name="$PROJECT_DIR$/app/Models" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
@@ -226,6 +205,14 @@
       <workItem from="1591752312890" duration="6765000" />
       <workItem from="1591765697283" duration="8961000" />
     </task>
+    <task id="LOCAL-00001" summary="update friend and profile">
+      <created>1591781675882</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591781675882</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +229,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="tung" />
+                        <option value="dev" />
                       </list>
                     </value>
                   </entry>
@@ -257,18 +244,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Merge branch 'dev' of https://github.com/minhtn143/Module3_CaseStuty_Fakebook into dev&#10;&#10;# Conflicts:&#10;#&#9;app/Http/Models/Post.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'dev' of https://github.com/minhtn143/Module3_CaseStuty_Fakebook into dev&#10;&#10;# Conflicts:&#10;#&#9;app/Http/Models/Post.php" />
   </component>
   <component name="WindowStateProjectService">
     <state x="737" y="430" width="436" height="216" key="#Composer" timestamp="1591694075607">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
     <state x="737" y="430" width="436" height="216" key="#Composer/0.27.1920.1027@0.27.1920.1027" timestamp="1591694075607" />
-    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591778822075">
+    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591770725865">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>
-    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1027@0.27.1920.1027" timestamp="1591778822075" />
+    <state x="693" y="296" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1027@0.27.1920.1027" timestamp="1591770725865" />
     <state x="743" y="296" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591765693742">
       <screen x="0" y="27" width="1920" height="1027" />
     </state>

@@ -23,7 +23,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
-    Route::get('/', 'TimelineController@index')->name('timeline.index');
+    // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
+    Route::get('/{id}', "PostController@getAllPostsByUserId")->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
 });
 
@@ -33,7 +34,10 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::group(['prefix' => 'home'], function () {
-    Route::post('/post', 'PostController@store')->name('post.store');
+    Route::group(['prefix' => 'post'], function () {
+        Route::post('/', 'PostController@store')->name('post.store');
+        Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
+    });
 });
 
 

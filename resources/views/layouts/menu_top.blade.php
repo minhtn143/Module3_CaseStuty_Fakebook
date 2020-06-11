@@ -188,7 +188,7 @@
 
 <div class="topbar stick">
     <div class="logo">
-        <a title="" href="{{ route('home') }}"><img src="images/logo.png" alt=""></a>
+        <a title="" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt=""></a>
     </div>
 
     <div class="top-area">
@@ -340,7 +340,7 @@
             </li>
         </ul>
         <div class="user-img">
-            <img src="images/resources/admin.jpg" alt="">
+            <img src="{{ Auth::user()->avatar }}" style="width: 45px" alt="">
             <span class="status f-online"></span>
             <div class="user-setting">
                 <a href="#" title=""><span class="status f-online"></span>online</a>

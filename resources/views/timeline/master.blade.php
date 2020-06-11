@@ -4,7 +4,7 @@
     @include('layouts.menu_top')
     <section>
         <div class="feature-photo">
-            <figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
+            <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
             <div class="add-btn">
                 <span>1205 followers</span>
                 <a href="{{route('friends.add',['id'=>Auth::user()->id])}}" title="" data-ripple="">Add Friend</a>
@@ -22,7 +22,7 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
                             <figure>
-                                <img src="images/resources/user-avatar.jpg" alt="">
+                                <img src="{{ $user->avatar }}" alt="">
                                 <form class="edit-phto">
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">
@@ -37,11 +37,11 @@
                         <div class="timeline-info">
                             <ul>
                                 <li class="admin-name">
-                                    <h5>Janice Griffith</h5>
+                                    <h5>{{ $user->last_name. " " .$user->first_name }}</h5>
                                     <span>Group Admin</span>
                                 </li>
                                 <li>
-                                    <a class="active" href="time-line.html" title="" data-ripple="">time line</a>
+                                    <a class="active" href="{{ route("timeline.index",$user->id) }}" title="" data-ripple="">time line</a>
                                     <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
                                     <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
                                     <a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>

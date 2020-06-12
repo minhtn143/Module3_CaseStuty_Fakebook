@@ -188,7 +188,7 @@
 
 <div class="topbar stick">
     <div class="logo">
-        <a title="" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+        <a title="" href="{{ route('home') }}"><img src="https://i.imgur.com/xUJ7MR3.png" style="height: 60px" alt=""></a>
     </div>
 
     <div class="top-area">
@@ -199,75 +199,42 @@
             </form>
         </div>
         <ul class="setting-area">
-            <li><a href="{{ route('home') }}" title="Home"><i class="ti-home"></i></a></li>
+            <li><a href="{{ route('home') }}" title="Home" class="text-white"><i class="ti-home"></i></a></li>
             <li>
-                <a href="#" title="Notification" data-ripple="">
-                    <i class="ti-bell"></i><span>20</span>
+                <a href="#" title="Notification" class="text-white" data-ripple="">
+                    <i class="ti-user"></i><span class="bg-danger text-white">
+                        @if ($friendRequests->count()>0)
+                        {{ $friendRequests->count() }}
+                        @endif
+                    </span>
                 </a>
                 <div class="dropdowns">
-                    <span>4 New Notifications</span>
+                    <span>{{ $friendRequests->count() }} Friend Request</span>
                     <ul class="drops-menu">
+                        @foreach ($friendRequests as $request)
                         <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-1.jpg" alt="">
+                            <a title="">
+                                <img src="{{ App\User::find($request->user_id)->avatar }}" alt="">
                                 <div class="mesg-meta">
-                                    <h6>sarah Loren</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
+                                    <h6>{{ App\User::find($request->user_id)->first_name }}</h6>
+                                    <span>You have a friend request</span>
+                                    <span role="button" class="btn-link text-primary"
+                                        onclick="location.href='{{ route('friend.accept',['id' => $request->id]) }}'">Accept</span>
+                                    <span role="button" class="btn-link"
+                                        onclick="location.href='{{ route('friend.delete',['id' => $request->id]) }}'">Delete
+                                    </span>
+                                    <i>{{ $request->created_at }}</i>
                                 </div>
                             </a>
                             <span class="tag green">New</span>
                         </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-2.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Jhon doe</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag red">Reply</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-3.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Andrew</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag blue">Unseen</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-4.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Tom cruse</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag">New</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-5.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Amy</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag">New</span>
-                        </li>
+                        @endforeach
                     </ul>
                     <a href="notifications.html" title="" class="more-mesg">view more</a>
                 </div>
             </li>
             <li>
-                <a href="#" title="Messages" data-ripple=""><i class="ti-comment"></i><span>12</span></a>
+                <a href="#" title="Messages" class="text-white" data-ripple=""><i class="ti-comment"></i><span class="text-white bg-danger">12</span></a>
                 <div class="dropdowns">
                     <span>5 New Messages</span>
                     <ul class="drops-menu">
@@ -330,12 +297,68 @@
                     <a href="messages.html" title="" class="more-mesg">view more</a>
                 </div>
             </li>
-            <li><a href="#" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
-                <div class="dropdowns languages">
-                    <a href="#" title=""><i class="ti-check"></i>English</a>
-                    <a href="#" title="">Arabic</a>
-                    <a href="#" title="">Dutch</a>
-                    <a href="#" title="">French</a>
+            <li>
+                <a href="#" title="Notifications" class="text-white" data-ripple=""><i class="ti-bell"></i><span class="bg-danger text-white">12</span></a>
+                <div class="dropdowns">
+                    <span>5 New Messages</span>
+                    <ul class="drops-menu">
+                        <li>
+                            <a href="notifications.html" title="">
+                                <img src="images/resources/thumb-1.jpg" alt="">
+                                <div class="mesg-meta">
+                                    <h6>sarah Loren</h6>
+                                    <span>Hi, how r u dear ...?</span>
+                                    <i>2 min ago</i>
+                                </div>
+                            </a>
+                            <span class="tag green">New</span>
+                        </li>
+                        <li>
+                            <a href="notifications.html" title="">
+                                <img src="images/resources/thumb-2.jpg" alt="">
+                                <div class="mesg-meta">
+                                    <h6>Jhon doe</h6>
+                                    <span>Hi, how r u dear ...?</span>
+                                    <i>2 min ago</i>
+                                </div>
+                            </a>
+                            <span class="tag red">Reply</span>
+                        </li>
+                        <li>
+                            <a href="notifications.html" title="">
+                                <img src="images/resources/thumb-3.jpg" alt="">
+                                <div class="mesg-meta">
+                                    <h6>Andrew</h6>
+                                    <span>Hi, how r u dear ...?</span>
+                                    <i>2 min ago</i>
+                                </div>
+                            </a>
+                            <span class="tag blue">Unseen</span>
+                        </li>
+                        <li>
+                            <a href="notifications.html" title="">
+                                <img src="images/resources/thumb-4.jpg" alt="">
+                                <div class="mesg-meta">
+                                    <h6>Tom cruse</h6>
+                                    <span>Hi, how r u dear ...?</span>
+                                    <i>2 min ago</i>
+                                </div>
+                            </a>
+                            <span class="tag">New</span>
+                        </li>
+                        <li>
+                            <a href="notifications.html" title="">
+                                <img src="images/resources/thumb-5.jpg" alt="">
+                                <div class="mesg-meta">
+                                    <h6>Amy</h6>
+                                    <span>Hi, how r u dear ...?</span>
+                                    <i>2 min ago</i>
+                                </div>
+                            </a>
+                            <span class="tag">New</span>
+                        </li>
+                    </ul>
+                    <a href="messages.html" title="" class="more-mesg">view more</a>
                 </div>
             </li>
         </ul>
@@ -357,7 +380,7 @@
                 </form>
             </div>
         </div>
-        <span class="ti-menu main-menu" data-ripple=""></span>
+        <span class="ti-menu main-menu text-white" data-ripple=""></span>
     </div>
 </div><!-- topbar -->
 

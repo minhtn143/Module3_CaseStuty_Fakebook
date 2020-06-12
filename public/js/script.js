@@ -26,8 +26,10 @@ jQuery(document).ready(function($) {
     });
 
     //--- side message box
-    $(".friendz-list > li, .chat-users > li").on("click", function() {
-        $(".chat-box").addClass("show");
+    $(".list_friend").on("click", function() {
+        let friendId = $(this).attr('data-id');
+        console.log($(friendId));
+        $(".box-chat-"+friendId).addClass("show");
         return false;
     });
     $(".close-mesage").on("click", function() {
@@ -181,8 +183,8 @@ jQuery(document).ready(function($) {
             .data({ min: 0, max: 20, step: 1 });
     }
 
-    if ($.isFunction($.fn.loadMoreResults)) {
-        $(".loadMore").loadMoreResults({
+    if ($.isFunction($.fn.loadMoreresponses)) {
+        $(".loadMore").loadMoreresponses({
             displayedItems: 3,
             showItems: 1,
             button: {
@@ -338,49 +340,42 @@ jQuery(document).ready(function($) {
     }
 
     /** Post a Comment **/
-    jQuery(".post-comt-box textarea").on("keydown", function(event) {
+    $(".post-comt-box textarea").on("keydown", function(event) {
         if (event.keyCode == 13) {
-            var comment = jQuery(this).val();
-            var parent = jQuery(".showmore").parent("li");
-            var comment_HTML =
-                '	<li><div class="comet-avatar"><img src="{{ Auth::user()->avatar }}" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">Jason borne</a></h5><span>1 year ago</span><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' +
-                comment +
-                "</p></div></li>";
-            $(comment_HTML).insertBefore(parent);
-            jQuery(this).val("");
-
-            // let postId = $(this).attr("data-id");
-            // let data = $(this).val();
-            // console.log(data);
-            // $.ajaxSetup({
-            //     headers: {
-            //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-            //     }
-            // });
-            // $.ajax({
-            //     type: "post",
-            //     url: "http://fakebook.com/home/post/" + postId + "/comment",
-            //     data: data,
-            //     dataType: "json",
-            //     processData: false,
-            //     contentType: false,
-            //     success: function(result) {
-            //         if (result == 'result') {
-            //             var comment = jQuery(this).val();
-            //             var parent = jQuery(".showmore").parent("li");
-            //             var comment_HTML =
-            //                 '	<li><div class="comet-avatar"><img src="{{ asset("Auth::user()->avatar") }}" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">Jason borne</a></h5><span>1 year ago</span><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' +
-            //                 comment +
-            //                 "</p></div></li>";
-            //             $(comment_HTML).insertBefore(parent);
-            //             jQuery(this).val("");
-            //         }
-            //         alert ('error');
-            //     },
-            //     error: function() {
-            //         alert("error");
-            //     }
-            // });
+            let postId = $(this).attr("data-id");
+            let data = $(this).val();
+            console.log(data);
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                }
+            });
+            $.ajax({
+                url: "http://fakebook.com/home/post/" + postId + "/comment",
+                type: "post",
+                data: {
+                    content: data
+                },
+                dataType: "json",
+                //processData: false,
+                //contentType: false,
+                success: function(response) {
+                    console.log(response);
+                    if (response.data) {
+                        let parent = $(".showmore").parent("li");
+                        console.log(parent);
+                        let comment_HTML =
+                            '	<li><div class="comet-avatar"><img src="" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">Jason borne</a></h5><span>1 year ago</span><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' +
+                            data +
+                            "</p></div></li>";
+                        $(".post-comt-box textarea").val("");
+                        $(comment_HTML).insertBefore(parent);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
         }
     });
 

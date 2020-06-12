@@ -62,6 +62,34 @@
                 <div class="friend-name">
                     <ins><a href="{{ route('timeline.index',$post->user_id) }}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
+                    @if (Auth::user()->id == $post->user->id)
+                    <span class="social-media" title="Edit or Delete this" style="position: absolute">
+                        <div class="menu">
+                            <div class="btn trigger bg-secondary"><i class="fa fa-ellipsis-h"></i>
+                            </div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater">
+                                <div class="btn btn-icon bg-secondary">
+                                    <a href="{{ route('post.delete',['postId' => $post->id]) }}"
+                                        onclick="return confirm('Are you sure want to delete?')" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="rotater">
+                                <div class="btn btn-icon bg-secondary">
+                                    <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                    @endif
+                    {{-- delete and edit --}}
                     <span>{{ date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>
                 <div class="description">
@@ -148,13 +176,40 @@
                         <div class="we-comment">
                             <div class="coment-head">
                                 <h5>
-                                    <a href="{{ route('timeline.index',$comment->user->id) }}">{{ $comment->user->last_name . " " . $comment->user->first_name }}</a>
+                                    <a
+                                        href="{{ route('timeline.index',$comment->user->id) }}">{{ $comment->user->last_name . " " . $comment->user->first_name }}</a>
                                 </h5>
                                 <span>{{ $comment->created_at }}</span>
                                 <a class="we-reply text-primary reply-comment" data-id="{{ $comment->id }}"
                                     data-value="{{ '@'.$comment->user->last_name . " " . $comment->user->first_name. ' ' }}"
                                     title="Reply"><i class="fa fa-reply"></i>
                                 </a>
+                                @if (Auth::user()->id == $comment->user->id)
+                                <span class="social-media" title="Edit or Delete this" style="position: absolute;">
+                                    <div class="menu">
+                                        <div class="btn trigger" style="background-color: #ccc"><i
+                                                class="fa fa-ellipsis-h"></i>
+                                        </div>
+                                        <div class="rotater"></div>
+                                        <div class="rotater"></div>
+                                        <div class="rotater">
+                                            <div class="btn btn-icon bg-secondary">
+                                                <a href="{{ route('post.delete',['postId' => $comment->id]) }}"
+                                                    onclick="return confirm('Are you sure want to delete?')"
+                                                    title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="rotater">
+                                            <div class="btn btn-icon bg-secondary">
+                                                <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                @endif
+                                {{-- delete and edit --}}
                                 <div>
                                     <p>{{ $comment->content }}</p>
                                 </div>
@@ -164,7 +219,8 @@
                             @foreach ($comment->comments as $comment_reply)
                             <li>
                                 <div class="comet-avatar">
-                                    <a class="comet-avatar" href="{{ route('timeline.index',$comment_reply->user->id) }}">
+                                    <a class="comet-avatar"
+                                        href="{{ route('timeline.index',$comment_reply->user->id) }}">
                                         <img src="{{ $comment_reply->user->avatar }}" style="width: 45px" alt="">
                                     </a>
                                 </div>
@@ -180,6 +236,33 @@
                                             data-value="{{ '@'.$comment_reply->user->last_name . " " . $comment_reply->user->first_name. ' ' }}"
                                             title="Reply"><i class="fa fa-reply"></i>
                                         </a>
+                                        @if (Auth::user()->id == $comment_reply->user->id)
+                                        <span class="social-media" title="Edit or Delete this"
+                                            style="position: absolute;">
+                                            <div class="menu">
+                                                <div class="btn trigger" style="background-color: #ccc"><i
+                                                        class="fa fa-ellipsis-h"></i>
+                                                </div>
+                                                <div class="rotater"></div>
+                                                <div class="rotater"></div>
+                                                <div class="rotater">
+                                                    <div class="btn btn-icon bg-secondary">
+                                                        <a href="{{ route('post.delete',['postId' => $comment_reply->id]) }}"
+                                                            onclick="return confirm('Are you sure want to delete?')"
+                                                            title="Delete">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="rotater">
+                                                    <div class="btn btn-icon bg-secondary">
+                                                        <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                        @endif
+                                        {{-- delete and edit --}}
                                         <div>
                                             <p>{{ $comment_reply->content }}</p>
                                         </div>
@@ -194,7 +277,8 @@
                                 <div class="post-comt-box">
                                     <form method="post" action="{{ route('post.comment',['postId' => $comment->id]) }}">
                                         @csrf
-                                        <textarea id="comment-{{ $comment->id }}" data-id="{{ $comment->id }}" name="comment-{{ $comment->id }}"
+                                        <textarea id="comment-{{ $comment->id }}" data-id="{{ $comment->id }}"
+                                            name="comment-{{ $comment->id }}"
                                             placeholder="Post your comment"></textarea>
                                         <div class="add-smiles">
                                             <span class="em em-expressionless" title="add icon"></span>
@@ -230,7 +314,8 @@
                         <div class="post-comt-box">
                             <form method="post" action="{{ route('post.comment',['postId' => $post->id]) }}">
                                 @csrf
-                                <textarea name="comment-{{ $post->id }}" data-id="{{ $post->id }}" placeholder="Post your comment"></textarea>
+                                <textarea name="comment-{{ $post->id }}" data-id="{{ $post->id }}"
+                                    placeholder="Post your comment"></textarea>
                                 <div class="add-smiles">
                                     <span class="em em-expressionless" title="add icon"></span>
                                 </div>

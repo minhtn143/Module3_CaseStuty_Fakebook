@@ -1,62 +1,92 @@
 @extends('timeline.master')
 @section('timeline_content')
-<div class="loadMore">
-    <div class="central-meta item">
-        <div class="new-postbox">
-            <figure>
-                <img src="{{ $user->avatar }}" style="width: 60px" alt="">
-            </figure>
-            <div class="newpst-input">
-                <form method="post" action="{{ route("timeline.post") }}">
-                    @csrf
-                    <textarea rows="2" name="content" placeholder="write something"></textarea>
-                    <div class="attachments">
-                        <ul>
-                            <li>
-                                <i class="fa fa-music"></i>
-                                <label class="fileContainer">
-                                    <input type="file">
-                                </label>
-                            </li>
-                            <li>
-                                <i class="fa fa-image"></i>
-                                <label class="fileContainer">
-                                    <input type="file">
-                                </label>
-                            </li>
-                            <li>
-                                <i class="fa fa-video-camera"></i>
-                                <label class="fileContainer">
-                                    <input type="file">
-                                </label>
-                            </li>
-                            <li>
-                                <i class="fa fa-camera"></i>
-                                <label class="fileContainer">
-                                    <input type="file">
-                                </label>
-                            </li>
-                            <li>
-                                <button type="submit">Post</button>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-            </div>
+<div class="central-meta item">
+    <div class="new-postbox">
+        <figure>
+            <img src="{{ $user->avatar }}" style="width: 60px" alt="">
+        </figure>
+        <div class="newpst-input">
+            <form method="post" action="{{ route("timeline.post") }}">
+                @csrf
+                <textarea rows="2" name="content" placeholder="write something"></textarea>
+                <div class="attachments">
+                    <ul>
+                        <li>
+                            <i class="fa fa-music"></i>
+                            <label class="fileContainer">
+                                <input type="file">
+                            </label>
+                        </li>
+                        <li>
+                            <i class="fa fa-image"></i>
+                            <label class="fileContainer">
+                                <input type="file">
+                            </label>
+                        </li>
+                        <li>
+                            <i class="fa fa-video-camera"></i>
+                            <label class="fileContainer">
+                                <input type="file">
+                            </label>
+                        </li>
+                        <li>
+                            <i class="fa fa-camera"></i>
+                            <label class="fileContainer">
+                                <input type="file">
+                            </label>
+                        </li>
+                        <li>
+                            <button type="submit">Post</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- add post new box -->
+</div>
+<!-- add post new box -->
+<div class="loadMore">
     @foreach ($posts as $post)
     @if ($post->parent_id == null)
     <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
-                    <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
+                    <a href="{{ route('timeline.index',['id' => $post->user->id]) }}">
+                        <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
+                    </a>
                 </figure>
                 <div class="friend-name">
                     <ins><a href="{{ route('timeline.index',$post->user_id) }}"
                             title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
+                    @if (Auth::user()->id == $post->user->id)
+                    <span class="social-media" title="Edit or Delete this" style="position: absolute">
+                        <div class="menu">
+                            <div class="btn trigger bg-secondary"><i class="fa fa-ellipsis-h"></i>
+                            </div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater"></div>
+                            <div class="rotater">
+                                <div class="btn btn-icon bg-secondary">
+                                    <a href="{{ route('post.delete',['postId' => $post->id]) }}"
+                                        onclick="return confirm('Are you sure want to delete?')" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="rotater">
+                                <div class="btn btn-icon bg-secondary">
+                                    <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                    @endif
+                    {{-- delete and edit --}}
                     <span>{{ date_format($post->created_at, "d/m/Y H:i:s")}}</span>
                 </div>
                 <div class="description">
@@ -161,6 +191,32 @@
                                     data-value="{{ '@'.$comment->user->last_name . " " . $comment->user->first_name. ' ' }}"
                                     title="Reply"><i class="fa fa-reply"></i>
                                 </a>
+                                @if (Auth::user()->id == $comment->user->id)
+                                <span class="social-media" title="Edit or Delete this" style="position: absolute;">
+                                    <div class="menu">
+                                        <div class="btn trigger" style="background-color: #ccc"><i
+                                                class="fa fa-ellipsis-h"></i>
+                                        </div>
+                                        <div class="rotater"></div>
+                                        <div class="rotater"></div>
+                                        <div class="rotater">
+                                            <div class="btn btn-icon bg-secondary">
+                                                <a href="{{ route('post.delete',['postId' => $comment->id]) }}"
+                                                    onclick="return confirm('Are you sure want to delete?')"
+                                                    title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="rotater">
+                                            <div class="btn btn-icon bg-secondary">
+                                                <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                @endif
+                                {{-- delete and edit --}}
                                 <div>
                                     <p>{{ $comment->content }}</p>
                                 </div>
@@ -187,6 +243,33 @@
                                             data-value="{{ '@'.$comment_reply->user->last_name . " " . $comment_reply->user->first_name. ' ' }}"
                                             title="Reply"><i class="fa fa-reply"></i>
                                         </a>
+                                        @if (Auth::user()->id == $comment_reply->user->id)
+                                        <span class="social-media" title="Edit or Delete this"
+                                            style="position: absolute;">
+                                            <div class="menu">
+                                                <div class="btn trigger" style="background-color: #ccc"><i
+                                                        class="fa fa-ellipsis-h"></i>
+                                                </div>
+                                                <div class="rotater"></div>
+                                                <div class="rotater"></div>
+                                                <div class="rotater">
+                                                    <div class="btn btn-icon bg-secondary">
+                                                        <a href="{{ route('post.delete',['postId' => $comment_reply->id]) }}"
+                                                            onclick="return confirm('Are you sure want to delete?')"
+                                                            title="Delete">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="rotater">
+                                                    <div class="btn btn-icon bg-secondary">
+                                                        <a href="" title="Edit"><i class="fa fa-edit"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                        @endif
+                                        {{-- delete and edit --}}
                                         <div>
                                             <p>{{ $comment_reply->content }}</p>
                                         </div>
@@ -201,7 +284,8 @@
                                 <div class="post-comt-box">
                                     <form method="post" action="{{ route('post.comment',['postId' => $comment->id]) }}">
                                         @csrf
-                                        <textarea id="comment-{{ $comment->id }}" name="comment-{{ $comment->id }}"
+                                        <textarea id="comment-{{ $comment->id }}" data-id="{{ $comment->id }}"
+                                            name="comment-{{ $comment->id }}"
                                             placeholder="Post your comment"></textarea>
                                         <div class="add-smiles">
                                             <span class="em em-expressionless" title="add icon"></span>
@@ -237,7 +321,8 @@
                         <div class="post-comt-box">
                             <form method="post" action="{{ route('post.comment',['postId' => $post->id]) }}">
                                 @csrf
-                                <textarea name="comment-{{ $post->id }}" placeholder="Post your comment"></textarea>
+                                <textarea name="comment-{{ $post->id }}" data-id="{{ $post->id }}"
+                                    placeholder="Post your comment"></textarea>
                                 <div class="add-smiles">
                                     <span class="em em-expressionless" title="add icon"></span>
                                 </div>

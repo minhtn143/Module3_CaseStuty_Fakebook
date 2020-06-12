@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Friend;
 use Illuminate\Http\Request;
-use SplStack;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
+        $friendList = Friend::where(function ($query) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->get();
         $posts = Post::orderBy('created_at', 'desc')->get();
-
-        return view('newsfeed.home', compact('posts'));
+        return view('newsfeed.home', compact('posts', 'friendRequests', 'friendList'));
     }
 }

@@ -4,17 +4,20 @@
         <div id="searchDir"></div>
         <ul id="people-list" class="friendz-list">
             @foreach ($friendList as $friend)
-            <li>
+            @if ($friend->friend_id != Auth::user()->id)
+                    <li>
                 <figure>
                     <img class="list_friend" data-id="{{ $friend->friend_id }}" src="{{ App\User::find($friend->friend_id)->avatar }}" alt="">
                     <span class="status f-online"></span>
                 </figure>
                 <div class="friendz-meta">
-                    <a href="{{ route('timeline.index',['id' => $friend->friend_id]) }}">{{ App\User::find($friend->friend_id)->last_name . " " . App\User::find($friend->friend_id)->first_name }}</a>
+                    <a href="{{ route('timeline.index',['id' => $friend->friend_id]) }}">
+                        {{ App\User::find($friend->friend_id)->last_name . " " . App\User::find($friend->friend_id)->first_name }}</a>
                     {{-- <i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__"
                             data-cfemail="a0d7c9ced4c5d2d3cfccc4c5d2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i> --}}
                 </div>
             </li>
+            @endif
             @endforeach
         </ul>
         {{-- chat box --}}

@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return $this->belongsToMany("App\Friend")->withTimestamps();
+        return $this->hasMany("App\Friend")->withTimestamps();
     }
 
     public function likes()

@@ -188,7 +188,7 @@
 
 <div class="topbar stick">
     <div class="logo">
-        <a title="" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+        <a title="" href="{{ route('home') }}"><img src="https://i.imgur.com/xUJ7MR3.png" style="height: 60px" alt=""></a>
     </div>
 
     <div class="top-area">
@@ -199,10 +199,14 @@
             </form>
         </div>
         <ul class="setting-area">
-            <li><a href="{{ route('home') }}" title="Home"><i class="ti-home"></i></a></li>
+            <li><a href="{{ route('home') }}" title="Home" class="text-white"><i class="ti-home"></i></a></li>
             <li>
-                <a href="#" title="Notification" data-ripple="">
-                    <i class="ti-user"></i><span>{{ $friendRequests->count() }}</span>
+                <a href="#" title="Notification" class="text-white" data-ripple="">
+                    <i class="ti-user"></i><span class="bg-danger text-white">
+                        @if ($friendRequests->count()>0)
+                        {{ $friendRequests->count() }}
+                        @endif
+                    </span>
                 </a>
                 <div class="dropdowns">
                     <span>{{ $friendRequests->count() }} Friend Request</span>
@@ -210,9 +214,9 @@
                         @foreach ($friendRequests as $request)
                         <li>
                             <a title="">
-                                <img src="{{ App\User::find($request->friend_id)->avatar }}" alt="">
+                                <img src="{{ App\User::find($request->user_id)->avatar }}" alt="">
                                 <div class="mesg-meta">
-                                    <h6>{{ App\User::find($request->friend_id)->first_name }}</h6>
+                                    <h6>{{ App\User::find($request->user_id)->first_name }}</h6>
                                     <span>You have a friend request</span>
                                     <span role="button" class="btn-link text-primary"
                                         onclick="location.href='{{ route('friend.accept',['id' => $request->id]) }}'">Accept</span>
@@ -230,7 +234,7 @@
                 </div>
             </li>
             <li>
-                <a href="#" title="Messages" data-ripple=""><i class="ti-comment"></i><span>12</span></a>
+                <a href="#" title="Messages" class="text-white" data-ripple=""><i class="ti-comment"></i><span class="text-white bg-danger">12</span></a>
                 <div class="dropdowns">
                     <span>5 New Messages</span>
                     <ul class="drops-menu">
@@ -294,7 +298,7 @@
                 </div>
             </li>
             <li>
-                <a href="#" title="Notifications" data-ripple=""><i class="ti-bell"></i><span>12</span></a>
+                <a href="#" title="Notifications" class="text-white" data-ripple=""><i class="ti-bell"></i><span class="bg-danger text-white">12</span></a>
                 <div class="dropdowns">
                     <span>5 New Messages</span>
                     <ul class="drops-menu">
@@ -355,14 +359,6 @@
                         </li>
                     </ul>
                     <a href="messages.html" title="" class="more-mesg">view more</a>
-                </div>
-            </li>
-            <li><a href="#" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
-                <div class="dropdowns languages">
-                    <a href="#" title=""><i class="ti-check"></i>English</a>
-                    <a href="#" title="">Arabic</a>
-                    <a href="#" title="">Dutch</a>
-                    <a href="#" title="">French</a>
                 </div>
             </li>
         </ul>
@@ -384,7 +380,7 @@
                 </form>
             </div>
         </div>
-        <span class="ti-menu main-menu" data-ripple=""></span>
+        <span class="ti-menu main-menu text-white" data-ripple=""></span>
     </div>
 </div><!-- topbar -->
 

@@ -14,7 +14,6 @@
             @switch($friend->approval_status)
             @case('0')
             <div class="add-btn">
-                <span>1205 followers</span>
                 <a href="{{ route('friend.delete',['id' => $friend->id]) }}" title=""
                     onclick="return confirm('Cancel request?')" data-ripple="">Sent Request</a>
             </div>

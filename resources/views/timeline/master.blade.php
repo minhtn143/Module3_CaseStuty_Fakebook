@@ -1,30 +1,65 @@
 @extends('master')
 @section('content')
-    <div class="theme-layout">
-        @include('layouts.menu_top')
-        <section>
-            <div class="feature-photo">
-                <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
-                <div class="add-btn">
-                    <span>1205 followers</span>
-                    <a href="#" title="" data-ripple="">Add Friend</a>
-                </div>
-                <form class="edit-phto">
-                    <i class="fa fa-camera-retro"></i>
-                    <label class="fileContainer">
-                        Edit Cover Photo
-                        <input type="file" />
-                    </label>
-                </form>
-                <div class="container-fluid">
-                    <div class="row merged">
-                        <div class="col-lg-2 col-sm-3">
-                            <div class="user-avatar">
-                                <figure>
-                                    <img src="{{ asset('storage/images/'.$user->avatar) }}" style="width: 300px;height: 170px" alt="">
-                                    <i class="fa fa-camera-retro" style="margin-left: 5px"></i>
-                                    <label class="fileContainer" style="color: black;">
-                                        <a style="margin-bottom: 3px;" class="btn" href="#open-modal">Edit Display Photo</a>
+<div class="theme-layout">
+    @include('layouts.menu_top')
+    <section>
+        <div class="feature-photo">
+            <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
+            @if (Auth::user()->id == $user->id)
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="#" title="" data-ripple="">Update Info</a>
+            </div>
+            @elseif (isset($friend))
+            @switch($friend->approval_status)
+            @case('0')
+            @if ($friend->friend_id == Auth::user()->id)
+            <div class="add-btn">
+                <a href="#" title="" data-ripple="">Request Pending</a>
+            </div>
+            @else
+            <div class="add-btn">
+                <a href="{{ route('friend.delete',['id' => $friend->id]) }}" title=""
+                    onclick="return confirm('Cancel request?')" data-ripple="">Sent Request</a>
+            </div>
+            @endif
+            @break
+            @case('1')
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="{{ route('friend.delete',['id' => $friend->id]) }}" title=""
+                    onclick="return confirm('Unfriend?')" data-ripple=""><i class="fa fa-check"></i> Friend</a>
+            </div>
+            @break
+            @default
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="{{ route('friend.add',['friendId' => $user->id]) }}" title="" data-ripple="">Add Friend</a>
+            </div>
+            @endswitch
+            @else
+            <div class="add-btn">
+                <span>1205 followers</span>
+                <a href="{{ route('friend.add',['friendId' => $user->id]) }}" title="" data-ripple="">Add Friend</a>
+            </div>
+            @endif
+            <form class="edit-phto">
+                <i class="fa fa-camera-retro"></i>
+                <label class="fileContainer">
+                    Edit Cover Photo
+                    <input type="file" />
+                </label>
+            </form>
+            <div class="container-fluid">
+                <div class="row merged">
+                    <div class="col-lg-2 col-sm-3">
+                        <div class="user-avatar" style="width: 220px;height: 250px">
+                            <figure>
+                                <img src="{{ asset('storage/images/'.$user->avatar) }}" style="width: 220px;" alt="">
+                                <form class="edit-phto">
+                                    <i class="fa fa-camera-retro" style="margin-bottom: 60px;"></i>
+                                    <label class="fileContainer">
+                                        <a style="margin-bottom: 3px;margin-right: 3px;" class="btn" href="#open-modal">Edit Display Photo</a>
                                     </label>
                                 </figure>
                             </div>

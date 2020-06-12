@@ -340,7 +340,7 @@
             </li>
         </ul>
         <div class="user-img">
-            <img src="{{ Auth::user()->avatar }}" style="width: 45px" alt="">
+            <img src="{{ asset('storage/images/'.$user->avatar) }}" style="width: 45px" alt="">
             <span class="status f-online"></span>
             <div class="user-setting">
                 <a href="#" title=""><span class="status f-online"></span>online</a>

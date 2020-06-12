@@ -28,5 +28,13 @@ class AppServiceProvider extends ServiceProvider
             $user=Auth::user();
             $view->with(['user'=>$user]);
         });
+        view()->composer('layouts.menu_top',function ($view){
+            $user=Auth::user();
+            $view->with(['user'=>$user]);
+        });
+        view()->composer('newsfeed.home',function ($view){
+            $user=Auth::user();
+            $view->with(['user'=>$user]);
+        });
     }
 }

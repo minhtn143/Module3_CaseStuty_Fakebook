@@ -4,7 +4,7 @@
     <div class="new-postbox">
         <figure>
             <a href="{{ route('timeline.index',['id' => Auth::user()->id]) }}">
-                <img src="{{ Auth::user()->avatar }}" style="width: 60px" alt="">
+                <img src="{{ asset('storage/images/'.$user->avatar) }}" style="width: 60px" alt="">
             </a>
         </figure>
         <div class="newpst-input">

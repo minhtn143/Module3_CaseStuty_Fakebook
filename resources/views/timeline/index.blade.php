@@ -1,7 +1,7 @@
 @extends('timeline.master')
 @section('timeline_content')
     <div id="open-modal" class="modal-window">
-        <div style="background: #0a98dc;">
+        <div style="background: rosybrown">
             <a href="#" title="Close" class="modal-close">X</a>
             <header class="text-white text-center">
                 <img src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg" width="150" alt=""
@@ -28,7 +28,7 @@
                             box below.</p>
                         <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
                                                           class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                        <div style="float: right"><button type="submit">Lưu</button></div>
+                        <div style="float: right"><button style="border-radius: 5px" type="submit">Lưu</button></div>
                     </form>
                 </div>
             </div>

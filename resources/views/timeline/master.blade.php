@@ -13,10 +13,16 @@
             @elseif (isset($friend))
             @switch($friend->approval_status)
             @case('0')
+            @if ($friend->friend_id == Auth::user()->id)
+            <div class="add-btn">
+                <a href="#" title="" data-ripple="">Request Pending</a>
+            </div>
+            @else
             <div class="add-btn">
                 <a href="{{ route('friend.delete',['id' => $friend->id]) }}" title=""
                     onclick="return confirm('Cancel request?')" data-ripple="">Sent Request</a>
             </div>
+            @endif
             @break
             @case('1')
             <div class="add-btn">

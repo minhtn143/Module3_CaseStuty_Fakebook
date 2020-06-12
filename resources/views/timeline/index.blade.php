@@ -48,204 +48,6 @@
     <!-- add post new box -->
     @foreach ($posts as $post)
     @if ($post->parent_id == null)
-    {{-- <div class="central-meta item">
-        <div class="user-post">
-            <div class="friend-info">
-                <figure>
-                    <img src="{{ $post->user->avatar }}" alt="">
-                </figure>
-                <div class="friend-name">
-                    <ins><a href="{{ route('timeline.index',Auth::user()->id)}}"
-                            title="">{{ $post->user->last_name ." ". $post->user->first_name }}</a></ins>
-                    <span>{{date_format($post->created_at, "d/m/Y H:i:s")}}</span>
-                </div>
-                <div class="description">
-                    <p>{{ $post->content }}</p>
-                </div>
-                <div class="post-meta">
-                    <img src="images/resources/user-post.jpg" alt="">
-                    <div class="we-video-info">
-                        <ul>
-                            <li>
-                                <span class="views" data-toggle="tooltip" title="views">
-                                    <i class="fa fa-eye"></i>
-                                    <ins>1.2k</ins>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="comment" data-toggle="tooltip" title="Comments">
-                                    <i class="fa fa-comments-o"></i>
-                                    <ins>52</ins>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="like" data-id="{{ $post->id }}" data-toggle="tooltip" title="like">
-                                    <a href="{{ route('post.like', ['postId'=>$post->id]) }}">
-                                        
-                                            <i class="fa fa-heart"></i>
-                                        
-                                            <i class="ti-heart"></i>
-                                      
-                                        <ins>2.2k</ins>
-                                        <form id="like-form-{{ $post->id }}"
-                                            action="{{ route('post.like', ['postId'=>$post->id]) }}" method="POST"
-                                            style="display: none;">
-                                            @csrf
-                                        </form>
-                                </span>
-                            </li>
-                            <li class="social-media">
-                                <div class="menu">
-                                    <div class="btn trigger"><i class="fa fa-share-alt"></i>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i
-                                                    class="fa fa-facebook"></i></a></div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i
-                                                    class="fa fa-google-plus"></i></a></div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i
-                                                    class="fa fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i
-                                                    class="fa fa-dribbble"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i
-                                                    class="fa fa-pinterest"></i></a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {{-- <div class="coment-area">
-                <ul class="we-comet">
-                    <li>
-                        <div class="comet-avatar">
-                            <img src="images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <div class="coment-head">
-                                <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                <span>1 year ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                            </div>
-                            <p>we are working for the dance and sing songs. this car is very
-                                awesome for the youngster. please vote this car and like our
-                                post</p>
-                        </div>
-                        <ul>
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="images/resources/comet-2.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">alexendra
-                                                dadrio</a></h5>
-                                        <span>1 month ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>yes, really very awesome car i see the features of this
-                                        car in the official website of <a href="#" title="">#Mercedes-Benz</a> and
-                                        really impressed :-)
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="images/resources/comet-3.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">Olivia</a></h5>
-                                        <span>16 days ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>i like lexus cars, lexus cars are most beautiful with the
-                                        awesome features, but this car is really outstanding
-                                        than lexus</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="comet-avatar">
-                            <img src="images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <div class="coment-head">
-                                <h5><a href="time-line.html" title="">Donald Trump</a></h5>
-                                <span>1 week ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                            </div>
-                            <p>we are working for the dance and sing songs. this video is very
-                                awesome for the youngster. please vote this video and like our
-                                channel
-                                <i class="em em-smiley"></i>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" title="" class="showmore underline">more comments</a>
-                    </li>
-                    <li class="post-comment">
-                        <div class="comet-avatar">
-                            <img src="images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="post-comt-box">
-                            <form method="post">
-                                @csrf
-                                <textarea name="comment" placeholder="Post your comment"></textarea>
-                                <div class="add-smiles">
-                                    <span class="em em-expressionless" title="add icon"></span>
-                                </div>
-                                <div class="smiles-bunch">
-                                    <i class="em em---1"></i>
-                                    <i class="em em-smiley"></i>
-                                    <i class="em em-anguished"></i>
-                                    <i class="em em-laughing"></i>
-                                    <i class="em em-angry"></i>
-                                    <i class="em em-astonished"></i>
-                                    <i class="em em-blush"></i>
-                                    <i class="em em-disappointed"></i>
-                                    <i class="em em-worried"></i>
-                                    <i class="em em-kissing_heart"></i>
-                                    <i class="em em-rage"></i>
-                                    <i class="em em-stuck_out_tongue"></i>
-                                </div>
-                                <button type="submit"></button>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </div> 
-        </div>
-    </div>
-    @endforeach--}}
-    
     <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
@@ -279,11 +81,11 @@
                             <li>
                                 <span class="like" data-id="{{ $post->id }}" data-toggle="tooltip" title="like">
                                     <a href="{{ route('post.like', ['postId'=>$post->id]) }}">
-                                        
-                                            <i class="fa fa-heart"></i>
-                                        
-                                            <i class="ti-heart"></i>
-                                      
+
+                                        <i class="fa fa-heart"></i>
+
+                                        <i class="ti-heart"></i>
+
                                         <ins>2.2k</ins>
                                         <form id="like-form-{{ $post->id }}"
                                             action="{{ route('post.like', ['postId'=>$post->id]) }}" method="POST"
@@ -351,7 +153,8 @@
                         <div class="we-comment">
                             <div class="coment-head">
                                 <h5>
-                                    <a href="{{ route('timeline.index',$comment->user->id) }}">{{ $comment->user->last_name . " " . $comment->user->first_name }}</a>
+                                    <a
+                                        href="{{ route('timeline.index',$comment->user->id) }}">{{ $comment->user->last_name . " " . $comment->user->first_name }}</a>
                                 </h5>
                                 <span>{{ $comment->created_at }}</span>
                                 <a class="we-reply text-primary reply-comment" data-id="{{ $comment->id }}"
@@ -367,7 +170,8 @@
                             @foreach ($comment->comments as $comment_reply)
                             <li>
                                 <div class="comet-avatar">
-                                    <a class="comet-avatar" href="{{ route('timeline.index',$comment_reply->user->id) }}">
+                                    <a class="comet-avatar"
+                                        href="{{ route('timeline.index',$comment_reply->user->id) }}">
                                         <img src="{{ $comment_reply->user->avatar }}" style="width: 45px" alt="">
                                     </a>
                                 </div>

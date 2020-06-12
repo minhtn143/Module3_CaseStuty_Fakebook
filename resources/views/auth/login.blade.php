@@ -5,7 +5,7 @@
 <div class="log-reg-area sign">
     <h2 class="log-title">Login</h2>
     <p>
-        Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join
+        Don’t use Fakebook Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join
             now</a>
     </p>
     <div class="text-center social-btn">

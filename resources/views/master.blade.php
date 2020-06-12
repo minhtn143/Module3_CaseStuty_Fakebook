@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Winku Social Network Toolkit</title>
+    <title>Fakebook</title>
     <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
 
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">

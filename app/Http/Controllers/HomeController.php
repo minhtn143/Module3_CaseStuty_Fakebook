@@ -45,6 +45,6 @@ class HomeController extends Controller
         $users = User::where('first_name', 'LIKE', '%' . $search . '%')
             ->orWhere('last_name', 'LIKE', '%' . $search . '%')
             ->orWhere('email', 'LIKE', '%' . $search . '%')->get();
-        return redirect()->route('home')->with($users);
+        return view('newsfeed.search', compact('users'));
     }
 }

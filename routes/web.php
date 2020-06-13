@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
     // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
@@ -31,11 +29,12 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
     ->where('driver', implode('|', config('auth.socialite.drivers')));
 Route::get('/callback/{provider}', 'SocialController@callback');
 
-Route::group(['prefix' => 'home'], function () {
+Route::group(['prefix' => '/'], function () {
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');
         Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
         Route::get('/{postId}/delete', 'PostController@destroy')->name('post.delete');
+        Route::get('/search', 'HomeController@searchFriend')->name('friend.search');
     });
 });
 

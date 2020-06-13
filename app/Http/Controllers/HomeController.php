@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use App\Friend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,5 +37,14 @@ class HomeController extends Controller
         })->get();
         $posts = Post::orderBy('created_at', 'desc')->get();
         return view('newsfeed.home', compact('posts', 'friendRequests', 'friendList'));
+    }
+
+    public function searchFriend(Request $request)
+    {
+        $search = $request->get('search');
+        $users = User::where('first_name', 'LIKE', '%' . $search . '%')
+            ->orWhere('last_name', 'LIKE', '%' . $search . '%')
+            ->orWhere('email', 'LIKE', '%' . $search . '%')->get();
+        return redirect()->route('home')->with($users);
     }
 }

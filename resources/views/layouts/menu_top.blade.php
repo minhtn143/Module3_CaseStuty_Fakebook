@@ -11,9 +11,10 @@
         </span>
     </div>
     <div class="mh-head second">
-        <form class="mh-form">
-            <input placeholder="search" />
-            <a href="#/" class="fa fa-search"></a>
+        <form class="mh-form" method="GET" action="{{ route('friend.search') }}">
+            @csrf
+            <input placeholder="search" name="search"/>
+            <a type="submit" class="fa fa-search"></a>
         </form>
     </div>
     <nav id="menu" class="res-menu">
@@ -194,9 +195,9 @@
 
     <div class="top-area">
         <div class="top-search">
-            <form method="post" class="">
-                <input type="text" placeholder="Search Friend">
-                <button data-ripple><i class="ti-search"></i></button>
+            <form method="GET" action="{{ route('friend.search') }}" class="">
+                <input type="text" placeholder="Search Friend" name="search">
+                <button data-ripple type="submit"><i class="ti-search"></i></button>
             </form>
         </div>
         <ul class="setting-area">

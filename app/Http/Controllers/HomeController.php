@@ -42,9 +42,19 @@ class HomeController extends Controller
     public function searchFriend(Request $request)
     {
         $search = $request->get('search');
+        $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
+        $friendList = Friend::where(function ($query) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->get();
+        $friends = Friend::all();
         $users = User::where('first_name', 'LIKE', '%' . $search . '%')
             ->orWhere('last_name', 'LIKE', '%' . $search . '%')
             ->orWhere('email', 'LIKE', '%' . $search . '%')->get();
-        return view('newsfeed.search', compact('users'));
+
+        return view('newsfeed.search', compact('users', 'friendRequests', 'friendList', 'friends'));
     }
 }

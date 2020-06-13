@@ -52,7 +52,7 @@ class TimelineController extends Controller
                 ->where('approval_status', 1);
         })->get();
 
-        $userFriendList = Friend::where('user_id', $id)->orWhere('friend_id', $id)->get();
+        $userFriendList = Friend::where('user_id', $id)->where('approval_status', 1)->orWhere('friend_id', $id)->where('approval_status', 1)->get();
 
         return view('timeline.friends', compact('user', 'friend', 'friendRequests', 'friendList', 'userFriendList'));
     }

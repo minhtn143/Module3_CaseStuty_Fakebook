@@ -120,7 +120,7 @@
                             </figure>
                             <div class="pepl-info">
                                 <h4>
-                                    <a href="{{ route('timeline.index',['id' => $request->user->id]) }}"
+                                    <a href="{{ route('timeline.index',['id' => $request->user_id]) }}"
                                         title="">{{ App\User::find($request->user_id)->last_name . " " . App\User::find($request->user_id)->first_name }}
                                     </a>
                                 </h4>

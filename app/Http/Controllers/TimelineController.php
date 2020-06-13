@@ -23,7 +23,6 @@ class TimelineController extends Controller
     {
         $user = User::find($id);
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
-        $id = $user->id;
         $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->orWhere('user_id', $id)->where('friend_id', Auth::user()->id)->first();
         $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
 
@@ -36,5 +35,25 @@ class TimelineController extends Controller
         })->get();
 
         return view('timeline.index', compact('posts', 'friend', 'user', 'friendRequests', 'friendList'));
+    }
+
+    public function userFriendList($id)
+    {
+        $user = User::find($id);
+
+        $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->orWhere('user_id', $id)->where('friend_id', Auth::user()->id)->first();
+        $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
+
+        $friendList = Friend::where(function ($query) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->get();
+
+        $userFriendList = Friend::where('user_id', $id)->orWhere('friend_id', $id)->get();
+
+        return view('timeline.friends', compact('user', 'friend', 'friendRequests', 'friendList', 'userFriendList'));
     }
 }

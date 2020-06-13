@@ -22,6 +22,7 @@ Route::group(['prefix' => 'timeline'], function () {
     // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
     Route::get('/{id}/user', 'TimelineController@goToUserTimeline')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
+    Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');
 });
 
 Route::get('redirect/{driver}', 'SocialController@redirect')

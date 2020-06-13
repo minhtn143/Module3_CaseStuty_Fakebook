@@ -78,7 +78,9 @@
                                         data-ripple="">time line</a>
                                     <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
                                     <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
-                                    <a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
+                                    <a class="" href="{{ route('timeline.friends',['id' => $user->id]) }}" title="" data-ripple="">
+                                        Friends
+                                    </a>
                                     <a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
                                     <a class="" href="about.html" title="" data-ripple="">about</a>
                                     <a class="" href="#" title="" data-ripple="">more</a>

@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
     // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
-    Route::get('/{id}/user', 'TimelineController@goFriendIndex')->name('timeline.index');
+    Route::get('/{id}/user', 'TimelineController@goToUserTimeline')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
 });
 

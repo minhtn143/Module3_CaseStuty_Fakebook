@@ -33,7 +33,7 @@
             @endif
             @endforeach
         </ul>
-        <div id="messages">
+        <div id="messages" class="chat-box show ui-widget-content">
 
         </div>
     </div><!-- friends list sidebar -->

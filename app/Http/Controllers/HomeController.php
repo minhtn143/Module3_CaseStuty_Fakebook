@@ -99,7 +99,6 @@ class HomeController extends Controller
         $options = array(
             'cluster' => 'ap1',
             'useTLS' => true,
-            'encrypted' => true
         );
 
         $pusher = new Pusher(
@@ -110,6 +109,6 @@ class HomeController extends Controller
         );
 
         $data = ['from' => $from, 'to' => $to]; // sending from and to user id when pressed enter
-        $pusher->trigger('my-channel', 'my-event', $data);
+        $pusher->trigger('my-channel1', 'my-event', $data);
     }
 }

@@ -13,12 +13,11 @@ $(document).ready(function () {
 
     var pusher = new Pusher("344a9b84ab8954aa3182", {
         cluster: "ap1",
-        forceTLS: true,
     });
 
-    var channel = pusher.subscribe("my-channel");
-    channel.bind("my-event", function (data) {
-        // alert(JSON.stringify(data));
+    var channel1 = pusher.subscribe("my-channel1");
+    channel1.bind("my-event", function (data) {
+        alert('successfully subscribed!');
         if (my_id == data.from) {
             $("#" + data.to).click();
         } else if (my_id == data.to) {
@@ -62,7 +61,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("keyup", ".input-text textarea", function (e) {
+    $(document).on("keydown", ".input-text textarea", function (e) {
         var message = $(this).val();
 
         // check if enter key is pressed and message is not null also receiver is selected

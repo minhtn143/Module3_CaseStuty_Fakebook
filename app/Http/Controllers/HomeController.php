@@ -39,8 +39,13 @@ class HomeController extends Controller
                 ->where('approval_status', 1);
         })->get();
 
+        $users = DB::select("select users.id, users.first_name, users.first_name, users.avatar, users.email, count(is_read) as unread
+        from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
+        where users.id != " . Auth::id() . "
+        group by users.id, users.first_name, users.first_name, users.avatar, users.email");
+
         $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('newsfeed.home', compact('posts', 'friendRequests', 'friendList'));
+        return view('newsfeed.home', compact('posts', 'friendRequests', 'friendList', 'users'));
     }
 
     public function searchFriend(Request $request)

@@ -6,14 +6,19 @@
             @foreach ($friendList as $friend)
             @if ($friend->friend_id == Auth::id())
             <li class="user" id="{{ $friend->user_id }}">
+                @foreach ($users as $user)
+                {{-- {{ dd(user) }} --}}
+                @if ($user->id == $friend->user_id)
+                    @if($user->unread)
+                        <span class="pending">{{ $user->unread }}</span>
+                    @endif
+                    @break
+                @endif
+                @endforeach
                 <figure>
                     <img class="list_friend" src="{{ App\User::find($friend->user_id)->avatar }}" alt="">
-                    {{-- <img class="list_friend" src="{{ $user->avatar }}" alt=""> --}}
-                    <span class="status f-online"></span>
                 </figure>
                 <div class="friendz-meta">
-                    {{-- <a href="{{ route('timeline.index',['id' => $user->id]) }}">
-                        {{ $user->last_name . " " . $user->first_name }}</a> --}}
                     <a href="{{ route('timeline.index',['id' => $friend->user_id]) }}">
                         {{ App\User::find($friend->user_id)->last_name . " " . App\User::find($friend->user_id)->first_name }}</a>
                 </div>
@@ -23,7 +28,15 @@
                 <figure>
                     <img class="list_friend" data-id="{{ $friend->friend_id }}"
             src="{{ App\User::find($friend->friend_id)->avatar }}" alt="">
-            <span class="status f-online"></span>
+            {{-- <span class="status "></span> --}}
+            @foreach ($users as $user)
+                @if ($user->id == $friend->friend_id)
+                    @if($user->unread)
+                        <span class="pending">{{ $user->unread }}</span>
+                    @endif
+                    @break
+                @endif
+            @endforeach
             </figure>
             <div class="friendz-meta">
                 <a href="{{ route('timeline.index',['id' => $friend->friend_id]) }}">

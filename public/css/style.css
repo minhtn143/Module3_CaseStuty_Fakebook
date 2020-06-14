@@ -1977,8 +1977,9 @@ li.post-comment .comet-avatar {
 
 #people-list {
     margin-top: 20px;
-    max-height: 450px;
+    max-height: 500px;
     position: relative;
+    height: 500px;
 }
 
 #people-list figure {
@@ -4872,9 +4873,8 @@ canvas {
 
 .chat-list > ul li.you .chat-message-item {
     background: rgba(202, 239, 142, 0.55) none repeat scroll 0 0;
-    float:right;
+    float: right;
 }
-
 
 .chat-list > ul li.me .chat-message-item {
     /* background: rgba(202, 239, 142, 0.55) none repeat scroll 0 0; */
@@ -10004,9 +10004,9 @@ aside.sidebar.full-style {
 
 .pending {
     position: absolute;
-    left: 13px;
-    top: 9px;
-    background: #b600ff;
+    left: -2px;
+    top: 1px;
+    background: red;
     margin: 0;
     border-radius: 50%;
     width: 18px;

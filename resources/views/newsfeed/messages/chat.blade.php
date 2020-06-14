@@ -10,8 +10,8 @@
         @endif
     </h6>
     <div class="more">
-        <span><i class="ti-more-alt"></i></span>
-        <span class="close-mesage"><i class="ti-close"></i></span>
+        <span class="test-click"><i class="ti-more-alt"></i></span>
+        <span class="close-message"><i class="ti-close"></i></span>
     </div>
 </div>
 <div class="chat-list message-wrapper">

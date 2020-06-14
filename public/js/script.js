@@ -20,16 +20,17 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    // //--- side message box
-    // $(".friendz-list > li, .chat-users > li").on("click", function () {
-    //     $(".chat-box").addClass("show");
+    // $(".test-click").click(function () {
+    //     console.log('123');
+    //     $("#messages").html('');
     //     return false;
     // });
 
-    $(".close-mesage").on("click", function () {
-        $(".chat-box").removeClass("show");
+    $(document).on('click','.close-message',function () {
+        console.log('123');
+        $('#messages').html('');
         return false;
-    });
+    })
 
     //------ scrollbar plugin
     if ($.isFunction($.fn.perfectScrollbar)) {
@@ -334,7 +335,7 @@ jQuery(document).ready(function ($) {
                 },
             });
             $.ajax({
-                url: "http://fakebook.com/home/post/" + postId + "/comment",
+                url: "http://fakebook.com/post/" + postId + "/comment",
                 type: "post",
                 data: {
                     content: data,

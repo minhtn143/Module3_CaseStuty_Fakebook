@@ -10002,3 +10002,21 @@ aside.sidebar.full-style {
     text-transform: uppercase;
 }
 
+.pending {
+    position: absolute;
+    left: 13px;
+    top: 9px;
+    background: #b600ff;
+    margin: 0;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 5px;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.active {
+    background: #eeeeee;
+}

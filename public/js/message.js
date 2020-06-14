@@ -1,68 +1,73 @@
-var receiver_id = '';
+var receiver_id = "";
 var my_id = "{{ Auth::id() }}";
 $(document).ready(function () {
     // ajax setup form csrf token
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     });
 
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('344a9b84ab8954aa3182', {
-        cluster: 'ap1',
-        forceTLS: true
+    var pusher = new Pusher("344a9b84ab8954aa3182", {
+        cluster: "ap1",
+        forceTLS: true,
     });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function (data) {
+    var channel = pusher.subscribe("my-channel");
+    channel.bind("my-event", function (data) {
         // alert(JSON.stringify(data));
         if (my_id == data.from) {
-            $('#' + data.to).click();
+            $("#" + data.to).click();
         } else if (my_id == data.to) {
             if (receiver_id == data.from) {
                 // if receiver is selected, reload the selected user ...
-                $('#' + data.from).click();
+                $("#" + data.from).click();
             } else {
                 // if receiver is not seleted, add notification for that user
-                var pending = parseInt($('#' + data.from).find('.pending').html());
+                var pending = parseInt(
+                    $("#" + data.from)
+                        .find(".pending")
+                        .html()
+                );
 
                 if (pending) {
-                    $('#' + data.from).find('.pending').html(pending + 1);
+                    $("#" + data.from)
+                        .find(".pending")
+                        .html(pending + 1);
                 } else {
-                    $('#' + data.from).append('<span class="pending">1</span>');
+                    $("#" + data.from).append('<span class="pending">1</span>');
                 }
             }
         }
     });
 
-    $('.user').click(function () {
-        $('.user').removeClass('active');
-        $(this).addClass('active');
-        $(this).find('.pending').remove();
+    $(".user").click(function () {
+        $(".user").removeClass("active");
+        $(this).addClass("active");
+        $(this).find(".pending").remove();
 
-        receiver_id = $(this).attr('id');
-        console.log(receiver_id)
+        receiver_id = $(this).attr("id");
         $.ajax({
             type: "get",
             url: "message/" + receiver_id, // need to create this route
             data: "",
             cache: false,
             success: function (data) {
-                $('#messages').html(data);
+                $("#messages").html(data);
                 scrollToBottomFunc();
-            }
+            },
         });
     });
 
-    $(document).on('keyup', '.input-text textarea', function (e) {
+    $(document).on("keyup", ".input-text textarea", function (e) {
         var message = $(this).val();
 
         // check if enter key is pressed and message is not null also receiver is selected
-        if (e.keyCode == 13 && message != '' && receiver_id != '') {
-            $(this).val(''); // while pressed enter text box will be empty
+        if (e.keyCode == 13 && message != "" && receiver_id != "") {
+            $(this).val(""); // while pressed enter text box will be empty
 
             var datastr = "receiver_id=" + receiver_id + "&message=" + message;
             $.ajax({
@@ -70,22 +75,28 @@ $(document).ready(function () {
                 url: "/message", // need to create this post route
                 data: datastr,
                 cache: false,
-                success: function (data) {
-
-                },
-                error: function (jqXHR, status, err) {
-                },
+                success: function (data) {},
+                error: function (jqXHR, status, err) {},
                 complete: function () {
                     scrollToBottomFunc();
-                }
-            })
+                },
+            });
         }
     });
+
+    // $("#close-message").on("click", function () {
+    //     console.log($(this));
+    //     $("#messages").css("display", "none");
+    //     return false;
+    // });
 });
 
 // make a function to scroll down auto
 function scrollToBottomFunc() {
-    $('.message-wrapper').animate({
-        scrollTop: $('.message-wrapper').get(0).scrollHeight
-    }, 50);
+    $(".chat-list ul").animate(
+        {
+            scrollTop: $(".chat-list ul").get(0).scrollHeight,
+        },
+        100
+    );
 }

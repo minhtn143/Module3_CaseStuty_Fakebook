@@ -14,7 +14,7 @@
                         <li>
                             <i class="fa fa-image"></i>
                             <label class="fileContainer">
-                                <input type="input_img">
+                                <input type="file" name="input_img">
                             </label>
                         </li>
                         <li>

@@ -4717,14 +4717,14 @@ canvas {
 .chat-box {
     background: #fbfbfb none repeat scroll 0 0;
     border-radius: 3px;
-    bottom: -100%;
+    bottom: 100%;
     position: relative;
     right: 85%;
     width: 300px;
     z-index: 9999999;
     transform: translate(40px) scale(0);
     opacity: 0;
-    visibility: hidden;
+    visibility: visible;
     transition: all 0.2s linear 0s;
     border: 1px solid #e1e8ed;
     text-align: left;
@@ -4814,7 +4814,7 @@ canvas {
     margin: 0;
     padding-left: 0;
     max-height: 290px;
-    overflow: hidden;
+    overflow-y: scroll;
     position: relative;
     padding-right: 8px;
 }
@@ -4863,6 +4863,12 @@ canvas {
 
 .chat-list > ul li.you .chat-message-item {
     background: rgba(202, 239, 142, 0.55) none repeat scroll 0 0;
+}
+
+
+.chat-list > ul li.me .chat-message-item {
+    /* background: rgba(202, 239, 142, 0.55) none repeat scroll 0 0; */
+    float: right;
 }
 
 .text-box {
@@ -9985,3 +9991,4 @@ aside.sidebar.full-style {
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
+

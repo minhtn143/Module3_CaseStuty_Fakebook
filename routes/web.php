@@ -31,6 +31,8 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::group(['prefix' => '/'], function () {
+    Route::get('/message/{id}', 'HomeController@getMessage')->name('message');
+    Route::post('message', 'HomeController@sendMessage');
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');
         Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');

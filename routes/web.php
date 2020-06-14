@@ -24,6 +24,8 @@ Route::group(['prefix' => 'timeline'], function () {
     Route::get('/{id}/user', 'TimelineController@goToUserTimeline')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
     Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');
+    Route::get('/{id}/profile', 'TimelineController@showProfile')->name('timeline.profile');
+    Route::post('/cover/upload', 'UserController@uploadCoverPhoto')->name('upload.cover');
 });
 
 Route::get('redirect/{driver}', 'SocialController@redirect')

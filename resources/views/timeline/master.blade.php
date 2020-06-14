@@ -4,7 +4,9 @@
     @include('layouts.menu_top')
     <section>
         <div class="feature-photo">
-            <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
+            <figure>
+                <img src="{{ ($user->cover != null) ? ('/storage/images/' . $user->cover) : asset('images/resources/timeline-1.jpg') }}" alt="" style="width: 1366px; height:400px">
+            </figure>
             @if (Auth::user()->id == $user->id)
             <div class="add-btn">
                 <span>1205 followers</span>
@@ -43,11 +45,12 @@
                 <a href="{{ route('friend.add',['friendId' => $user->id]) }}" title="" data-ripple="">Add Friend</a>
             </div>
             @endif
-            <form class="edit-phto">
+            <form class="edit-phto" action="{{ route('upload.cover') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <i class="fa fa-camera-retro"></i>
                 <label class="fileContainer">
                     Edit Cover Photo
-                    <input type="file" />
+                    <input type="file" name="cover" onchange="this.form.submit()" />
                 </label>
             </form>
             <div class="container-fluid">
@@ -82,7 +85,7 @@
                                         Friends
                                     </a>
                                     <a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
-                                    <a class="" href="about.html" title="" data-ripple="">about</a>
+                                    <a class="" href="{{ route('timeline.profile',['id' => $user->id]) }}" title="" data-ripple="">about</a>
                                     <a class="" href="#" title="" data-ripple="">more</a>
                                 </li>
                             </ul>

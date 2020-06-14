@@ -51,7 +51,7 @@ $(document).ready(function () {
         receiver_id = $(this).attr("id");
         $.ajax({
             type: "get",
-            url: "message/" + receiver_id, // need to create this route
+            url: "/message/" + receiver_id, // need to create this route
             data: "",
             cache: false,
             success: function (data) {

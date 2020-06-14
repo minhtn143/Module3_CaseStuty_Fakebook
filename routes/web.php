@@ -19,7 +19,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
-    // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
+    Route::get('/message/{id}', 'HomeController@getMessage')->name('timeline.message');
+    Route::post('message', 'HomeController@sendMessage');
     Route::get('/{id}/user', 'TimelineController@goToUserTimeline')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
     Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');
@@ -31,7 +32,7 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::group(['prefix' => '/'], function () {
-    Route::get('/message/{id}', 'HomeController@getMessage')->name('message');
+    Route::get('/message/{id}', 'HomeController@getMessage')->name('newsFeed.message');
     Route::post('message', 'HomeController@sendMessage');
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');

@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use App\Friend;
+use PhpParser\Node\Stmt\Global_;
 use App\Http\Services\PostService;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Stmt\Global_;
 
 class TimelineController extends Controller
 {
@@ -34,7 +35,12 @@ class TimelineController extends Controller
                 ->where('approval_status', 1);
         })->get();
 
-        return view('timeline.index', compact('posts', 'friend', 'user', 'friendRequests', 'friendList'));
+        $users = DB::select("select users.id, users.first_name, users.first_name, users.avatar, users.email, count(is_read) as unread
+        from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
+        where users.id != " . Auth::id() . "
+        group by users.id, users.first_name, users.first_name, users.avatar, users.email");
+
+        return view('timeline.index', compact('posts', 'friend', 'user', 'friendRequests', 'friendList', 'users'));
     }
 
     public function userFriendList($id)

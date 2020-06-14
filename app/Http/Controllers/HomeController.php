@@ -92,10 +92,9 @@ class HomeController extends Controller
         $data->from = $from;
         $data->to = $to;
         $data->message = $message;
-        $data->is_read = 0; // message will be unread when sending message
+        $data->is_read = 0;
         $data->save();
 
-        // pusher
         $options = array(
             'cluster' => 'ap1',
             'useTLS' => true,
@@ -108,7 +107,9 @@ class HomeController extends Controller
             $options
         );
 
-        $data = ['from' => $from, 'to' => $to]; // sending from and to user id when pressed enter
+        $data = ['from' => $from, 'to' => $to];
         $pusher->trigger('my-channel1', 'my-event', $data);
+
+        return redirect()->route('home');
     }
 }

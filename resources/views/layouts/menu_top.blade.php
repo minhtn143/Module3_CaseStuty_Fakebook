@@ -237,10 +237,11 @@
                 </div>
             </li>
             <li>
+                {{-- Comments --}}
                 <a href="#" title="Messages" class="text-white" data-ripple=""><i class="ti-comment"></i><span
-                        class="text-white bg-danger">12</span></a>
+                        class="text-white bg-danger"></span></a>
                 <div class="dropdowns">
-                    <span>5 New Messages</span>
+                    <span>New Messages</span>
                     <ul class="drops-menu">
                         <li>
                             <a href="notifications.html" title="">
@@ -252,60 +253,17 @@
                                 </div>
                             </a>
                             <span class="tag green">New</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-2.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Jhon doe</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag red">Reply</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-3.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Andrew</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag blue">Unseen</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-4.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Tom cruse</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag">New</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-5.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Amy</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag">New</span>
                         </li>
                     </ul>
                     <a href="messages.html" title="" class="more-mesg">view more</a>
                 </div>
             </li>
             <li>
+                {{-- Notifications --}}
                 <a href="#" title="Notifications" class="text-white" data-ripple=""><i class="ti-bell"></i><span
-                        class="bg-danger text-white">12</span></a>
+                        class="bg-danger text-white"></span></a>
                 <div class="dropdowns">
-                    <span>5 New Messages</span>
+                    <span>New Messages</span>
                     <ul class="drops-menu">
                         <li>
                             <a href="notifications.html" title="">
@@ -317,50 +275,6 @@
                                 </div>
                             </a>
                             <span class="tag green">New</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-2.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Jhon doe</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag red">Reply</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-3.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Andrew</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag blue">Unseen</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-4.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Tom cruse</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag">New</span>
-                        </li>
-                        <li>
-                            <a href="notifications.html" title="">
-                                <img src="images/resources/thumb-5.jpg" alt="">
-                                <div class="mesg-meta">
-                                    <h6>Amy</h6>
-                                    <span>Hi, how r u dear ...?</span>
-                                    <i>2 min ago</i>
-                                </div>
-                            </a>
-                            <span class="tag">New</span>
                         </li>
                     </ul>
                     <a href="messages.html" title="" class="more-mesg">view more</a>

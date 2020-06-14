@@ -1,23 +1,45 @@
 var receiver_id = "";
 var my_id = "{{ Auth::id() }}";
-$(document).ready(function () {
+$(document).ready(function() {
     // ajax setup form csrf token
     $.ajaxSetup({
         headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-        },
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        }
+    });
+
+    $(document).on("keydown", ".input-text textarea", function(e) {
+        var message = $(this).val();
+
+        // check if enter key is pressed and message is not null also receiver is selected
+        if (e.keyCode == 13 && message != "" && receiver_id != "") {
+            $(this).val(""); // while pressed enter text box will be empty
+
+            var datastr = "receiver_id=" + receiver_id + "&message=" + message;
+            $.ajax({
+                type: "post",
+                url: "/message", // need to create this post route
+                data: datastr,
+                cache: false,
+                success: function(data) {},
+                error: function(jqXHR, status, err) {},
+                complete: function() {
+                    scrollToBottomFunc();
+                }
+            });
+        }
     });
 
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
     var pusher = new Pusher("344a9b84ab8954aa3182", {
-        cluster: "ap1",
+        cluster: "ap1"
     });
 
     var channel1 = pusher.subscribe("my-channel1");
-    channel1.bind("my-event", function (data) {
-        alert('successfully subscribed!');
+    channel1.bind("my-event", function(data) {
+        alert("successfully subscribed!");
         if (my_id == data.from) {
             $("#" + data.to).click();
         } else if (my_id == data.to) {
@@ -43,10 +65,12 @@ $(document).ready(function () {
         }
     });
 
-    $(".user").click(function () {
+    $(".user").click(function() {
         $(".user").removeClass("active");
         $(this).addClass("active");
-        $(this).find(".pending").remove();
+        $(this)
+            .find(".pending")
+            .remove();
 
         receiver_id = $(this).attr("id");
         $.ajax({
@@ -54,48 +78,22 @@ $(document).ready(function () {
             url: "/message/" + receiver_id, // need to create this route
             data: "",
             cache: false,
-            success: function (data) {
-                $("#messages").html(data).show();
+            success: function(data) {
+                $("#messages")
+                    .html(data)
+                    .show();
                 scrollToBottomFunc();
-            },
+            }
         });
     });
-
-    $(document).on("keydown", ".input-text textarea", function (e) {
-        var message = $(this).val();
-
-        // check if enter key is pressed and message is not null also receiver is selected
-        if (e.keyCode == 13 && message != "" && receiver_id != "") {
-            $(this).val(""); // while pressed enter text box will be empty
-
-            var datastr = "receiver_id=" + receiver_id + "&message=" + message;
-            $.ajax({
-                type: "post",
-                url: "/message", // need to create this post route
-                data: datastr,
-                cache: false,
-                success: function (data) {},
-                error: function (jqXHR, status, err) {},
-                complete: function () {
-                    scrollToBottomFunc();
-                },
-            });
-        }
-    });
-
-    // $("#close-message").on("click", function () {
-    //     console.log($(this));
-    //     $("#messages").css("display", "none");
-    //     return false;
-    // });
 });
 
 // make a function to scroll down auto
 function scrollToBottomFunc() {
     $(".chat-list ul").animate(
         {
-            scrollTop: $(".chat-list ul").get(0).scrollHeight,
+            scrollTop: $(".chat-list ul").get(0).scrollHeight
         },
-        100
+        50
     );
 }

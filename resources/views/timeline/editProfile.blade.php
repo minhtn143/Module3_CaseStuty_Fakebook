@@ -4,24 +4,24 @@
     <div class="editing-info">
         <h5 class="f-title"><i class="ti-info-alt"></i> Edit Basic Information</h5>
 
-        <form method="post">
+        <form method="post" action="{{ route('profile.update',['id'=>Auth::id()]) }}">
+            @csrf
             <div class="form-group half">
-                <input type="text" id="input" name="first_name" value="{{ Auth::user()->first_name }}"
-                    required="required" />
+                <input type="text" id="input" name="first_name" value="{{ Auth::user()->first_name }}" />
                 <label class="control-label" for="input">First Name</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group half">
-                <input type="text" required="required" name="last_name" value="{{ Auth::user()->last_name }}" />
+                <input type="text" name="last_name" value="{{ Auth::user()->last_name }}" />
                 <label class="control-label" for="input">Last Name</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <input type="text" required="required" />
+                <input type="text" />
                 <label class="control-label" for="input"><a href="https://wpkixx.com/cdn-cgi/l/email-protection"
                         class="__cf_email__" data-cfemail="4b0e262a22270b">[email&#160;protected]</a></label><i
                     class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <input type="text" required="required" name="phone" value="{{ Auth::user()->phone }}" />
+                <input type="text" name="phone" value="{{ Auth::user()->phone }}" />
                 <label class="control-label" for="input">Phone No.</label><i class="mtrl-select"></i>
             </div>
             <div class="dob">
@@ -42,27 +42,28 @@
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="gender" value="Female" @if (strtolower(Auth::user()->gender) == 'female')
+                        <input type="radio" name="gender" value="Female" @if (strtolower(Auth::user()->gender) ==
+                        'female')
                         checked
                         @endif><i class="check-box"></i>Female
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" required="required" name="address" value="{{ Auth::user()->address }}" />
+                <input type="text" name="address" value="{{ Auth::user()->address }}" />
                 <label class="control-label" for="input">Address</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <input type="text" required="required" name="education" value="{{ Auth::user()->school }}" />
+                <input type="text" name="education" value="{{ Auth::user()->school }}" />
                 <label class="control-label" for="input">Education</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <textarea rows="4" id="textarea" name="about_me" required="required">{{ Auth::user()->about_me }}</textarea>
+                <textarea rows="4" id="textarea" name="about_me">{{ Auth::user()->about_me }}</textarea>
                 <label class="control-label" for="textarea">About Me</label><i class="mtrl-select"></i>
             </div>
             <div class="submit-btns">
                 <button type="button" class="mtr-btn"><span>Cancel</span></button>
-                <button type="button" class="mtr-btn"><span>Update</span></button>
+                <button type="submit" class="mtr-btn"><span>Update</span></button>
             </div>
         </form>
     </div>

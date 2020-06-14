@@ -5,7 +5,11 @@
     <section>
         <div class="feature-photo">
             <figure>
-                <img src="{{ ($user->cover != null) ? ('/storage/images/' . $user->cover) : asset('images/resources/timeline-1.jpg') }}" alt="" style="width: 1366px; height:400px">
+                <div class="cover-cropped">
+                    <img src="{{ ($user->cover != null) ? ('/storage/images/' . $user->cover) : asset('images/resources/timeline-1.jpg') }}"
+                        alt="">
+
+                </div>
             </figure>
             @if (Auth::user()->id == $user->id)
             <div class="add-btn">
@@ -81,11 +85,13 @@
                                         data-ripple="">time line</a>
                                     <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
                                     <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
-                                    <a class="" href="{{ route('timeline.friends',['id' => $user->id]) }}" title="" data-ripple="">
+                                    <a class="" href="{{ route('timeline.friends',['id' => $user->id]) }}" title=""
+                                        data-ripple="">
                                         Friends
                                     </a>
                                     <a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
-                                    <a class="" href="{{ route('timeline.profile',['id' => $user->id]) }}" title="" data-ripple="">about</a>
+                                    <a class="" href="{{ route('timeline.profile',['id' => $user->id]) }}" title=""
+                                        data-ripple="">about</a>
                                     <a class="" href="#" title="" data-ripple="">more</a>
                                 </li>
                             </ul>

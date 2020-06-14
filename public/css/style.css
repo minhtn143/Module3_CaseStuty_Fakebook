@@ -762,6 +762,8 @@ header.sticky {
     width: 100%;
 }
 
+
+
 .feature-photo > figure {
     margin-bottom: 0;
 }
@@ -769,6 +771,12 @@ header.sticky {
 .feature-photo > figure img {
     display: inline-block;
     width: 100%;
+}
+
+.cover-cropped{
+    width: 100%;
+    overflow: hidden;
+    height:400px;
 }
 
 .user-avatar {

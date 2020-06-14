@@ -6,6 +6,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\PostService;
+use App\Photo;
 use App\User;
 
 class PostController extends Controller
@@ -27,6 +28,20 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->content = $request->content;
         $post->save();
+        $postId = $post->id;
+        $photo = new Photo();
+        if ($request->hasFile('input_img')) {
+            // dd($request->file('input_img'));
+            $image = $request->file('input_img');
+            $photo->name = time() . "_" . rand(0, 9999999) . "_" . md5(rand(0, 9999999)) . "." . $image->getClientOriginalExtension();
+            $photo->user_id = Auth::id();
+            $photo->post_id = $postId;
+            $image->storeAs('public/images', $photo->name);
+            $photo->save();
+            $post = Post::find($postId);
+            $post->photo_id = $photo->id;
+            $post->save();
+        }
 
         return redirect()->back();
     }
@@ -48,17 +63,6 @@ class PostController extends Controller
         $post->comments()->save($comment);
 
         return response()->json(['data' => $comment]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

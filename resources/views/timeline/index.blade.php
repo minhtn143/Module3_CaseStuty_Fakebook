@@ -41,33 +41,15 @@
             <img src="{{ $user->avatar }}" style="width: 60px" alt="">
         </figure>
         <div class="newpst-input">
-            <form method="post" action="{{ route("timeline.post") }}">
+            <form method="post" action="{{ route("timeline.post") }}" enctype="multipart/form-data">
                 @csrf
                 <textarea rows="2" name="content" placeholder="write something"></textarea>
                 <div class="attachments">
                     <ul>
                         <li>
-                            <i class="fa fa-music"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
                             <i class="fa fa-image"></i>
                             <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-video-camera"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-camera"></i>
-                            <label class="fileContainer">
-                                <input type="file">
+                                <input type="file" name="input_img">
                             </label>
                         </li>
                         <li>
@@ -128,7 +110,9 @@
                     <p>{{ $post->content }}</p>
                 </div>
                 <div class="post-meta">
-                    <img src="images/resources/user-post.jpg" alt="">
+                    @if ($post->photo_id)
+                    <img src="{{ asset('storage/images/'.$post->photos->first()->name) }}" alt="">
+                    @endif
                     <div class="we-video-info">
                         <ul>
                             <li>

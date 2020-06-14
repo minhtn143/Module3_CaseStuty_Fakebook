@@ -8,35 +8,35 @@
             </a>
         </figure>
         <div class="newpst-input">
-            <form method="post" action="{{ route('post.store') }}">
+            <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
                 @csrf
                 <textarea rows="2" name="content" placeholder="write something"></textarea>
                 <div class="attachments">
                     <ul>
-                        <li>
+                        {{-- <li>
                             <i class="fa fa-music"></i>
                             <label class="fileContainer">
-                                <input type="file">
+                                <input name="input_img" type="file">
                             </label>
-                        </li>
+                        </li> --}}
                         <li>
                             <i class="fa fa-image"></i>
                             <label class="fileContainer">
-                                <input type="file">
+                                <input name="input_img" type="file">
                             </label>
                         </li>
-                        <li>
+                        {{-- <li>
                             <i class="fa fa-video-camera"></i>
                             <label class="fileContainer">
-                                <input type="file">
+                                <input name="input_img" type="file">
                             </label>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <i class="fa fa-camera"></i>
                             <label class="fileContainer">
-                                <input type="file">
+                                <input name="input_img" type="file">
                             </label>
-                        </li>
+                        </li> --}}
                         <li>
                             <button type="submit">Post</button>
                         </li>
@@ -96,7 +96,9 @@
                     <p>{{ $post->content }}</p>
                 </div>
                 <div class="post-meta">
-                    <img src="images/resources/user-post.jpg" alt="">
+                    @if ($post->photo_id)
+                    <img src="{{ asset('storage/images/'.$post->photos->first()->name) }}" alt="">
+                    @endif
                     <div class="we-video-info">
                         <ul>
                             <li>

@@ -1977,9 +1977,9 @@ li.post-comment .comet-avatar {
 
 #people-list {
     margin-top: 20px;
-    max-height: 500px;
+    max-height: 771px;
+    height: 771px;
     position: relative;
-    height: 500px;
 }
 
 #people-list figure {

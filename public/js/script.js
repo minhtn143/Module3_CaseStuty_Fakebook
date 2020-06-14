@@ -27,7 +27,7 @@ jQuery(document).ready(function ($) {
     // });
 
     $(document).on('click','.close-message',function () {
-        $('#messages').html('');
+        $('#messages').css('display', 'none');
         return false;
     })
 

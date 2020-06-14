@@ -56,7 +56,7 @@ $(document).ready(function () {
             data: "",
             cache: false,
             success: function (data) {
-                $("#messages").html(data);
+                $("#messages").html(data).show();
                 scrollToBottomFunc();
             },
         });

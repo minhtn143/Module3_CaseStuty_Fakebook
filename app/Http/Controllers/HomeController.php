@@ -98,7 +98,8 @@ class HomeController extends Controller
         // pusher
         $options = array(
             'cluster' => 'ap1',
-            'useTLS' => true
+            'useTLS' => true,
+            'encrypted' => true
         );
 
         $pusher = new Pusher(

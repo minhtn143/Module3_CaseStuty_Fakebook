@@ -15,7 +15,7 @@
                 <label class="control-label" for="input">Last Name</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <input type="text" />
+                <input type="text" value="{{ Auth::user()->email }}" readonly/>
                 <label class="control-label" for="input"><a href="https://wpkixx.com/cdn-cgi/l/email-protection"
                         class="__cf_email__" data-cfemail="4b0e262a22270b">[email&#160;protected]</a></label><i
                     class="mtrl-select"></i>

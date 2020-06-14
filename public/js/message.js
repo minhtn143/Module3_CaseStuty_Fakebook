@@ -66,8 +66,8 @@ $(document).ready(function() {
     });
 
     $(".user").click(function() {
-        $(".user").removeClass("active");
-        $(this).addClass("active");
+        $(".user").removeClass("active1");
+        $(this).addClass("active1");
         $(this)
             .find(".pending")
             .remove();

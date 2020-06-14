@@ -73,7 +73,12 @@ class TimelineController extends Controller
                 ->where('approval_status', 1);
         })->get();
 
-        return view('timeline.friends', compact('user', 'friend', 'friendRequests', 'friendList', 'userFriendList'));
+        $users = DB::select("select users.id, users.first_name, users.first_name, users.avatar, users.email, count(is_read) as unread
+        from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
+        where users.id != " . Auth::id() . "
+        group by users.id, users.first_name, users.first_name, users.avatar, users.email");
+
+        return view('timeline.friends', compact('user', 'friend', 'friendRequests', 'friendList', 'userFriendList', 'users'));
     }
 
     public function showProfile($id)

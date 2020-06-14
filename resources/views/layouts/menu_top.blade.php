@@ -288,7 +288,7 @@
                 <a href="#" title=""><span class="status f-online"></span>online</a>
                 <a href="#" title=""><span class="status f-away"></span>away</a>
                 <a href="#" title=""><span class="status f-off"></span>offline</a>
-                <a href="#" title=""><i class="ti-user"></i> view profile</a>
+                <a href="{{ route('timeline.profile',['id' => Auth::id()]) }}" title=""><i class="ti-user"></i> view profile</a>
                 <a href="{{ route('profile.edit',['id' => Auth::id()]) }}" title=""><i class="ti-pencil-alt"></i>edit profile</a>
                 <a href="#" title=""><i class="ti-target"></i>activity log</a>
                 <a href="#" title=""><i class="ti-settings"></i>account setting</a>

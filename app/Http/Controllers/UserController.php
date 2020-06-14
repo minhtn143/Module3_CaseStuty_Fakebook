@@ -35,7 +35,7 @@ class UserController extends Controller
         $user->school = $request->school;
         $user->save();
 
-        Alert::success('Update Profile', 'Successfully');
+        alert('Profile Update','Successfully', 'success')->autoClose(1500);
         return redirect()->route('timeline.profile', ['id' => Auth::id()]);
     }
 }

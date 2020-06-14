@@ -14,7 +14,7 @@ class AddColAddressToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('address')->after('last_name')->nullable();
         });
     }
 

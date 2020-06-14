@@ -54,7 +54,7 @@
                 <label class="control-label" for="input">Address</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <input type="text" name="education" value="{{ Auth::user()->school }}" />
+                <input type="text" name="school" value="{{ Auth::user()->school }}" />
                 <label class="control-label" for="input">Education</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">

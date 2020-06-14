@@ -4,11 +4,13 @@
     <div class="about">
         <div class="personal">
             <h5 class="f-title"><i class="ti-info-alt"></i> Personal Info</h5>
+            <p>{{ $user->about_me }}</p>
         </div>
         <div class="d-flex flex-row mt-2">
             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left">
                 <li class="nav-item">
-                    <a href="#basic" class="nav-link active show text-white" style="background-color: #088dcd" data-toggle="tab">Basic info</a>
+                    <a href="#basic" class="nav-link active show text-white" style="background-color: #088dcd"
+                        data-toggle="tab">Basic info</a>
                 </li>
             </ul>
             <div class="tab-content">

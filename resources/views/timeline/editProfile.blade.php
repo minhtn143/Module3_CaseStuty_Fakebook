@@ -34,7 +34,7 @@
             <div class="form-radio">
                 <div class="radio">
                     <label>
-                        <input type="radio" value="Male" name="gender" @if (strtolower($user->gender) ==
+                        <input type="radio" value="Male" name="gender" @if (strtolower(Auth::user()->gender) ==
                         'male')
                         checked
                         @endif><i class="check-box"></i>Male
@@ -42,22 +42,22 @@
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="gender" value="Female" @if (strtolower($user->gender) == 'female')
+                        <input type="radio" name="gender" value="Female" @if (strtolower(Auth::user()->gender) == 'female')
                         checked
                         @endif><i class="check-box"></i>Female
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" required="required" name="address" value="{{ $user->address }}" />
+                <input type="text" required="required" name="address" value="{{ Auth::user()->address }}" />
                 <label class="control-label" for="input">Address</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <input type="text" required="required" name="education" value="{{ $user->school }}" />
+                <input type="text" required="required" name="education" value="{{ Auth::user()->school }}" />
                 <label class="control-label" for="input">Education</label><i class="mtrl-select"></i>
             </div>
             <div class="form-group">
-                <textarea rows="4" id="textarea" required="required"></textarea>
+                <textarea rows="4" id="textarea" name="about_me" required="required">{{ Auth::user()->about_me }}</textarea>
                 <label class="control-label" for="textarea">About Me</label><i class="mtrl-select"></i>
             </div>
             <div class="submit-btns">

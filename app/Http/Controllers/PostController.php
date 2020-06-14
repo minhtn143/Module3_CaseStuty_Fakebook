@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\PostService;
 use App\User;
+use Laravel\Ui\Presets\React;
 
 class PostController extends Controller
 {
@@ -122,20 +123,5 @@ class PostController extends Controller
         return view('timeline.index', compact("posts", "user"));
     }
 
-    public function getLike($postId)
-    {
-        $posts = Post::find($postId);
-
-        $user = User::find(Auth::user()->id);
-        if ($user->hasLikedPosts($posts, $user->id)) {
-            $posts->likes()->delete();
-        } else {
-            $posts->likes()->create([
-                'user_id' => Auth::user()->id,
-                'post_id' => $postId
-            ]);
-        }
-
-        return redirect()->back();
-    }
+    
 }

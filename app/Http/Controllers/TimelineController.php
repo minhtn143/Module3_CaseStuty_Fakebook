@@ -8,6 +8,7 @@ use App\Friend;
 use App\Http\Services\PostService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class TimelineController extends Controller
 {
@@ -34,5 +35,35 @@ class TimelineController extends Controller
         })->get();
 
         return view('timeline.index', compact('posts', 'friend', 'user', 'friendRequests', 'friendList'));
+    }
+
+    public function getLike($postId)
+    {
+        $posts = Post::find($postId);
+
+        $user = User::find(Auth::user()->id);
+        if ($user->hasLikedPosts($posts, $user->id)) {
+            $posts->likes()->delete();
+            $liked = false;
+        } else {
+            $posts->likes()->create([
+                'user_id' => Auth::user()->id,
+                'post_id' => $postId
+            ]);
+            $liked = true;
+        }
+        return response()->json([
+            'liked' => $liked,
+        ],200);
+            // return redirect()->back();
+    }
+
+    public function countLiked($postId)
+    {
+        $post = Post::find($postId);
+        $countLiked = $post->likes()->count();
+
+        return $countLiked;
+        
     }
 }

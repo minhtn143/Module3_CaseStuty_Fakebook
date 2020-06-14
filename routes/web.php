@@ -21,10 +21,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
-    // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
     Route::get('/{id}/user', 'TimelineController@goFriendIndex')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
-    Route::get('/post/{postId}/like', 'PostController@getLike')->name('post.like');
+    Route::get('/post/{postId}/like', 'TimelineController@getLike')->name('post.like');
 });
 
 Route::get('redirect/{driver}', 'SocialController@redirect')

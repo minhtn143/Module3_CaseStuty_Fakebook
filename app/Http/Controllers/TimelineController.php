@@ -8,6 +8,7 @@ use App\Friend;
 use App\Http\Services\PostService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Global_;
 
 class TimelineController extends Controller
 {
@@ -16,22 +17,13 @@ class TimelineController extends Controller
     {
         $this->postService = $postService;
     }
-    public function index()
-    {
-        return view('timeline.index');
-    }
 
 
-    public function goFriendIndex($id)
+    public function goToUserTimeline($id)
     {
         $user = User::find($id);
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
-        $friend = Friend::where(function ($query) {
-            $query->where('friend_id', Auth::user()->id)->where('approval_status', 0);
-        })->orWhere(function ($query) {
-            $query->where('user_id', Auth::user()->id)->where('approval_status', 0);
-        })->first();
-        // $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->first();
+        $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->orWhere('user_id', $id)->where('friend_id', Auth::user()->id)->first();
         $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
 
         $friendList = Friend::where(function ($query) {
@@ -43,5 +35,38 @@ class TimelineController extends Controller
         })->get();
 
         return view('timeline.index', compact('posts', 'friend', 'user', 'friendRequests', 'friendList'));
+    }
+
+    public function userFriendList($id)
+    {
+        $user = User::find($id);
+
+        $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
+
+        $friend = Friend::where(function ($query) use ($id) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('friend_id', $id);
+        })->orWhere(function ($query) use ($id) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('user_id', $id);
+        })->get();
+
+        $friendList = Friend::where(function ($query) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->get();
+
+        $userFriendList = Friend::where(function ($query) use ($id) {
+            $query->where('user_id', $id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) use ($id) {
+            $query->where('friend_id', $id)
+                ->where('approval_status', 1);
+        })->get();
+
+        return view('timeline.friends', compact('user', 'friend', 'friendRequests', 'friendList', 'userFriendList'));
     }
 }

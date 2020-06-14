@@ -11,9 +11,10 @@
         </span>
     </div>
     <div class="mh-head second">
-        <form class="mh-form">
-            <input placeholder="search" />
-            <a href="#/" class="fa fa-search"></a>
+        <form class="mh-form" method="GET" action="{{ route('friend.search') }}">
+            @csrf
+            <input placeholder="search" name="search"/>
+            <a type="submit" class="fa fa-search"></a>
         </form>
     </div>
     <nav id="menu" class="res-menu">
@@ -188,14 +189,15 @@
 
 <div class="topbar stick">
     <div class="logo">
-        <a title="" href="{{ route('home') }}"><img src="https://i.imgur.com/xUJ7MR3.png" style="height: 60px" alt=""></a>
+        <a title="" href="{{ route('home') }}"><img src="https://i.imgur.com/xUJ7MR3.png" style="height: 60px"
+                alt=""></a>
     </div>
 
     <div class="top-area">
         <div class="top-search">
-            <form method="post" class="">
-                <input type="text" placeholder="Search Friend">
-                <button data-ripple><i class="ti-search"></i></button>
+            <form method="GET" action="{{ route('friend.search') }}" class="">
+                <input type="text" placeholder="Search Friend" name="search">
+                <button data-ripple type="submit"><i class="ti-search"></i></button>
             </form>
         </div>
         <ul class="setting-area">
@@ -216,7 +218,8 @@
                             <a title="">
                                 <img src="{{ App\User::find($request->user_id)->avatar }}" alt="">
                                 <div class="mesg-meta">
-                                    <h6>{{ App\User::find($request->user_id)->first_name }}</h6>
+                                    <h6>{{ App\User::find($request->user_id)->last_name . " " . App\User::find($request->user_id)->first_name }}
+                                    </h6>
                                     <span>You have a friend request</span>
                                     <span role="button" class="btn-link text-primary"
                                         onclick="location.href='{{ route('friend.accept',['id' => $request->id]) }}'">Accept</span>
@@ -234,7 +237,8 @@
                 </div>
             </li>
             <li>
-                <a href="#" title="Messages" class="text-white" data-ripple=""><i class="ti-comment"></i><span class="text-white bg-danger">12</span></a>
+                <a href="#" title="Messages" class="text-white" data-ripple=""><i class="ti-comment"></i><span
+                        class="text-white bg-danger">12</span></a>
                 <div class="dropdowns">
                     <span>5 New Messages</span>
                     <ul class="drops-menu">
@@ -298,7 +302,8 @@
                 </div>
             </li>
             <li>
-                <a href="#" title="Notifications" class="text-white" data-ripple=""><i class="ti-bell"></i><span class="bg-danger text-white">12</span></a>
+                <a href="#" title="Notifications" class="text-white" data-ripple=""><i class="ti-bell"></i><span
+                        class="bg-danger text-white">12</span></a>
                 <div class="dropdowns">
                     <span>5 New Messages</span>
                     <ul class="drops-menu">

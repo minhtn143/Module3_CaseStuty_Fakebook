@@ -14,28 +14,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/timeline','TimelineController@index')->name('timeline');
-Route::post('/upload','UserController@uploadAvatar')->name('user.update.avatar');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
+    Route::get('/timeline','TimelineController@index')->name('timeline');
+    Route::post('/upload','UserController@uploadAvatar')->name('user.update.avatar');
+
     // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
-    Route::get('/{id}/user', 'TimelineController@goFriendIndex')->name('timeline.index');
+    Route::get('/{id}/user', 'TimelineController@goToUserTimeline')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
+    Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');
 });
+
 Route::get('redirect/{driver}', 'SocialController@redirect')
     ->name('login.provider')
     ->where('driver', implode('|', config('auth.socialite.drivers')));
 Route::get('/callback/{provider}', 'SocialController@callback');
-Route::group(['prefix' => 'home'], function () {
+
+Route::group(['prefix' => '/'], function () {
+    Route::get('/message/{id}', 'HomeController@getMessage')->name('message');
+    Route::post('message', 'HomeController@sendMessage');
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');
         Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
         Route::get('/{postId}/delete', 'PostController@destroy')->name('post.delete');
+        Route::get('/search', 'HomeController@searchFriend')->name('friend.search');
     });
 });
 

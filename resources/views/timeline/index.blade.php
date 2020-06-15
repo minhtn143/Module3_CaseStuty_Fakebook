@@ -117,9 +117,6 @@
                                     @else
                                     <i class="ti-heart"></i>
                                     @endif
-                                    {{-- <i class="fa fa-heart"></i>
-                                    <i class="ti-heart"></i> --}}
-
                                     <ins>2.2k</ins>
                                 </span>
                             </li>

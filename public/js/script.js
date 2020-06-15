@@ -446,23 +446,23 @@ jQuery(document).ready(function ($) {
         let postId = $(this).attr("data-id");
         let liked = $(this).attr("data-like");
         event.preventDefault;
-        // $.ajaxSetup({
-        //     headers: {
-        //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-        //     },
-        // });
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
         $.ajax({
             type: "GET",
-            url: "http://fakebook.com/timeline/post/" + postId + "/like",
+            url: "http://fakebook.org/timeline/post/" + postId + "/like",
             data: {},
             dataType: "JSON",
             success: function (data) {
-                if (liked) {
+                if (data.liked) {
                     self.find("i").removeClass("fa fa-heart");
                     self.find("i").addClass("ti-heart");
                 } else {
-                    self.find("i").removeClass("fa fa-heart");
-                    self.find("i").addClass("ti-heart");
+                    self.find("i").removeClass("ti-heart");
+                    self.find("i").addClass("fa fa-heart");
                 }
             },
             error: function (error) {

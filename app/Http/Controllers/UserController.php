@@ -38,4 +38,17 @@ class UserController extends Controller
         alert('Profile Update', 'Successfully', 'success')->autoClose(1500);
         return redirect()->route('timeline.profile', ['id' => Auth::id()]);
     }
+
+    public function uploadAvatar(Request $request)
+    {
+        $user = User::find(Auth::id());
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $newFileName = time() . "_" . rand(0, 9999999) . "_" . md5(rand(0, 9999999)) . "." . $avatar->getClientOriginalExtension();
+            $avatar->storeAs('public/images', $newFileName);
+            $user->avatar = $newFileName;
+            $user->save();
+        }
+        return redirect()->back();
+    }
 }

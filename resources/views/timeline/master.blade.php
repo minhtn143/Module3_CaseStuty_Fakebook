@@ -63,11 +63,12 @@
                         <div class="user-avatar">
                             <figure>
                                 <img src="{{ $user->avatar }}" alt="">
-                                <form class="edit-phto">
+                                <form class="edit-phto" action="{{ route('upload.avatar') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">
                                         Edit Display Photo
-                                        <input type="file" />
+                                        <input type="file" name="avatar" onchange="this.form.submit()" />
                                     </label>
                                 </form>
                             </figure>

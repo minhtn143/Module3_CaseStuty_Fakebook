@@ -25,6 +25,7 @@ class TimelineController extends Controller
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
         $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->first();
         $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
+        
 
         $friendList = Friend::where(function ($query) {
             $query->where('user_id', Auth::user()->id)
@@ -40,9 +41,9 @@ class TimelineController extends Controller
     public function getLike($postId)
     {
         $posts = Post::find($postId);
-
         $user = User::find(Auth::user()->id);
-        if ($user->hasLikedPosts($posts, $user->id)) {
+    
+        if ($user->likes->count() > 0) {
             $posts->likes()->delete();
             $liked = false;
         } else {
@@ -58,12 +59,4 @@ class TimelineController extends Controller
             // return redirect()->back();
     }
 
-    public function countLiked($postId)
-    {
-        $post = Post::find($postId);
-        $countLiked = $post->likes()->count();
-
-        return $countLiked;
-        
-    }
 }

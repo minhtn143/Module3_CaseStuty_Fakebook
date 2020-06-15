@@ -117,7 +117,7 @@
                                     @else
                                     <i class="ti-heart"></i>
                                     @endif
-                                    <ins>2.2k</ins>
+                                    <ins>2.2k </ins>
                                 </span>
                             </li>
                             <li class="social-media">

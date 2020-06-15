@@ -444,7 +444,6 @@ jQuery(document).ready(function ($) {
     $(".like").on("click", function () {
         let self = $(this);
         let postId = $(this).attr("data-id");
-        let liked = $(this).attr("data-like");
         event.preventDefault;
         $.ajaxSetup({
             headers: {
@@ -458,11 +457,11 @@ jQuery(document).ready(function ($) {
             dataType: "JSON",
             success: function (data) {
                 if (data.liked) {
-                    self.find("i").removeClass("fa fa-heart");
-                    self.find("i").addClass("ti-heart");
-                } else {
                     self.find("i").removeClass("ti-heart");
                     self.find("i").addClass("fa fa-heart");
+                } else {
+                    self.find("i").removeClass("fa fa-heart");
+                    self.find("i").addClass("ti-heart");
                 }
             },
             error: function (error) {

@@ -59,6 +59,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Photo');
     }
 
+
     public function hasLikedPosts(Post $post, $userId)
     {
         return (bool) $post->likes->where("user_id", $userId)->count();

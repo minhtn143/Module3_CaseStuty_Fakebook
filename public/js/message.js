@@ -8,28 +8,6 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("keydown", ".input-text textarea", function(e) {
-        var message = $(this).val();
-
-        // check if enter key is pressed and message is not null also receiver is selected
-        if (e.keyCode == 13 && message != "" && receiver_id != "") {
-            $(this).val(""); // while pressed enter text box will be empty
-
-            var datastr = "receiver_id=" + receiver_id + "&message=" + message;
-            $.ajax({
-                type: "post",
-                url: "/message", // need to create this post route
-                data: datastr,
-                cache: false,
-                success: function(data) {},
-                error: function(jqXHR, status, err) {},
-                complete: function() {
-                    scrollToBottomFunc();
-                }
-            });
-        }
-    });
-
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
@@ -38,8 +16,8 @@ $(document).ready(function() {
     });
 
     var channel1 = pusher.subscribe("my-channel1");
-    channel1.bind("my-event", function(data) {
-        alert("successfully subscribed!");
+    channel1.bind('my_event', function(data) {
+        alert(JSON.stringify(data));
         if (my_id == data.from) {
             $("#" + data.to).click();
         } else if (my_id == data.to) {
@@ -65,6 +43,7 @@ $(document).ready(function() {
         }
     });
 
+
     $(".user").click(function() {
         $(".user").removeClass("active1");
         $(this).addClass("active1");
@@ -85,6 +64,28 @@ $(document).ready(function() {
                 scrollToBottomFunc();
             }
         });
+    });
+
+    $(document).on("keyup", ".input-text textarea", function(e) {
+        var message = $(this).val();
+
+        // check if enter key is pressed and message is not null also receiver is selected
+        if (e.keyCode == 13 && message != "" && receiver_id != "") {
+            $(this).val(""); // while pressed enter text box will be empty
+
+            var datastr = "receiver_id=" + receiver_id + "&message=" + message;
+            $.ajax({
+                type: "Post",
+                url: "message", // need to create this post route
+                data: datastr,
+                cache: false,
+                success: function(data) {},
+                error: function(jqXHR, status, err) {},
+                complete: function() {
+                    scrollToBottomFunc();
+                }
+            });
+        }
     });
 });
 

@@ -1,8 +1,8 @@
 <?php
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +34,9 @@ Route::group(['prefix' => 'timeline'], function () {
     Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');
     Route::get('/{id}/profile', 'TimelineController@showProfile')->name('timeline.profile');
     Route::post('/cover/upload', 'UserController@uploadCoverPhoto')->name('upload.cover');
+    Route::get('/{id}/edit', 'TimelineController@editProfile')->name('profile.edit');
+    Route::post('/{id}/update', 'UserController@updateProfile')->name('profile.update');
+    Route::get('/post/{postId}/like', 'TimelineController@getLike')->name('post.like');
 });
 
 Route::get('redirect/{driver}', 'SocialController@redirect')
@@ -42,8 +45,8 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::group(['prefix' => '/'], function () {
-    Route::get('/message/{id}', 'HomeController@getMessage')->name('newsFeed.message');
-    Route::post('message', 'HomeController@sendMessage');
+    Route::get('/message/{id}', 'ChatsController@getMessage')->name('newsFeed.message');
+    Route::post('message', 'ChatsController@sendMessage');
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');
         Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
@@ -56,4 +59,8 @@ Route::group(['prefix' => 'friend'], function () {
     Route::get('/{friendId}/add', 'FriendController@store')->name('friend.add');
     Route::get('/{id}/delete', 'FriendController@destroy')->name('friend.delete');
     Route::get('/{id}/accept', 'FriendController@accept')->name('friend.accept');
+});
+
+Broadcast::channel('my-channel1', function ($user) {
+    return Auth::check();
 });

@@ -14,7 +14,7 @@
             @if (Auth::user()->id == $user->id)
             <div class="add-btn">
                 <span>1205 followers</span>
-                <a href="#" title="" data-ripple="">Update Info</a>
+                <a href="{{ route('profile.edit',['id' => Auth::id()]) }}" title="" data-ripple="">Update Info</a>
             </div>
             @elseif (isset($friend))
             @switch($friend->approval_status)

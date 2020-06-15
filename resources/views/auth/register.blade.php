@@ -5,7 +5,7 @@
 <div class="log-reg-area">
     <h2 class="log-title">Register</h2>
     <p>
-        Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join
+        Don’t use Fakebook Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join
             now</a>
     </p>
     <form method="POST" action="{{ route('register') }}">

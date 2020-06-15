@@ -65,13 +65,18 @@ class PostController extends Controller
 
         $time = strtotime($comment->updated_at);
 
+        $post1 = Post::find($comment->parent_id);
+
+        $countComment = $post1->comments->count();
+
         $data = [
             'first_name' => $comment->user->first_name,
             'last_name' => $comment->user->last_name,
             'content' => $comment->content,
             'avatar' => $comment->user->avatar,
             'created' => date('Y-m-d H:i:s', $time),
-            'user_id' => $comment->user_id
+            'user_id' => $comment->user_id,
+            'count_comment'=> $countComment
         ];
 
         return response()->json(['data' => $data]);

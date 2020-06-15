@@ -355,12 +355,10 @@ jQuery(document).ready(function($) {
                     content: data
                 },
                 dataType: "json",
-                //processData: false,
-                //contentType: false,
                 success: function(response) {
                     if (response.data) {
                         let postInfo = response.data;
-                        console.log(postInfo.avatar);
+                        console.log(postInfo.count_comment);
                         let parent = $(".showmore").parent("li");
                         let comment_HTML =
                             '	<li><div class="comet-avatar"><a class="comet-avatar" href="' +
@@ -377,6 +375,7 @@ jQuery(document).ready(function($) {
                             "</p></div></li>";
                         $(".post-comt-box textarea").val("");
                         $(comment_HTML).insertBefore(parent);
+                        $('.comment ins').html(postInfo.count_comment);
                     }
                 },
                 error: function(error) {

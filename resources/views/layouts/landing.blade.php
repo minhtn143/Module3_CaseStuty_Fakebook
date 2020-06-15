@@ -7,9 +7,9 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="land-featurearea">
                     <div class="land-meta">
-                        <h1>Winku</h1>
+                        <h1>Fakebook</h1>
                         <p>
-                            Winku is free to use for as long as you want with two active projects.
+                            Fakebook is free to use for as long as you want with two active projects.
                         </p>
                         <div class="friend-logo">
                             <span><img src="images/wink.png" alt=""></span>

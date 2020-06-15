@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
-    Route::get('/message/{id}', 'HomeController@getMessage')->name('timeline.message');
-    Route::post('message', 'HomeController@sendMessage');
+    Route::get('/message/{id}', 'ChatsController@getMessage')->name('timeline.message');
+    Route::post('message', 'ChatsController@sendMessage');
     Route::get('/{id}/user', 'TimelineController@goToUserTimeline')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
     Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');
@@ -36,8 +37,8 @@ Route::get('redirect/{driver}', 'SocialController@redirect')
 Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::group(['prefix' => '/'], function () {
-    Route::get('/message/{id}', 'HomeController@getMessage')->name('newsFeed.message');
-    Route::post('message', 'HomeController@sendMessage');
+    Route::get('/message/{id}', 'ChatsController@getMessage')->name('newsFeed.message');
+    Route::post('message', 'ChatsController@sendMessage');
     Route::group(['prefix' => 'post'], function () {
         Route::post('/', 'PostController@store')->name('post.store');
         Route::post('/{postId}/comment', 'PostController@comment')->name('post.comment');
@@ -50,4 +51,8 @@ Route::group(['prefix' => 'friend'], function () {
     Route::get('/{friendId}/add', 'FriendController@store')->name('friend.add');
     Route::get('/{id}/delete', 'FriendController@destroy')->name('friend.delete');
     Route::get('/{id}/accept', 'FriendController@accept')->name('friend.accept');
+});
+
+Broadcast::channel('my-channel1', function ($user) {
+    return Auth::check();
 });

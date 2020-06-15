@@ -16,7 +16,7 @@ $(document).ready(function() {
     });
 
     var channel1 = pusher.subscribe("my-channel1");
-    channel1.bind('my_event', function(data) {
+    channel1.bind('my-event', function(data) {
         alert(JSON.stringify(data));
         if (my_id == data.from) {
             $("#" + data.to).click();
@@ -75,7 +75,7 @@ $(document).ready(function() {
 
             var datastr = "receiver_id=" + receiver_id + "&message=" + message;
             $.ajax({
-                type: "Post",
+                type: "post",
                 url: "message", // need to create this post route
                 data: datastr,
                 cache: false,

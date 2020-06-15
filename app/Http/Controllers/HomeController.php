@@ -110,6 +110,6 @@ class HomeController extends Controller
         $data = ['from' => $from, 'to' => $to];
         $pusher->trigger('my-channel1', 'my-event', $data);
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
     }
 }

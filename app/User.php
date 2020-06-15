@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Photo');
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class,'from');
+    }
 }

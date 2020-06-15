@@ -112,9 +112,15 @@
                                 </span>
                             </li>
                             <li>
-                                <span class="like" data-toggle="tooltip" title="like">
+                                <span class="like" data-id="{{ $post->id }}"
+                                    data-like="{{ Auth::user()->likes()->where('post_id', $post->id)->first()?'true': 'false'}}"
+                                    data-toggle="tooltip" title="like">
+                                    @if (Auth::user()->likes()->where('post_id', $post->id)->first())
+                                    <i class="fa fa-heart"></i>
+                                    @else
                                     <i class="ti-heart"></i>
-                                    <ins>2.2k</ins>
+                                    @endif
+                                    <ins>2.2k </ins>
                                 </span>
                             </li>
                             <li class="social-media">

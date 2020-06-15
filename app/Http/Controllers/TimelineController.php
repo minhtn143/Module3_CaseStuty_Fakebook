@@ -40,14 +40,14 @@ class TimelineController extends Controller
 
     public function getLike($postId)
     {
-        $posts = Post::find($postId);
+        $post = Post::find($postId);
         $user = User::find(Auth::user()->id);
-    
-        if ($user->likes->count() > 0) {
-            $posts->likes()->delete();
+
+        if ($user->likes->where("post_id", $postId)->count() > 0) {
+            $post->likes()->delete();
             $liked = false;
         } else {
-            $posts->likes()->create([
+            $post->likes()->create([
                 'user_id' => Auth::user()->id,
                 'post_id' => $postId
             ]);

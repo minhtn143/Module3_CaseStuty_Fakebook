@@ -456,6 +456,7 @@ jQuery(document).ready(function ($) {
             data: {},
             dataType: "JSON",
             success: function (data) {
+                console.log(data);
                 if (data.liked) {
                     self.find("i").removeClass("ti-heart");
                     self.find("i").addClass("fa fa-heart");

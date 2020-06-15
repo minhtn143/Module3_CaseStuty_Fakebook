@@ -38,4 +38,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\Post');
     }
+
+    public function countLiked()
+    {
+        return $this->likes()->count();
+    }
 }

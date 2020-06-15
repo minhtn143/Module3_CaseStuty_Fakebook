@@ -42,6 +42,7 @@ class TimelineController extends Controller
     {
         $post = Post::find($postId);
         $user = User::find(Auth::user()->id);
+        
 
         if ($user->likes->where("post_id", $postId)->count() > 0) {
             $post->likes()->where("user_id", $user->id)->delete();
@@ -53,8 +54,10 @@ class TimelineController extends Controller
             ]);
             $liked = true;
         }
+        $countLiked = $post->countLiked();
         return response()->json([
             'liked' => $liked,
+            'countLiked' => $countLiked,
         ],200);
             // return redirect()->back();
     }

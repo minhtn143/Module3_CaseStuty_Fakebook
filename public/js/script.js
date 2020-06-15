@@ -443,6 +443,7 @@ jQuery(document).ready(function ($) {
     // click like button
     $(".like").on("click", function () {
         let self = $(this);
+        let selfIns = $(this).children("ins");
         let postId = $(this).attr("data-id");
         event.preventDefault;
         $.ajaxSetup({
@@ -464,6 +465,7 @@ jQuery(document).ready(function ($) {
                     self.find("i").removeClass("fa fa-heart");
                     self.find("i").addClass("ti-heart");
                 }
+                selfIns.html(data.countLiked);
             },
             error: function (error) {
                 console.log(error);

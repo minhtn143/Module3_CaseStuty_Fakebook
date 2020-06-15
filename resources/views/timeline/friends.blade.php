@@ -26,11 +26,11 @@
                         <div class="nearly-pepls">
                             <figure>
                                 <a href="{{ route('timeline.index',['id' => $friend->friend_id]) }}" title="">
-                                    <img src="{{ App\User::find($friend->friend_id)->avatar }}" alt="">
+                                    <img src="{{ '/storage/images/'.App\User::find($friend->friend_id)->avatar }}" alt="">
                                 </a>
                             </figure>
                             <div class="pepl-info">
-                                <h4><a href="time-line.html" title="">
+                                <h4><a href="{{ route('timeline.index',['id' => $friend->friend_id]) }}" title="">
                                         {{ App\User::find($friend->friend_id)->last_name . ' ' . App\User::find($friend->friend_id)->first_name }}
                                     </a>
                                 </h4>
@@ -90,7 +90,7 @@
                     <li>
                         <div class="nearly-pepls">
                             <figure>
-                                <a href="time-line.html" title="">
+                                <a href="{{ route('timeline.index',['id' => $friend->friend_id]) }}" title="">
                                     <img src="{{ App\User::find($friend->user_id)->avatar }}" alt="">
                                 </a>
                             </figure>

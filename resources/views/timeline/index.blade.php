@@ -3,7 +3,7 @@
 <div class="central-meta item">
     <div class="new-postbox">
         <figure>
-            <img src="{{ $user->avatar }}" style="width: 60px" alt="">
+            <img src="{{ '/storage/images/' .$user->avatar }}" style="width: 60px" alt="">
         </figure>
         <div class="newpst-input">
             <form method="post" action="{{ route("timeline.post") }}" enctype="multipart/form-data">
@@ -35,7 +35,7 @@
             <div class="friend-info">
                 <figure>
                     <a href="{{ route('timeline.index',['id' => $post->user->id]) }}">
-                        <img src="{{ $post->user->avatar }}" style="width: 60px" alt="">
+                        <img src="{{ '/storage/images/'.$post->user->avatar }}" style="width: 60px" alt="">
                     </a>
                 </figure>
                 <div class="friend-name">
@@ -156,7 +156,7 @@
                     <li>
                         <div class="comet-avatar">
                             <a class="comet-avatar" href="{{ route('timeline.index',$comment->user->id) }}">
-                                <img src="{{ $comment->user->avatar }}" style="width: 45px" alt="">
+                                <img src="{{ '/storage/images/'.$comment->user->avatar }}" style="width: 45px" alt="">
                             </a>
 
                         </div>
@@ -208,7 +208,7 @@
                                 <div class="comet-avatar">
                                     <a class="comet-avatar"
                                         href="{{ route('timeline.index',$comment_reply->user->id) }}">
-                                        <img src="{{ $comment_reply->user->avatar }}" style="width: 45px" alt="">
+                                        <img src="{{ '/storage/images/'.$comment_reply->user->avatar }}" style="width: 45px" alt="">
                                     </a>
                                 </div>
                                 <div class="we-comment">
@@ -259,7 +259,7 @@
                             @endforeach
                             <li class="post-comment" id="reply-form-{{ $comment->id }}" style="display: none">
                                 <div class="comet-avatar">
-                                    <img src="{{ Auth::user()->avatar }}" alt="">
+                                    <img src="{{ '/storage/images/'.Auth::user()->avatar }}" alt="">
                                 </div>
                                 <div class="post-comt-box">
                                     <form method="post" action="{{ route('post.comment',['postId' => $comment->id]) }}">
@@ -296,7 +296,7 @@
                     </li>
                     <li class="post-comment">
                         <div class="comet-avatar">
-                            <img src="{{ Auth::user()->avatar }}" alt="">
+                            <img src="{{ '/storage/images/'.Auth::user()->avatar }}" alt="">
                         </div>
                         <div class="post-comt-box">
                             <form method="post" action="{{ route('post.comment',['postId' => $post->id]) }}">

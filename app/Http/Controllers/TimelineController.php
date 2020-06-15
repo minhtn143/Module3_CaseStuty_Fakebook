@@ -162,13 +162,8 @@ class TimelineController extends Controller
 
         $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
 
-        $friend = Friend::where(function ($query) use ($id) {
-            $query->where('user_id', Auth::user()->id)
-                ->where('friend_id', $id);
-        })->orWhere(function ($query) use ($id) {
-            $query->where('friend_id', Auth::user()->id)
-                ->where('user_id', $id);
-        })->get();
+        $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->orWhere('user_id', $id)->where('friend_id', Auth::user()->id)->first();
+        $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
 
         $friendList = Friend::where(function ($query) {
             $query->where('user_id', Auth::user()->id)

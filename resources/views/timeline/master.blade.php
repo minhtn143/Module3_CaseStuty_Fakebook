@@ -8,7 +8,6 @@
                 <div class="cover-cropped">
                     <img src="{{ ($user->cover != null) ? ('/storage/images/' . $user->cover) : asset('images/resources/timeline-1.jpg') }}"
                         alt="">
-
                 </div>
             </figure>
             @if (Auth::user()->id == $user->id)
@@ -62,9 +61,12 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
                             <figure>
+                                    <img src="{{ ($user->avatar != null) ? ('/storage/images/' . $user->avatar) : asset('images/resources/timeline-1.jpg') }}"
+                                        alt="" style="height: 281px; width: 287px">
                                 <img src="{{ $user->avatar }}" alt="">
                                 <form class="edit-phto" action="{{ route('upload.avatar') }}" method="POST"
                                     enctype="multipart/form-data">
+                                    @csrf
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">
                                         Edit Display Photo

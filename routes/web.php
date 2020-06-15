@@ -27,7 +27,7 @@ Route::group(['prefix' => 'timeline'], function () {
     Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');
     Route::get('/{id}/profile', 'TimelineController@showProfile')->name('timeline.profile');
     Route::post('/cover/upload', 'UserController@uploadCoverPhoto')->name('upload.cover');
-    Route::post('/cover/upload', 'UserController@uploadAvatar')->name('upload.avatar');
+    Route::post('/avatar/upload', 'UserController@uploadAvatar')->name('upload.avatar');
     Route::get('/{id}/edit', 'TimelineController@editProfile')->name('profile.edit');
     Route::post('/{id}/update', 'UserController@updateProfile')->name('profile.update');
     Route::get('/post/{postId}/like', 'TimelineController@getLike')->name('post.like');

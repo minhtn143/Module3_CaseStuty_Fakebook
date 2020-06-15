@@ -13,7 +13,7 @@
     <div class="mh-head second">
         <form class="mh-form" method="GET" action="{{ route('friend.search') }}">
             @csrf
-            <input placeholder="search" name="search"/>
+            <input placeholder="search" name="search" />
             <a type="submit" class="fa fa-search"></a>
         </form>
     </div>
@@ -282,14 +282,16 @@
             </li>
         </ul>
         <div class="user-img">
-            <img src="{{ Auth::user()->avatar }}" style="width: 45px" alt="">
+            <img src="{{ "/storage/images/".Auth::user()->avatar }}" style="width: 45px" alt="">
             <span class="status f-online"></span>
             <div class="user-setting">
                 <a href="#" title=""><span class="status f-online"></span>online</a>
                 <a href="#" title=""><span class="status f-away"></span>away</a>
                 <a href="#" title=""><span class="status f-off"></span>offline</a>
-                <a href="{{ route('timeline.profile',['id' => Auth::id()]) }}" title=""><i class="ti-user"></i> view profile</a>
-                <a href="{{ route('profile.edit',['id' => Auth::id()]) }}" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+                <a href="{{ route('timeline.profile',['id' => Auth::id()]) }}" title=""><i class="ti-user"></i> view
+                    profile</a>
+                <a href="{{ route('profile.edit',['id' => Auth::id()]) }}" title=""><i class="ti-pencil-alt"></i>edit
+                    profile</a>
                 <a href="#" title=""><i class="ti-target"></i>activity log</a>
                 <a href="#" title=""><i class="ti-settings"></i>account setting</a>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();

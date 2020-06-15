@@ -152,8 +152,47 @@ class TimelineController extends Controller
         return response()->json([
             'liked' => $liked,
             'countLiked' => $countLiked,
-        ],200);
-            // return redirect()->back();
+        ], 200);
+        // return redirect()->back();
     }
 
+    public function showAllPhotos($id)
+    {
+        $user = User::find($id);
+
+        $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
+
+        $friend = Friend::where(function ($query) use ($id) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('friend_id', $id);
+        })->orWhere(function ($query) use ($id) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('user_id', $id);
+        })->get();
+
+        $friendList = Friend::where(function ($query) {
+            $query->where('user_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) {
+            $query->where('friend_id', Auth::user()->id)
+                ->where('approval_status', 1);
+        })->get();
+
+        $userFriendList = Friend::where(function ($query) use ($id) {
+            $query->where('user_id', $id)
+                ->where('approval_status', 1);
+        })->orWhere(function ($query) use ($id) {
+            $query->where('friend_id', $id)
+                ->where('approval_status', 1);
+        })->get();
+
+        $users = DB::select("select users.id, users.first_name, users.first_name, users.avatar, users.email, count(is_read) as unread
+        from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
+        where users.id != " . Auth::id() . "
+        group by users.id, users.first_name, users.first_name, users.avatar, users.email");
+
+        $images = User::find($id)->photos;
+
+        return view('timeline.images', compact('user', 'friend', 'friendRequests', 'friendList', 'userFriendList', 'users', 'images'));
+    }
 }

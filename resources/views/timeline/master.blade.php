@@ -83,7 +83,8 @@
                                 <li>
                                     <a class="active" href="{{ route("timeline.index",$user->id) }}" title=""
                                         data-ripple="">time line</a>
-                                    <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
+                                    <a class="" href="{{ route('timeline.photos',['id' => $user->id]) }}" title=""
+                                        data-ripple="">Photos</a>
                                     <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
                                     <a class="" href="{{ route('timeline.friends',['id' => $user->id]) }}" title=""
                                         data-ripple="">

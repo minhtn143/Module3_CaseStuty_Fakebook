@@ -20,7 +20,7 @@
             </li>
             <li>
                 <i class="ti-image"></i>
-                <a href="timeline-photos.html" title="">images</a>
+                <a href="{{ route('timeline.photos',['id'=>Auth::id()]) }}" title="">images</a>
             </li>
             <li>
                 <i class="ti-video-camera"></i>

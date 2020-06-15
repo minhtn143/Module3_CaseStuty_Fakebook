@@ -452,7 +452,7 @@ jQuery(document).ready(function ($) {
         });
         $.ajax({
             type: "GET",
-            url: "http://fakebook.org/timeline/post/" + postId + "/like",
+            url: "/timeline/post/" + postId + "/like",
             data: {},
             dataType: "JSON",
             success: function (data) {

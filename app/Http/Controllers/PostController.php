@@ -63,7 +63,18 @@ class PostController extends Controller
 
         $post->comments()->save($comment);
 
-        return response()->json(['data' => $comment]);
+        $time = strtotime($comment->updated_at);
+
+        $data = [
+            'first_name' => $comment->user->first_name,
+            'last_name' => $comment->user->last_name,
+            'content' => $comment->content,
+            'avatar' => $comment->user->avatar,
+            'created' => date('Y-m-d H:i:s', $time),
+            'user_id' => $comment->user_id
+        ];
+
+        return response()->json(['data' => $data]);
     }
 
     /**
@@ -99,18 +110,29 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        if (!$post->photos->isEmpty()) {
+            $post->photos()->first()->delete();
+        }
+
+        if (!$post->likes->isEmpty()) {
+            $post->likes()->delete();
+        }
+
         if ($post->comments->count() > 0) {
             if ($post->comments->each->comments->count() > 0) {
                 $post->comments->each->comments->each->delete();
                 $post->comments->each->delete();
-                $post->delete();
             } else {
                 $post->comments->each->delete();
-                $post->delete();
             }
-        } else {
-            $post->delete();
         }
+
+
+        $post->delete();
+
+
+
+
 
         return redirect()->back();
     }
@@ -126,9 +148,4 @@ class PostController extends Controller
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
         return view('timeline.index', compact("posts", "user"));
     }
-<<<<<<< HEAD
-=======
-
-    
->>>>>>> dd5bcfeacc803b992c44aac883dc481ef7ce6de4
 }

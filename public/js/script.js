@@ -343,7 +343,6 @@ jQuery(document).ready(function ($) {
                 //processData: false,
                 //contentType: false,
                 success: function (response) {
-                    console.log(response);
                     if (response.data) {
                         let parent = $(".showmore").parent("li");
                         console.log(parent);
@@ -438,5 +437,38 @@ jQuery(document).ready(function ($) {
         let tag_name = $(this).attr("data-value");
         $("#reply-form-" + cmt_id).css("display", "block");
         $("#comment-" + cmt_id).val(tag_name);
+    });
+
+    // click like button
+    $(".like").on("click", function () {
+        let self = $(this);
+        let selfIns = $(this).children("ins");
+        let postId = $(this).attr("data-id");
+        event.preventDefault;
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+        $.ajax({
+            type: "GET",
+            url: "http://fakebook.org/timeline/post/" + postId + "/like",
+            data: {},
+            dataType: "JSON",
+            success: function (data) {
+                console.log(data);
+                if (data.liked) {
+                    self.find("i").removeClass("ti-heart");
+                    self.find("i").addClass("fa fa-heart");
+                } else {
+                    self.find("i").removeClass("fa fa-heart");
+                    self.find("i").addClass("ti-heart");
+                }
+                selfIns.html(data.countLiked);
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        });
     });
 }); //document ready end

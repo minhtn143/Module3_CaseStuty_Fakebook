@@ -9,7 +9,7 @@
                     <div class="land-meta">
                         <h1>Fakebook</h1>
                         <p>
-                            Fakebook is free to use for as long as you want with two active projects.
+                            Fakebook is free to use for as long as you want.
                         </p>
                         <div class="friend-logo">
                             <span><img src="images/wink.png" alt=""></span>

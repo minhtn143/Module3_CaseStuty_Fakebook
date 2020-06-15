@@ -10,6 +10,7 @@ use App\Http\Services\PostService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class TimelineController extends Controller
 {
@@ -26,6 +27,7 @@ class TimelineController extends Controller
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
         $friend = Friend::where('user_id', Auth::user()->id)->where('friend_id', $id)->orWhere('user_id', $id)->where('friend_id', Auth::user()->id)->first();
         $friendRequests = Friend::where('friend_id', Auth::user()->id)->where('approval_status', 0)->get();
+
 
         $friendList = Friend::where(function ($query) {
             $query->where('user_id', Auth::user()->id)
@@ -129,4 +131,29 @@ class TimelineController extends Controller
             return view('timeline.editProfile', compact('posts', 'friend', 'user', 'friendRequests', 'friendList', 'users'));
         }
     }
+
+    public function getLike($postId)
+    {
+        $post = Post::find($postId);
+        $user = User::find(Auth::user()->id);
+
+
+        if ($user->likes->where("post_id", $postId)->count() > 0) {
+            $post->likes()->where("user_id", $user->id)->delete();
+            $liked = false;
+        } else {
+            $post->likes()->create([
+                'user_id' => Auth::user()->id,
+                'post_id' => $postId
+            ]);
+            $liked = true;
+        }
+        $countLiked = $post->countLiked();
+        return response()->json([
+            'liked' => $liked,
+            'countLiked' => $countLiked,
+        ],200);
+            // return redirect()->back();
+    }
+
 }

@@ -29,6 +29,7 @@ Route::group(['prefix' => 'timeline'], function () {
     Route::post('/cover/upload', 'UserController@uploadCoverPhoto')->name('upload.cover');
     Route::get('/{id}/edit', 'TimelineController@editProfile')->name('profile.edit');
     Route::post('/{id}/update', 'UserController@updateProfile')->name('profile.update');
+    Route::get('/post/{postId}/like', 'TimelineController@getLike')->name('post.like');
 });
 
 Route::get('redirect/{driver}', 'SocialController@redirect')

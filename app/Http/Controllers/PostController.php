@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Services\PostService;
 use App\Photo;
 use App\User;
+use Laravel\Ui\Presets\React;
 
 class PostController extends Controller
 {
@@ -125,4 +126,9 @@ class PostController extends Controller
         $posts = $this->postService->getAllPostsByUserId($id)->sortByDesc("created_at");
         return view('timeline.index', compact("posts", "user"));
     }
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> dd5bcfeacc803b992c44aac883dc481ef7ce6de4
 }

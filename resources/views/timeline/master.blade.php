@@ -62,14 +62,12 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
                             <figure>
-                                <img src="{{ $user->avatar }}" alt="">
-                                <form class="edit-phto">
-                                    <i class="fa fa-camera-retro"></i>
-                                    <label class="fileContainer">
-                                        Edit Display Photo
-                                        <input type="file" />
-                                    </label>
-                                </form>
+                                <img src="{{ asset('storage/images/' . $user->avatar) }}" style="width: 300px;height: 190px" alt="">
+                                <i class="fa fa-camera-retro" style="margin-left: 5px"></i>
+                                <label class="fileContainer" style="color: black;">
+                                    <a style="margin-bottom: 3px; text-decoration: none" href="#open-modal">Edit Display Photo</a>
+                                </label>
+
                             </figure>
                         </div>
                     </div>

@@ -19,15 +19,15 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'timeline'], function () {
-<<<<<<< HEAD
+
     Route::get('/timeline','TimelineController@index')->name('timeline');
     Route::post('/upload','UserController@uploadAvatar')->name('user.update.avatar');
 
     // Route::get('/', 'PostController@getAllPosts')->name('timeline.index');
-=======
+
     Route::get('/message/{id}', 'HomeController@getMessage')->name('timeline.message');
     Route::post('message', 'HomeController@sendMessage');
->>>>>>> c45d44676cc6b4a17141c05edcec570ad12cbefe
+
     Route::get('/{id}/user', 'TimelineController@goToUserTimeline')->name('timeline.index');
     Route::post('/', 'PostController@store')->name('timeline.post');
     Route::get('/{id}/friends', 'TimelineController@userFriendList')->name('timeline.friends');

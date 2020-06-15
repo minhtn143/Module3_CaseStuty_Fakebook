@@ -44,7 +44,7 @@ class TimelineController extends Controller
         $user = User::find(Auth::user()->id);
 
         if ($user->likes->where("post_id", $postId)->count() > 0) {
-            $post->likes()->delete();
+            $post->likes()->where("user_id", $user->id)->delete();
             $liked = false;
         } else {
             $post->likes()->create([

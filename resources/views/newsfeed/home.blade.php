@@ -120,7 +120,7 @@
                                     @else
                                     <i class="ti-heart"></i>
                                     @endif
-                                    <ins>2.2k </ins>
+                                    <ins>{{ $post->likes->where('post_id', $post->id)->count() }}</ins>
                                 </span>
                             </li>
                             <li class="social-media">

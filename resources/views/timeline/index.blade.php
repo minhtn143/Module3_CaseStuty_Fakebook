@@ -1,40 +1,5 @@
 @extends('timeline.master')
 @section('timeline_content')
-    <div id="open-modal" class="modal-window">
-        <div style="background: rosybrown">
-            <a href="#" title="Close" class="modal-close">X</a>
-            <header class="text-white text-center">
-                <img src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg" width="150" alt=""
-                     style="width: 150px" class="mb-4">
-            </header>
-            <div class="row py-4">
-                <div class="col-lg-6 mx-auto">
-                    <!-- Upload image input-->
-                    <form action="{{route('user.update.avatar')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input name="file" id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Tải ảnh lên</label>
-                            <div class="input-group-append">
-                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i
-                                        class="fa fa-cloud-upload mr-2 text-muted"></i><small
-                                        class="text-uppercase font-weight-bold text-muted">Tải ảnh lên
-                                    </small></label>
-                            </div>
-                        </div>
-
-                        <!-- Uploaded image area-->
-                        <p class="font-italic text-white text-center">The image uploaded will be rendered inside the
-                            box below.</p>
-                        <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
-                                                          class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                        <div style="float: right"><button style="border-radius: 5px" type="submit">Lưu</button></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>
 <div class="central-meta item">
     <div class="new-postbox">
         <figure>

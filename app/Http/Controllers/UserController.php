@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
     public function uploadAvatar(Request $request)
     {
         $user = Auth::user();
@@ -24,6 +23,7 @@ class UserController extends Controller
             $request->file('file')->storeAs('public/images', $newFileName);
             $user->avatar = $newFileName;
             $user->save();
+
         }
         return redirect()->back();
     }

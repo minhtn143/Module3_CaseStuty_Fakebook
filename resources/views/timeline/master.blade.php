@@ -63,11 +63,14 @@
                         <div class="user-avatar">
                             <figure>
                                 <img src="{{ asset('storage/images/' . $user->avatar) }}" style="width: 300px;height: 190px" alt="">
-                                <i class="fa fa-camera-retro" style="margin-left: 5px"></i>
-                                <label class="fileContainer" style="color: black;">
-                                    <a style="margin-bottom: 3px; text-decoration: none" href="#open-modal">Edit Display Photo</a>
-                                </label>
-
+                                <form class="edit-phto" action="{{route('user.update.avatar')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <i class="fa fa-camera-retro"></i>
+                                    <label class="fileContainer">
+                                        Edit Display Photo
+                                        <input type="file" name="file" onchange="this.form.submit()" />
+                                    </label>
+                                </form>
                             </figure>
                         </div>
                     </div>

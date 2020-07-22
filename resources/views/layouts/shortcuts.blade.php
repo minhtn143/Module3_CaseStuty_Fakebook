@@ -16,11 +16,11 @@
             </li>
             <li>
                 <i class="ti-user"></i>
-                <a href="timeline-friends.html" title="">friends</a>
+                <a href="{{ route('timeline.friends',['id' => Auth::id()]) }}" title="">friends</a>
             </li>
             <li>
                 <i class="ti-image"></i>
-                <a href="timeline-photos.html" title="">images</a>
+                <a href="{{ route('timeline.photos',['id'=>Auth::id()]) }}" title="">images</a>
             </li>
             <li>
                 <i class="ti-video-camera"></i>

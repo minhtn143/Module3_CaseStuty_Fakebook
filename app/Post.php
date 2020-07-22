@@ -21,7 +21,7 @@ class Post extends Model
 
     public function photos()
     {
-        return $this->belongsToMany("App\Photo")->withTimestamps();
+        return $this->hasMany("App\Photo");
     }
 
     public function comments()

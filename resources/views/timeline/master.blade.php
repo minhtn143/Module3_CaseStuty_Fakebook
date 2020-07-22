@@ -4,19 +4,31 @@
     @include('layouts.menu_top')
     <section>
         <div class="feature-photo">
-            <figure><img src="{{ asset('images/resources/timeline-1.jpg') }}" alt=""></figure>
+            <figure>
+                <div class="cover-cropped">
+                    <img src="{{ ($user->cover != null) ? ('/storage/images/' . $user->cover) : asset('images/resources/timeline-1.jpg') }}"
+                        alt="">
+
+                </div>
+            </figure>
             @if (Auth::user()->id == $user->id)
             <div class="add-btn">
                 <span>1205 followers</span>
-                <a href="#" title="" data-ripple="">Update Info</a>
+                <a href="{{ route('profile.edit',['id' => Auth::id()]) }}" title="" data-ripple="">Update Info</a>
             </div>
             @elseif (isset($friend))
             @switch($friend->approval_status)
             @case('0')
+            @if ($friend->friend_id == Auth::user()->id)
+            <div class="add-btn">
+                <a href="#" title="" data-ripple="">Request Pending</a>
+            </div>
+            @else
             <div class="add-btn">
                 <a href="{{ route('friend.delete',['id' => $friend->id]) }}" title=""
                     onclick="return confirm('Cancel request?')" data-ripple="">Sent Request</a>
             </div>
+            @endif
             @break
             @case('1')
             <div class="add-btn">
@@ -37,11 +49,12 @@
                 <a href="{{ route('friend.add',['friendId' => $user->id]) }}" title="" data-ripple="">Add Friend</a>
             </div>
             @endif
-            <form class="edit-phto">
+            <form class="edit-phto" action="{{ route('upload.cover') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <i class="fa fa-camera-retro"></i>
                 <label class="fileContainer">
                     Edit Cover Photo
-                    <input type="file" />
+                    <input type="file" name="cover" onchange="this.form.submit()" />
                 </label>
             </form>
             <div class="container-fluid">
@@ -70,11 +83,16 @@
                                 <li>
                                     <a class="active" href="{{ route("timeline.index",$user->id) }}" title=""
                                         data-ripple="">time line</a>
-                                    <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
+                                    <a class="" href="{{ route('timeline.photos',['id' => $user->id]) }}" title=""
+                                        data-ripple="">Photos</a>
                                     <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
-                                    <a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
+                                    <a class="" href="{{ route('timeline.friends',['id' => $user->id]) }}" title=""
+                                        data-ripple="">
+                                        Friends
+                                    </a>
                                     <a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
-                                    <a class="" href="about.html" title="" data-ripple="">about</a>
+                                    <a class="" href="{{ route('timeline.profile',['id' => $user->id]) }}" title=""
+                                        data-ripple="">about</a>
                                     <a class="" href="#" title="" data-ripple="">more</a>
                                 </li>
                             </ul>

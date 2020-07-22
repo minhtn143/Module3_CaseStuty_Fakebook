@@ -1,34 +1,38 @@
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function($) {
     "use strict";
 
     //------- Notifications Dropdowns
-    $(".top-area > .setting-area > li").on("click", function () {
-        $(this).siblings().children("div").removeClass("active");
-        $(this).children("div").addClass("active");
+    $(".top-area > .setting-area > li").on("click", function() {
+        $(this)
+            .siblings()
+            .children("div")
+            .removeClass("active");
+        $(this)
+            .children("div")
+            .addClass("active");
         return false;
     });
     //------- remove class active on body
     $("body *")
         .not(".top-area > .setting-area > li")
-        .on("click", function () {
+        .on("click", function() {
             $(".top-area > .setting-area > li > div").removeClass("active");
         });
 
     //--- user setting dropdown on topbar
-    $(".user-img").on("click", function () {
+    $(".user-img").on("click", function() {
         $(".user-setting").toggleClass("active");
         return false;
     });
 
-    //--- side message box
-    $(".list_friend").on("click", function () {
-        let friendId = $(this).attr("data-id");
-        console.log($(friendId));
-        $(".box-chat-" + friendId).addClass("show");
-        return false;
-    });
-    $(".close-mesage").on("click", function () {
-        $(".chat-box").removeClass("show");
+    // $(".test-click").click(function () {
+    //     console.log('123');
+    //     $("#messages").html('');
+    //     return false;
+    // });
+
+    $(document).on("click", ".close-message", function() {
+        $("#messages").css("display", "none");
         return false;
     });
 
@@ -40,30 +44,37 @@ jQuery(document).ready(function ($) {
     }
 
     /*--- socials menu scritp ---*/
-    $(".trigger").on("click", function () {
-        $(this).parent(".menu").toggleClass("active");
+    $(".trigger").on("click", function() {
+        $(this)
+            .parent(".menu")
+            .toggleClass("active");
     });
 
     /*--- emojies show on text area ---*/
-    $(".add-smiles > span").on("click", function () {
-        $(this).parent().siblings(".smiles-bunch").toggleClass("active");
+    $(".add-smiles > span").on("click", function() {
+        $(this)
+            .parent()
+            .siblings(".smiles-bunch")
+            .toggleClass("active");
     });
 
     // delete notifications
-    $(".notification-box > ul li > i.del").on("click", function () {
-        $(this).parent().slideUp();
+    $(".notification-box > ul li > i.del").on("click", function() {
+        $(this)
+            .parent()
+            .slideUp();
         return false;
     });
 
     /*--- socials menu scritp ---*/
-    $(".f-page > figure i").on("click", function () {
+    $(".f-page > figure i").on("click", function() {
         $(".drop").toggleClass("active");
     });
 
     //===== Search Filter =====//
-    (function ($) {
+    (function($) {
         // custom css expression for a case-insensitive contains()
-        jQuery.expr[":"].Contains = function (a, i, m) {
+        jQuery.expr[":"].Contains = function(a, i, m) {
             return (
                 (a.textContent || a.innerText || "")
                     .toUpperCase()
@@ -76,12 +87,14 @@ jQuery(document).ready(function ($) {
                 input = $("<input>").attr({
                     class: "filterinput",
                     type: "text",
-                    placeholder: "Search Contacts...",
+                    placeholder: "Search Contacts..."
                 });
-            $(form).append(input).appendTo(searchDir);
+            $(form)
+                .append(input)
+                .appendTo(searchDir);
 
             $(input)
-                .change(function () {
+                .change(function() {
                     var filter = $(this).val();
                     if (filter) {
                         $(list)
@@ -91,17 +104,19 @@ jQuery(document).ready(function ($) {
                             .find("li:Contains(" + filter + ")")
                             .slideDown();
                     } else {
-                        $(list).find("li").slideDown();
+                        $(list)
+                            .find("li")
+                            .slideDown();
                     }
                     return false;
                 })
-                .keyup(function () {
+                .keyup(function() {
                     $(this).change();
                 });
         }
 
         //search friends widget
-        $(function () {
+        $(function() {
             listFilter($("#searchDir"), $("#people-list"));
         });
     })(jQuery);
@@ -109,40 +124,42 @@ jQuery(document).ready(function ($) {
     //progress line for page loader
     $("body").show();
     NProgress.start();
-    setTimeout(function () {
+    setTimeout(function() {
         NProgress.done();
         $(".fade").removeClass("out");
     }, 2000);
 
     //--- bootstrap tooltip
-    $(function () {
+    $(function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
 
     // Sticky Sidebar & header
     if ($(window).width() < 769) {
-        jQuery(".sidebar").children().removeClass("stick-widget");
+        jQuery(".sidebar")
+            .children()
+            .removeClass("stick-widget");
     }
 
     if ($.isFunction($.fn.stick_in_parent)) {
         $(".stick-widget").stick_in_parent({
             parent: "#page-contents",
-            offset_top: 60,
+            offset_top: 60
         });
 
         $(".stick").stick_in_parent({
             parent: "body",
-            offset_top: 0,
+            offset_top: 0
         });
     }
 
     /*--- topbar setting dropdown ---*/
-    $(".we-page-setting").on("click", function () {
+    $(".we-page-setting").on("click", function() {
         $(".wesetting-dropdown").toggleClass("active");
     });
 
     /*--- topbar toogle setting dropdown ---*/
-    $("#nightmode1").on("change", function () {
+    $("#nightmode1").on("change", function() {
         if ($(this).is(":checked")) {
             // Show popup window
             $(".theme-layout").addClass("bg-dark");
@@ -160,7 +177,7 @@ jQuery(document).ready(function ($) {
     if ($.isFunction($.fn.userincr)) {
         $(".manual-adjust")
             .userincr({
-                buttonlabels: { dec: "-", inc: "+" },
+                buttonlabels: { dec: "-", inc: "+" }
             })
             .data({ min: 0, max: 20, step: 1 });
     }
@@ -171,8 +188,8 @@ jQuery(document).ready(function ($) {
             showItems: 1,
             button: {
                 class: "btn-load-more",
-                text: "Load More",
-            },
+                text: "Load More"
+            }
         });
     }
     //===== owl carousel  =====//
@@ -190,15 +207,15 @@ jQuery(document).ready(function ($) {
             responsiveClass: true,
             responsive: {
                 0: {
-                    items: 3,
+                    items: 3
                 },
                 600: {
-                    items: 3,
+                    items: 3
                 },
                 1000: {
-                    items: 6,
-                },
-            },
+                    items: 6
+                }
+            }
         });
     }
 
@@ -210,7 +227,7 @@ jQuery(document).ready(function ($) {
             arrows: false,
             slide: "li",
             fade: false,
-            asNavFor: ".slider-nav-gold",
+            asNavFor: ".slider-nav-gold"
         });
 
         $(".slider-nav-gold").slick({
@@ -234,8 +251,8 @@ jQuery(document).ready(function ($) {
                         vertical: false,
                         centerMode: true,
                         dots: false,
-                        arrows: false,
-                    },
+                        arrows: false
+                    }
                 },
                 {
                     breakpoint: 641,
@@ -246,8 +263,8 @@ jQuery(document).ready(function ($) {
                         vertical: true,
                         centerMode: true,
                         dots: false,
-                        arrows: false,
-                    },
+                        arrows: false
+                    }
                 },
                 {
                     breakpoint: 420,
@@ -258,57 +275,57 @@ jQuery(document).ready(function ($) {
                         vertical: false,
                         centerMode: true,
                         dots: false,
-                        arrows: false,
-                    },
-                },
-            ],
+                        arrows: false
+                    }
+                }
+            ]
         });
     }
 
     //---- responsive header
 
-    $(function () {
+    $(function() {
         //	create the menus
         $("#menu").mmenu();
         $("#shoppingbag").mmenu({
             navbar: {
-                title: "General Setting",
+                title: "General Setting"
             },
             offCanvas: {
-                position: "right",
-            },
+                position: "right"
+            }
         });
 
         //	fire the plugin
         $(".mh-head.first").mhead({
             scroll: {
-                hide: 200,
-            },
+                hide: 200
+            }
         });
         $(".mh-head.second").mhead({
-            scroll: false,
+            scroll: false
         });
     });
 
     //**** Slide Panel Toggle ***//
-    $("span.main-menu").on("click", function () {
+    $("span.main-menu").on("click", function() {
         $(".side-panel").addClass("active");
         $(".theme-layout").addClass("active");
         return false;
     });
 
-    $(".theme-layout").on("click", function () {
+    $(".theme-layout").on("click", function() {
         $(this).removeClass("active");
         $(".side-panel").removeClass("active");
     });
 
     // login & register form
-    $("button.signup").on("click", function () {
+    $("button.signup").on("click", function() {
         $(".login-reg-bg").addClass("show");
         return false;
     });
 
-    $(".already-have").on("click", function () {
+    $(".already-have").on("click", function() {
         $(".login-reg-bg").removeClass("show");
         return false;
     });
@@ -317,86 +334,94 @@ jQuery(document).ready(function ($) {
     if ($.isFunction($.fn.downCount)) {
         $(".countdown").downCount({
             date: "11/12/2018 12:00:00",
-            offset: +10,
+            offset: +10
         });
     }
 
     /** Post a Comment **/
-    $(".post-comt-box textarea").on("keydown", function (event) {
+    $(".post-comt-box textarea").on("keydown", function(event) {
         if (event.keyCode == 13) {
             let postId = $(this).attr("data-id");
             let data = $(this).val();
-            console.log(data);
             $.ajaxSetup({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                }
             });
             $.ajax({
-                url: "http://fakebook.com/home/post/" + postId + "/comment",
+                url: "http://fakebook.com/post/" + postId + "/comment",
                 type: "post",
                 data: {
-                    content: data,
+                    content: data
                 },
                 dataType: "json",
-                //processData: false,
-                //contentType: false,
-                success: function (response) {
+                success: function(response) {
                     if (response.data) {
+                        let postInfo = response.data;
+                        console.log(postInfo.count_comment);
                         let parent = $(".showmore").parent("li");
-                        console.log(parent);
                         let comment_HTML =
-                            '	<li><div class="comet-avatar"><img src="" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">Jason borne</a></h5><span>1 year ago</span><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' +
+                            '	<li><div class="comet-avatar"><a class="comet-avatar" href="' +
+                            postInfo.avatar +
+                            '"><img src="'+ postInfo.avatar +'" style="width: 45px" alt=""></a></div>' +
+                            '<div class="we-comment"><div class="coment-head"><h5><a href="http://fakebook.com/timeline/'+postInfo.user_id +'/user" title="">' +
+                            postInfo.last_name +
+                            " " +
+                            postInfo.first_name +
+                            "</a></h5><span>" +
+                            postInfo.created +
+                            '</span><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' +
                             data +
                             "</p></div></li>";
                         $(".post-comt-box textarea").val("");
                         $(comment_HTML).insertBefore(parent);
+                        $('.comment ins').html(postInfo.count_comment);
                     }
                 },
-                error: function (error) {
+                error: function(error) {
                     console.log(error);
-                },
+                }
             });
         }
     });
 
     //inbox page
     //***** Message Star *****//
-    $(".message-list > li > span.star-this").on("click", function () {
+    $(".message-list > li > span.star-this").on("click", function() {
         $(this).toggleClass("starred");
     });
 
     //***** Message Important *****//
-    $(".message-list > li > span.make-important").on("click", function () {
+    $(".message-list > li > span.make-important").on("click", function() {
         $(this).toggleClass("important-done");
     });
 
     // Listen for click on toggle checkbox
-    $("#select_all").on("click", function (event) {
+    $("#select_all").on("click", function(event) {
         if (this.checked) {
             // Iterate each checkbox
-            $("input:checkbox.select-message").each(function () {
+            $("input:checkbox.select-message").each(function() {
                 this.checked = true;
             });
         } else {
-            $("input:checkbox.select-message").each(function () {
+            $("input:checkbox.select-message").each(function() {
                 this.checked = false;
             });
         }
     });
 
-    $(".delete-email").on("click", function () {
-        $(".message-list .select-message").each(function () {
+    $(".delete-email").on("click", function() {
+        $(".message-list .select-message").each(function() {
             if (this.checked) {
-                $(this).parent().slideUp();
+                $(this)
+                    .parent()
+                    .slideUp();
             }
         });
     });
 
     // change background color on hover
-    $(".category-box").hover(function () {
+    $(".category-box").hover(function() {
         $(this).addClass("selected");
         $(this)
             .parent()
@@ -425,15 +450,27 @@ jQuery(document).ready(function ($) {
     }
 
     // Responsive nav dropdowns
-    $(".offcanvas-menu li.menu-item-has-children > a").on("click", function () {
-        $(this).parent().siblings().children("ul").slideUp();
-        $(this).parent().siblings().removeClass("active");
-        $(this).parent().children("ul").slideToggle();
-        $(this).parent().toggleClass("active");
+    $(".offcanvas-menu li.menu-item-has-children > a").on("click", function() {
+        $(this)
+            .parent()
+            .siblings()
+            .children("ul")
+            .slideUp();
+        $(this)
+            .parent()
+            .siblings()
+            .removeClass("active");
+        $(this)
+            .parent()
+            .children("ul")
+            .slideToggle();
+        $(this)
+            .parent()
+            .toggleClass("active");
         return false;
     });
 
-    $(".reply-comment").click(function () {
+    $(".reply-comment").click(function() {
         let cmt_id = $(this).attr("data-id");
         let tag_name = $(this).attr("data-value");
         $("#reply-form-" + cmt_id).css("display", "block");
@@ -441,22 +478,22 @@ jQuery(document).ready(function ($) {
     });
 
     // click like button
-    $(".like").on("click", function () {
+    $(".like").on("click", function() {
         let self = $(this);
         let selfIns = $(this).children("ins");
         let postId = $(this).attr("data-id");
         event.preventDefault;
         $.ajaxSetup({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            }
         });
         $.ajax({
             type: "GET",
-            url: "http://fakebook.org/timeline/post/" + postId + "/like",
+            url: "/timeline/post/" + postId + "/like",
             data: {},
             dataType: "JSON",
-            success: function (data) {
+            success: function(data) {
                 console.log(data);
                 if (data.liked) {
                     self.find("i").removeClass("ti-heart");
@@ -467,9 +504,9 @@ jQuery(document).ready(function ($) {
                 }
                 selfIns.html(data.countLiked);
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error);
-            },
+            }
         });
     });
 }); //document ready end

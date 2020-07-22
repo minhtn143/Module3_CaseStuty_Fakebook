@@ -334,6 +334,7 @@ jQuery(document).ready(function($) {
 
     /** Post a Comment **/
     $(".post-comt-box textarea").on("keydown", function(event) {
+        var parent = $(this).parent().parent().parent();
         if (event.keyCode == 13) {
             let postId = $(this).attr("data-id");
             let data = $(this).val();
@@ -343,7 +344,7 @@ jQuery(document).ready(function($) {
                 }
             });
             $.ajax({
-                url: "http://fakebook.com/post/" + postId + "/comment",
+                url: "/post/" + postId + "/comment",
                 type: "post",
                 data: {
                     content: data
@@ -353,11 +354,10 @@ jQuery(document).ready(function($) {
                     if (response.data) {
                         let postInfo = response.data;
                         console.log(postInfo.count_comment);
-                        let parent = $(".showmore").parent("li");
                         let comment_HTML =
                             '	<li><div class="comet-avatar"><a class="comet-avatar" href="' +
                             postInfo.avatar +
-                            '"><img src="'+ postInfo.avatar +'" style="width: 45px" alt=""></a></div>' +
+                            '"><img src="/storage/images/'+ postInfo.avatar +'" style="width: 45px; height: 45px" alt=""></a></div>' +
                             '<div class="we-comment"><div class="coment-head"><h5><a href="http://fakebook.com/timeline/'+postInfo.user_id +'/user" title="">' +
                             postInfo.last_name +
                             " " +

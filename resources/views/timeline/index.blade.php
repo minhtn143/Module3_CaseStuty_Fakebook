@@ -267,7 +267,7 @@
                                         <textarea id="comment-{{ $comment->id }}" data-id="{{ $comment->id }}"
                                             name="comment-{{ $comment->id }}"
                                             placeholder="Post your comment"></textarea>
-                                        <div class="add-smiles">
+                                        {{-- <div class="add-smiles">
                                             <span class="em em-expressionless" title="add icon"></span>
                                         </div>
                                         <div class="smiles-bunch">
@@ -283,7 +283,7 @@
                                             <i class="em em-kissing_heart"></i>
                                             <i class="em em-rage"></i>
                                             <i class="em em-stuck_out_tongue"></i>
-                                        </div>
+                                        </div> --}}
                                         <button type="submit"></button>
                                     </form>
                                 </div>

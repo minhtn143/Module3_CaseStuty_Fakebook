@@ -1,5 +1,5 @@
 {{-- chat box --}}
-@if ($messages)
+@if (!$messages->isEmpty())
 <div class="chat-head">
     <span class="status f-online"></span>
     <h6>
@@ -16,6 +16,14 @@
 </div>
 <div class="chat-list message-wrapper">
     <ul class="messages">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
         @foreach ($messages as $message)
         <li class="{{ ($message->from == Auth::id()) ? 'you' : 'me' }}">
             <div class="chat-thumb">
@@ -59,7 +67,7 @@
 @else
 <div class="chat-head">
     <span class="status f-online"></span>
-    <h6>
+    <h6>New Message
     </h6>
     <div class="more">
         <span class="test-click"><i class="ti-more-alt"></i></span>
@@ -68,23 +76,14 @@
 </div>
 <div class="chat-list message-wrapper">
     <ul class="messages">
-        @foreach ($messages as $message)
-        <li class="{{ ($message->from == Auth::id()) ? 'you' : 'me' }}">
-            <div class="chat-thumb">
-                <img src="{{ ($message->from == Auth::id()) ? App\User::find(Auth::id())->avatar : App\User::find($message->from)->avatar }}"
-                    alt="">
-            </div>
-            <div class="notification-event">
-                <span class="chat-message-item">
-                    {{ $message->message }}
-                </span>
-                <span class="notification-date-{{ ($message->from == Auth::id()) ? 'right' : 'left' }}"><time
-                        datetime="2004-07-24T18:18"
-                        class="entry-date updated">{{ date('d M y, h:i a', strtotime($message->created_at)) }}</time>
-                </span>
-            </div>
-        </li>
-        @endforeach
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
     </ul>
     <form class="text-box input-text">
         <textarea placeholder="Post enter to post..."></textarea>

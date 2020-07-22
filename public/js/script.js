@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
             .addClass("active");
         return false;
     });
-    //------- remove class active on body
+    // //------- remove class active on body
     $("body *")
         .not(".top-area > .setting-area > li")
         .on("click", function() {
@@ -24,12 +24,6 @@ jQuery(document).ready(function($) {
         $(".user-setting").toggleClass("active");
         return false;
     });
-
-    // $(".test-click").click(function () {
-    //     console.log('123');
-    //     $("#messages").html('');
-    //     return false;
-    // });
 
     $(document).on("click", ".close-message", function() {
         $("#messages").css("display", "none");

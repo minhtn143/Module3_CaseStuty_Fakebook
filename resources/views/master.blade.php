@@ -36,6 +36,9 @@
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="{{ asset('js/main.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <script>
+        var my_id = {{ Auth::id() }};
+    </script>
     <script src="{{ asset('js/message.js') }}"></script>
 </body>
 

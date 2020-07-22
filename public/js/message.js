@@ -1,5 +1,5 @@
 var receiver_id = "";
-var my_id = "{{ Auth::id() }}";
+// var my_id = "{{ Auth::id() }}";
 $(document).ready(function() {
     // ajax setup form csrf token
     $.ajaxSetup({
@@ -16,8 +16,8 @@ $(document).ready(function() {
     });
 
     var channel1 = pusher.subscribe("my-channel1");
-    channel1.bind('my-event', function(data) {
-        alert(JSON.stringify(data));
+    channel1.bind("my-event", function(data) {
+        console.log(my_id);
         if (my_id == data.from) {
             $("#" + data.to).click();
         } else if (my_id == data.to) {
@@ -42,7 +42,6 @@ $(document).ready(function() {
             }
         }
     });
-
 
     $(".user").click(function() {
         $(".user").removeClass("active1");
@@ -76,7 +75,7 @@ $(document).ready(function() {
             var datastr = "receiver_id=" + receiver_id + "&message=" + message;
             $.ajax({
                 type: "post",
-                url: "message", // need to create this post route
+                url: "/message", // need to create this post route
                 data: datastr,
                 cache: false,
                 success: function(data) {},

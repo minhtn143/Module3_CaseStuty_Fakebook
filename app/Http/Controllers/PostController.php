@@ -42,6 +42,7 @@ class PostController extends Controller
             $post = Post::find($postId);
             $post->photo_id = $photo->id;
             $post->save();
+            alert('Post Complete', '', 'success')->autoClose(1500);
         }
 
         return redirect()->back();
@@ -76,7 +77,7 @@ class PostController extends Controller
             'avatar' => $comment->user->avatar,
             'created' => date('Y-m-d H:i:s', $time),
             'user_id' => $comment->user_id,
-            'count_comment'=> $countComment
+            'count_comment' => $countComment
         ];
 
         return response()->json(['data' => $data]);

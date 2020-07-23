@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 | Model Factories
 |--------------------------------------------------------------------------
 |
-| This directory should contain each of the model factory definitions for
+| This dirgit push heroku <your-branch>:mastertory should contain each of the model factory definitions for
 | your application. Factories provide a convenient way to generate new
 | model instances for testing / seeding your application's database.
 |
